@@ -139,8 +139,6 @@ export default function RawDataClient() {
 
   const handleDeleteAll = useCallback(async () => {
     try {
-      const confirmed = window.confirm('Tem certeza que deseja excluir TODOS os registros? Esta ação não pode ser desfeita.');
-      if (!confirmed) return;
       const res = await fetch('/api/finance/raw-data', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },

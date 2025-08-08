@@ -45,6 +45,18 @@ import { exportTableData } from "@/lib/export/table-export";
 
 import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import {
   ColumnDef,
   flexRender,
@@ -245,6 +257,7 @@ export function AdvancedDataTable({
     columns: safeTableColumns, // Usar colunas verificadas em vez de tableColumns
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    enableRowSelection: enableRowSelection,
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
@@ -271,12 +284,39 @@ export function AdvancedDataTable({
   const selectedRowIds = useMemo(() => {
     const selection = table.getState().rowSelection as Record<string, boolean>;
     const ids: string[] = [];
-    table.getRowModel().rows.forEach((row) => {
+    console.log('Debug - selection state:', selection);
+    table.getRowModel().rows.forEach((row, index) => {
       const isSelected = selection[row.id];
+      console.log(`Debug - row ${index}:`, { 
+        rowId: row.id, 
+        isSelected, 
+        original: row.original,
+        hasId: !!row.original?.id,
+        hasIdOperacao: !!row.original?.IdOperacao
+      });
       if (isSelected) {
         const raw = row.original;
         const id = getRowId ? getRowId(raw) : (raw.id || raw.IdOperacao || row.id);
+        console.log('Debug - extracted id:', id);
         if (id) ids.push(String(id));
+      }
+    });
+    console.log('Debug - final selectedRowIds:', ids);
+    return ids;
+  }, [table, getRowId]);
+
+  // Função alternativa para obter IDs selecionados
+  const getAlternativeSelectedIds = useCallback(() => {
+    const selection = table.getState().rowSelection as Record<string, boolean>;
+    const ids: string[] = [];
+    Object.keys(selection).forEach(rowIndex => {
+      if (selection[rowIndex]) {
+        const row = table.getRowModel().rows[parseInt(rowIndex)];
+        if (row) {
+          const raw = row.original;
+          const id = getRowId ? getRowId(raw) : (raw.id || raw.IdOperacao || rowIndex);
+          if (id) ids.push(String(id));
+        }
       }
     });
     return ids;
@@ -657,25 +697,6 @@ export function AdvancedDataTable({
         </div>
 
         <div className="flex items-center gap-2">
-          {enableRowSelection && (
-            <>
-              <Button
-                variant="destructive"
-                size="sm"
-                disabled={selectedRowIds.length === 0}
-                onClick={() => onDeleteSelected?.(selectedRowIds)}
-              >
-                Excluir selecionados ({selectedRowIds.length})
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => onDeleteAll?.()}
-              >
-                Excluir todos
-              </Button>
-            </>
-          )}
           {/* Exportação */}
           <Button variant="outline" size="sm" onClick={handleExport}>
             <Download className="mr-2 h-4 w-4" />
@@ -742,12 +763,67 @@ export function AdvancedDataTable({
         </div>
       </div>
 
+      {/* Ações de seleção - aparece quando há linhas selecionadas */}
+      {enableRowSelection && (Object.keys(table.getState().rowSelection).length > 0 || selectedRowIds.length > 0) && (
+        <div className="mb-4 rounded-lg border bg-orange-50 p-4 dark:bg-orange-950/20 dark:border-orange-800">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <Badge variant="secondary" className="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200">
+                {Object.keys(table.getState().rowSelection).length} registro{Object.keys(table.getState().rowSelection).length > 1 ? "s" : ""} selecionado{Object.keys(table.getState().rowSelection).length > 1 ? "s" : ""}
+              </Badge>
+              <div className="text-sm text-orange-700 dark:text-orange-300">
+                Use os botões ao lado para gerenciar a seleção
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" onClick={() => table.resetRowSelection()}>
+                Limpar seleção
+              </Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="destructive" size="sm">
+                    Excluir selecionados ({Object.keys(table.getState().rowSelection).length})
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Confirmar exclusão</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Você está prestes a excluir {Object.keys(table.getState().rowSelection).length} registro(s). Esta ação não pode ser desfeita.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => {
+                      const idsToDelete = getAlternativeSelectedIds();
+                      console.log('Deleting IDs:', idsToDelete);
+                      onDeleteSelected?.(idsToDelete);
+                    }}>
+                      Excluir
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Tabela */}
       <div className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} className="bg-gray-50 dark:bg-gray-800/50">
+                {enableRowSelection && (
+                  <TableHead className="py-4 px-6 w-10">
+                    <Checkbox
+                      aria-label="Selecionar todos"
+                      checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() ? "indeterminate" as any : false)}
+                      onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+                    />
+                  </TableHead>
+                )}
                 {headerGroup.headers.map((header) => {
                   const canSort = header.column.getCanSort() && enableSorting
                   const isSorted = header.column.getIsSorted()
@@ -800,8 +876,27 @@ export function AdvancedDataTable({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                  className={cn(
+                    "transition-colors",
+                    row.getIsSelected()
+                      ? "bg-red-300 dark:bg-red-950/40 hover:bg-red-100 dark:hover:bg-red-900/50"
+                      : "hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                  )}
+                  onClick={(e) => {
+                    const target = e.target as HTMLElement
+                    if (target.closest("input,button,a,[role=button]")) return
+                    row.toggleSelected()
+                  }}
                 >
+                  {enableRowSelection && (
+                    <TableCell className="py-4 px-6 w-10 border-b border-gray-100 dark:border-gray-700">
+                      <Checkbox
+                        aria-label="Selecionar linha"
+                        checked={row.getIsSelected()}
+                        onCheckedChange={(value) => row.toggleSelected(!!value)}
+                      />
+                    </TableCell>
+                  )}
                   {row.getVisibleCells().map((cell) => (
                     <TableCell 
                       key={cell.id} 
@@ -815,7 +910,7 @@ export function AdvancedDataTable({
             ) : (
               <TableRow>
                 <TableCell 
-                  colSpan={columns.length} 
+                  colSpan={columns.length + (enableRowSelection ? 1 : 0)} 
                   className="h-32 text-center py-8 text-gray-500 dark:text-gray-400"
                 >
                   <div className="flex flex-col items-center gap-2">
@@ -832,6 +927,13 @@ export function AdvancedDataTable({
 
       {/* Paginação Inferior */}
       {enablePagination && renderPaginationControls()}
+
+      {/* Debug: mostrar estado da seleção */}
+      {enableRowSelection && (
+        <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+          Debug: {selectedRowIds.length} selecionados, rowSelection: {JSON.stringify(table.getState().rowSelection)}
+        </div>
+      )}
     </div>
   );
 } 
