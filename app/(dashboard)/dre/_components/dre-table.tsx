@@ -79,13 +79,13 @@ const formatPeriodLabel = (periodLabel?: string, periodType?: string, selectedPe
 const getTooltipInfo = (description: string, data: DREData): DREItem['tooltip'] => {
     const tooltips: Record<string, { title: string; description: string; variant?: "info" | "success" | "warning" | "error" }> = {
         "Operação": { title: "Receitas Operacionais", description: "Receitas principais da empresa (vendas, serviços).", variant: "info" },
-        "Dedução Fiscal": { title: "Dedução Fiscal", description: "Valor de dedução (ex: PIS/COFINS) que aumenta a base de cálculo para impostos.", variant: "warning" },
         "Receita Bruta": { title: "Receita Bruta", description: `Receita total antes de impostos. Calculada como: Operação + Dedução = ${formatCurrency(data.receitas.operacoes + data.deducaoFiscal)}`, variant: "success" },
         "Impostos sobre Receita": { title: "Impostos sobre a Receita", description: "Impostos que incidem diretamente sobre a receita (PIS, COFINS, ISSQN).", variant: "error" },
         "Receita Líquida": { title: "Receita Líquida", description: `Receita após a dedução dos impostos. Receita Bruta - Impostos = ${formatCurrency(data.resultadoBruto)}`, variant: "success" },
         "Despesas Operacionais": { title: "Despesas Operacionais", description: "Total de despesas para manter a operação da empresa.", variant: "error" },
         "Resultado Operacional": { title: "Resultado Operacional", description: `Lucro ou prejuízo das operações principais. Receita Líquida - Despesas = ${formatCurrency(data.resultadoOperacional)}`, variant: "info" },
         "Outras Receitas": { title: "Outras Receitas/Entradas", description: "Receitas não relacionadas à atividade principal.", variant: "info" },
+        "Dedução Fiscal": { title: "Dedução Fiscal", description: "Valor de dedução (ex: PIS/COFINS) inserida manualmente.", variant: "warning" },
         "Resultado Líquido": { title: "Resultado Líquido", description: "Lucro ou prejuízo final do período após todas as receitas e despesas." },
       };
   return tooltips[description];
@@ -96,12 +96,12 @@ const buildSummaryDREItems = (data: DREData | null): DREItem[] => {
   if (!data) return [];
   return [
     { description: "Operação", value: data.receitas.operacoes, level: 0, operation: 'plus', tooltip: getTooltipInfo("Operação", data) },
-    { description: "Dedução", value: data.deducaoFiscal, level: 0, operation: 'plus', tooltip: getTooltipInfo("Dedução Fiscal", data) },
     { description: "Receita Bruta", value: data.receitas.total, level: 0, isTotal: true, tooltip: getTooltipInfo("Receita Bruta", data) },
     { description: "Receita Líquida", value: data.resultadoBruto, level: 0, isTotal: true, tooltip: getTooltipInfo("Receita Líquida", data) },
     { description: "Despesas", value: data.despesas.total, level: 0, operation: 'minus', tooltip: getTooltipInfo("Despesas Operacionais", data) },
     { description: "Resultado Bruto", value: data.resultadoOperacional, level: 0, isTotal: true, tooltip: getTooltipInfo("Resultado Operacional", data) },
     { description: "Entradas", value: data.receitas.outras, level: 0, operation: 'plus', tooltip: getTooltipInfo("Outras Receitas", data) },
+    { description: "Dedução", value: data.deducaoFiscal, level: 0, operation: 'plus', tooltip: getTooltipInfo("Dedução Fiscal", data) },
     { description: "Resultado Líquido", value: data.resultadoLiquido, level: 0, isHighlighted: true, isTotal: true, tooltip: getTooltipInfo("Resultado Líquido", data) },
   ];
 };
@@ -115,8 +115,7 @@ const buildDetailedDREItems = (data: DREData | null): DREItem[] => {
     { description: "Valor Fator", value: data.custos.fator, level: 1, operation: 'plus' },
     { description: "Valor Advalorem", value: data.custos.adValorem, level: 1, operation: 'plus' },
     { description: "Valor Tarifas", value: data.custos.tarifas, level: 1, operation: 'plus' },
-    { description: "Dedução", value: data.deducaoFiscal, level: 0, operation: 'plus', tooltip: getTooltipInfo("Dedução Fiscal", data) },
-    { description: "Receita Bruta", value: data.receitas.total, level: 0, isTotal: true, tooltip: getTooltipInfo("Receita Bruta", data) },
+   
     // Impostos detalhados
     { description: "PIS", value: data.impostos.pis, level: 1, operation: 'minus' },
     { description: "COFINS", value: data.impostos.cofins, level: 1, operation: 'minus' },
@@ -131,6 +130,8 @@ const buildDetailedDREItems = (data: DREData | null): DREItem[] => {
     { description: "IRPJ", value: data.impostos.ir, level: 1, operation: 'minus' },
     // Entradas e resultado final
     { description: "Entradas", value: data.receitas.outras, level: 0, operation: 'plus', tooltip: getTooltipInfo("Outras Receitas", data) },
+    { description: "Dedução", value: data.deducaoFiscal, level: 0, operation: 'plus', tooltip: getTooltipInfo("Dedução Fiscal", data) },
+    { description: "Receita Bruta", value: data.receitas.total, level: 0, isTotal: true, tooltip: getTooltipInfo("Receita Bruta", data) },
     { description: "Resultado Líquido", value: data.resultadoLiquido, level: 0, isHighlighted: true, isTotal: true, tooltip: getTooltipInfo("Resultado Líquido", data) },
   ];
 };

@@ -604,8 +604,7 @@ export async function GET(req: Request) {
     // 2. Receita Bruta (dedução fiscal SOMADA conforme solicitado)
     const receitaBruta = operations.totalValorFator + 
                         operations.totalValorAdValorem + 
-                        operations.totalValorTarifas + 
-                        taxDeductionValue; // Dedução fiscal é SOMADA para aumentar a receita bruta
+                        operations.totalValorTarifas 
     
     // 3. Receita Líquida
     const receitaLiquida = receitaBruta - 
@@ -749,7 +748,7 @@ export async function GET(req: Request) {
     }
     
     // 8. Resultado Líquido
-    const resultadoLiquido = resultadoBruto + entradasOperacionais - irpj - csll;
+    const resultadoLiquido = resultadoBruto + entradasOperacionais + taxDeductionValue - irpj - csll; 
     
     // Preparar dados para o DRE
     const dre = {
