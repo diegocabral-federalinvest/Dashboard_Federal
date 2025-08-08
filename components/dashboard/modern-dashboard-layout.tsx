@@ -330,79 +330,7 @@ export function ModernDashboardLayout({
           </GlassCard>
         </motion.div>
 
-        {/* Card 2 - Despesas & Entradas */}
-        <motion.div variants={item}>
-          <GlassCard 
-            variant="light" 
-            elevation="medium"
-            className="h-full border-l border-gray-200"
-          >
-            <div className="p-4">
-              <div className="flex items-start justify-between mb-3">
-              <Badge variant="secondary" className="px-2 py-1 text-lg text-white text-blue-500 font-semibold bg-blue-500/10 dark:bg-blue-900/30 
-                border border-blue-200/50 dark:border-blue-600/30 shadow-blue-500/20 shadow-sm backdrop-blur-sm">
-                  Despesas & Entradas
-                </Badge>
-                <NeonIcon icon={Wallet} />
-              </div>
-              
-              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
-                {isLoading ? (
-                  <MainValueSkeleton width="w-32" />
-                ) : (
-                  formatCurrency(stats.totalExpenses)
-                )}
-              </div>
-              
-              <div className="space-y-1.5 text-xs">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600 dark:text-gray-400">
-                    Último {getPeriodLabel()}:
-                  </span>
-                  <span className="font-medium">
-                    {isLoading ? (
-                      <InlineValueSkeleton width="w-16" />
-                    ) : (
-                      formatCurrency(stats.expensesPrevious)
-                    )}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600 dark:text-gray-400">Crescimento:</span>
-                  <span className="font-medium">
-                    {isLoading ? (
-                      <InlineValueSkeleton width="w-12" />
-                    ) : (
-                      <GrowthBadge value={stats.expensesGrowth} />
-                    )}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600 dark:text-gray-400">Total Entradas:</span>
-                  <span className="font-medium">
-                    {isLoading ? (
-                      <InlineValueSkeleton width="w-16" />
-                    ) : (
-                      formatCurrency(stats.totalRevenues)
-                    )}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600 dark:text-gray-400">Balanço:</span>
-                  <span className={`font-medium ${!isLoading && stats.balance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                    {isLoading ? (
-                      <InlineValueSkeleton width="w-16" />
-                    ) : (
-                      formatCurrency(stats.balance)
-                    )}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </GlassCard>
-        </motion.div>
-
-        {/* Card 3 - Investimentos */}
+        {/* Card 2 - Investimentos */}
         <motion.div variants={item}>
           <GlassCard 
             variant="light" 
@@ -476,7 +404,7 @@ export function ModernDashboardLayout({
           </GlassCard>
         </motion.div>
 
-        {/* Card 4 - Operações */}
+        {/* Card 3 - Operações Convencionais */}
         <motion.div variants={item}>
           <GlassCard 
             variant="light" 
@@ -487,7 +415,7 @@ export function ModernDashboardLayout({
               <div className="flex items-start justify-between mb-3">
               <Badge variant="secondary" className="px-2 py-1 text-lg text-white text-blue-500 font-semibold bg-blue-500/10 dark:bg-blue-900/30 
                 border border-blue-200/50 dark:border-blue-600/30 shadow-blue-500/20 shadow-sm backdrop-blur-sm">
-                  Operações
+                  Operações Convencionais
                 </Badge>
                 <NeonIcon icon={LineChart} />
               </div>
@@ -534,6 +462,68 @@ export function ModernDashboardLayout({
                       <InlineValueSkeleton width="w-8" />
                     ) : (
                       stats.operationsCount
+                    )}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </GlassCard>
+        </motion.div>
+
+        {/* Card 4 - Operações Trustee */}
+        <motion.div variants={item}>
+          <GlassCard 
+            variant="light" 
+            elevation="medium"
+            className="h-full border-l border-gray-200"
+          >
+            <div className="p-4">
+              <div className="flex items-start justify-between mb-3">
+              <Badge variant="secondary" className="px-2 py-1 text-lg text-white text-blue-500 font-semibold bg-blue-500/10 dark:bg-blue-900/30 
+                border border-blue-200/50 dark:border-blue-600/30 shadow-blue-500/20 shadow-sm backdrop-blur-sm">
+                  Operações Trustee
+                </Badge>
+                <NeonIcon icon={Wallet} />
+              </div>
+              
+              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                {isLoading ? (
+                  <MainValueSkeleton width="w-32" />
+                ) : (
+                  formatCurrency(0)
+                )}
+              </div>
+              
+              <div className="space-y-1.5 text-xs">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600 dark:text-gray-400">
+                    Último {getPeriodLabel()}:
+                  </span>
+                  <span className="font-medium">
+                    {isLoading ? (
+                      <InlineValueSkeleton width="w-16" />
+                    ) : (
+                      formatCurrency(0)
+                    )}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600 dark:text-gray-400">Crescimento:</span>
+                  <span className="font-medium">
+                    {isLoading ? (
+                      <InlineValueSkeleton width="w-12" />
+                    ) : (
+                      <GrowthBadge value={0} />
+                    )}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600 dark:text-gray-400">Total Operações:</span>
+                  <span className="font-medium">
+                    {isLoading ? (
+                      <InlineValueSkeleton width="w-8" />
+                    ) : (
+                      0
                     )}
                   </span>
                 </div>
