@@ -161,14 +161,15 @@ export const investmentsColumns: ColumnDef<InvestmentWithCalculations>[] = [
     cell: ({ row }) => {
       const returns = row.original.returns || 0;
       const percentage = row.original.percentage || 0;
-      
+      const isNegative = returns < 0;
+
       return (
         <div className="text-right">
-          <div className="text-emerald-400 font-medium font-mono">
+          <div className={`font-medium font-mono ${isNegative ? 'text-red-400' : 'text-emerald-400'}`}>
             {formatCurrencyHighPrecision(returns)}
           </div>
-          <div className="text-xs text-emerald-300">
-            +{percentage.toFixed(3)}%
+          <div className={`text-xs ${isNegative ? 'text-red-300' : 'text-emerald-300'}`}>
+            {isNegative ? '' : '+'}{percentage.toFixed(3)}%
           </div>
         </div>
       );
@@ -191,9 +192,10 @@ export const investmentsColumns: ColumnDef<InvestmentWithCalculations>[] = [
     },
     cell: ({ row }) => {
       const totalValue = row.original.totalValue || 0;
+      const isNegative = totalValue < 0;
       
       return (
-        <div className="font-bold text-right text-cyan-400 font-mono">
+        <div className={`font-bold text-right font-mono ${isNegative ? 'text-red-400' : 'text-cyan-400'}`}>
           {formatCurrencyHighPrecision(totalValue)}
         </div>
       );

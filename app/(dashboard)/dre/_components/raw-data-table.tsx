@@ -621,26 +621,40 @@ export function RawDataTable({ limit = 10 }: RawDataTableProps) {
                 <TableBody>
                   {rawData?.data.map((item: FinancialDataCSV) => (
                     <TableRow key={item.id} className="hover:bg-muted/30">
-                      {visibleColumnsArray.map((column) => (
-                        <TableCell key={`${item.id}-${column.key}`} className="whitespace-nowrap">
-                          {formatValue(item[column.key as keyof FinancialDataCSV], column.type)}
-                        </TableCell>
-                      ))}
+                      {visibleColumnsArray.map((column) => {
+                        const value = item[column.key as keyof FinancialDataCSV];
+                        const isNumeric = column.type === 'currency' || column.type === 'decimal';
+                        const numValue = isNumeric ? (typeof value === 'string' ? parseFloat(value) : Number(value)) : NaN;
+                        const isNegative = isNumeric && !isNaN(numValue) && numValue < 0;
+                        const cellClassName = `whitespace-nowrap ${isNegative ? 'text-red-500' : ''}`;
+
+                        return (
+                          <TableCell key={`${item.id}-${column.key}`} className={cellClassName}>
+                            {formatValue(value, column.type)}
+                          </TableCell>
+                        );
+                      })}
                     </TableRow>
                   ))}
                   
                   {/* Linha de totais */}
                   {Object.keys(totals).length > 0 && (
                     <TableRow className="font-medium bg-muted/20 border-t-2">
-                      {visibleColumnsArray.map((column) => (
-                        <TableCell key={`total-${column.key}`}>
-                          {column.type === "currency" && totals[column.key] 
-                            ? formatCurrency(totals[column.key])
-                            : column.key === visibleColumnsArray[0].key 
-                              ? "Totais" 
-                              : ""}
-                        </TableCell>
-                      ))}
+                      {visibleColumnsArray.map((column) => {
+                        const totalValue = totals[column.key];
+                        const isNegative = typeof totalValue === 'number' && totalValue < 0;
+                        const cellClassName = `${isNegative ? 'text-red-500' : ''}`;
+                        
+                        return (
+                          <TableCell key={`total-${column.key}`} className={cellClassName}>
+                            {column.type === "currency" && totalValue !== undefined
+                              ? formatCurrency(totalValue)
+                              : column.key === visibleColumnsArray[0].key 
+                                ? "Totais" 
+                                : ""}
+                          </TableCell>
+                        );
+                      })}
                     </TableRow>
                   )}
                 </TableBody>

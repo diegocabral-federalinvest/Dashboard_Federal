@@ -195,6 +195,33 @@ export default function DREClientRefactored() {
     }
   }, [effectiveData]);
 
+  // Carregar impostos manuais atuais ao abrir o diálogo (visão trimestral)
+  useEffect(() => {
+    const fetchManualTaxes = async () => {
+      try {
+        if (manualTaxesDialog && currentPeriod.periodType === 'quarterly' && currentPeriod.year && currentPeriod.quarter) {
+          const params = new URLSearchParams({
+            year: String(currentPeriod.year),
+            quarter: String(currentPeriod.quarter)
+          });
+          const res = await fetch(`/api/finance/manual-quarterly-taxes?${params.toString()}`);
+          if (res.ok) {
+            const json = await res.json();
+            const data = json?.data || {};
+            setLocalState(prev => ({
+              ...prev,
+              csll: Number(data.csll || 0),
+              irpj: Number(data.irpj || 0)
+            }));
+          }
+        }
+      } catch (err) {
+        // silencioso
+      }
+    };
+    fetchManualTaxes();
+  }, [manualTaxesDialog, currentPeriod.periodType, currentPeriod.year, currentPeriod.quarter]);
+
   // Sync local state with period changes
   useEffect(() => {
     setLocalState(prev => ({
@@ -437,10 +464,12 @@ export default function DREClientRefactored() {
         throw new Error("Falha ao salvar impostos manuais");
       }
 
+      // Atualizar estado local imediatamente
       setLocalState(prev => ({ ...prev, csll, irpj }));
       
-      // Recarregar dados
+      // Recarregar dados e fechar diálogo
       await refetch();
+      setManualTaxesDialog(false);
       
     } catch (error) {
       console.error("Erro ao salvar impostos manuais:", error);

@@ -102,6 +102,11 @@ export interface AdvancedDataTableProps {
   defaultPageSize?: number;
   pageSizeOptions?: number[];
   showFilters?: boolean;
+  // Deleção
+  enableRowSelection?: boolean;
+  onDeleteSelected?: (ids: string[]) => void;
+  onDeleteAll?: () => void;
+  getRowId?: (row: TableData) => string;
 }
 
 export function AdvancedDataTable({
@@ -131,6 +136,10 @@ export function AdvancedDataTable({
   defaultPageSize = 10,
   pageSizeOptions = [5, 10, 20, 30, 50, 100],
   showFilters = true,
+  enableRowSelection = true,
+  onDeleteSelected,
+  onDeleteAll,
+  getRowId,
 }: AdvancedDataTableProps) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -258,6 +267,20 @@ export function AdvancedDataTable({
       },
     },
   })
+
+  const selectedRowIds = useMemo(() => {
+    const selection = table.getState().rowSelection as Record<string, boolean>;
+    const ids: string[] = [];
+    table.getRowModel().rows.forEach((row) => {
+      const isSelected = selection[row.id];
+      if (isSelected) {
+        const raw = row.original;
+        const id = getRowId ? getRowId(raw) : (raw.id || raw.IdOperacao || row.id);
+        if (id) ids.push(String(id));
+      }
+    });
+    return ids;
+  }, [table, getRowId]);
 
   // Estados
   const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>(() => {
@@ -634,6 +657,25 @@ export function AdvancedDataTable({
         </div>
 
         <div className="flex items-center gap-2">
+          {enableRowSelection && (
+            <>
+              <Button
+                variant="destructive"
+                size="sm"
+                disabled={selectedRowIds.length === 0}
+                onClick={() => onDeleteSelected?.(selectedRowIds)}
+              >
+                Excluir selecionados ({selectedRowIds.length})
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onDeleteAll?.()}
+              >
+                Excluir todos
+              </Button>
+            </>
+          )}
           {/* Exportação */}
           <Button variant="outline" size="sm" onClick={handleExport}>
             <Download className="mr-2 h-4 w-4" />
