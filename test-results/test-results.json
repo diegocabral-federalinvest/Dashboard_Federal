@@ -1,0 +1,2023 @@
+{
+  "config": {
+    "configFile": "C:\\federal-clone\\federal-novo-main\\playwright.config.ts",
+    "rootDir": "C:/federal-clone/federal-novo-main/__tests__",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "C:\\federal-clone\\federal-novo-main\\test-setup\\global-setup.ts",
+    "globalTeardown": "C:\\federal-clone\\federal-novo-main\\test-setup\\global-teardown.ts",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "test-results/playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/test-results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/junit.xml"
+        }
+      ],
+      [
+        "line",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/federal-clone/federal-novo-main/test-results/artifacts",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "DRE-Desktop-Chrome",
+        "name": "DRE-Desktop-Chrome",
+        "testDir": "C:/federal-clone/federal-novo-main/__tests__",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*playwright*.test.ts",
+          "**/*e2e*.test.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/federal-clone/federal-novo-main/test-results/artifacts",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "DRE-Desktop-Firefox",
+        "name": "DRE-Desktop-Firefox",
+        "testDir": "C:/federal-clone/federal-novo-main/__tests__",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*playwright*.test.ts",
+          "**/*e2e*.test.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/federal-clone/federal-novo-main/test-results/artifacts",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "DRE-Desktop-Safari",
+        "name": "DRE-Desktop-Safari",
+        "testDir": "C:/federal-clone/federal-novo-main/__tests__",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*playwright*.test.ts",
+          "**/*e2e*.test.ts"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.53.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev",
+      "port": 3000,
+      "timeout": 120000,
+      "reuseExistingServer": true,
+      "stdout": "pipe",
+      "stderr": "pipe"
+    }
+  },
+  "suites": [
+    {
+      "title": "playwright-dre-interface.test.ts",
+      "file": "playwright-dre-interface.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "🧪 DRE Tax Deductions Interface Tests",
+          "file": "playwright-dre-interface.test.ts",
+          "line": 186,
+          "column": 6,
+          "specs": [
+            {
+              "title": "🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Chrome",
+                  "projectName": "DRE-Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 29297,
+                      "error": {
+                        "message": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"dre-table\"], .dre-table, table') to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"dre-table\"], .dre-table, table') to be visible\u001b[22m\n\n    at waitForDREDataLoad (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:50:14)\n    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:189:11",
+                        "location": {
+                          "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                          "column": 14,
+                          "line": 50
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 48 |\u001b[39m \u001b[36mconst\u001b[39m waitForDREDataLoad \u001b[33m=\u001b[39m \u001b[36masync\u001b[39m (page\u001b[33m:\u001b[39m \u001b[33mPage\u001b[39m) \u001b[33m=>\u001b[39m {\n \u001b[90m 49 |\u001b[39m   \u001b[90m// Aguardar elementos do DRE carregar\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 50 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=\"dre-table\"], .dre-table, table'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 51 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m \u001b[90m// Aguardar estabilizar\u001b[39m\n \u001b[90m 52 |\u001b[39m   console\u001b[33m.\u001b[39mlog(\u001b[32m'✅ Dados do DRE carregados'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 53 |\u001b[39m }\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                            "column": 14,
+                            "line": 50
+                          },
+                          "message": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"dre-table\"], .dre-table, table') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 48 |\u001b[39m \u001b[36mconst\u001b[39m waitForDREDataLoad \u001b[33m=\u001b[39m \u001b[36masync\u001b[39m (page\u001b[33m:\u001b[39m \u001b[33mPage\u001b[39m) \u001b[33m=>\u001b[39m {\n \u001b[90m 49 |\u001b[39m   \u001b[90m// Aguardar elementos do DRE carregar\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 50 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=\"dre-table\"], .dre-table, table'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 51 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m \u001b[90m// Aguardar estabilizar\u001b[39m\n \u001b[90m 52 |\u001b[39m   console\u001b[33m.\u001b[39mlog(\u001b[32m'✅ Dados do DRE carregados'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 53 |\u001b[39m }\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at waitForDREDataLoad (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:50:14)\u001b[22m\n\u001b[2m    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:189:11\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "✅ Autenticado e na página DRE\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:36:54.619Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                        "column": 14,
+                        "line": 50
+                      }
+                    },
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 32045,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5",
+                        "location": {
+                          "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                          "column": 18,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m\n\u001b[2m    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\u001b[22m\n\u001b[2m    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🔐 Login necessário, fazendo autenticação...\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded \u001b[90m(C:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:36:18\u001b[90m)\u001b[39m\n    at \u001b[90mC:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:188:5 {\n  name: \u001b[32m'TimeoutError'\u001b[39m,\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'pw:api@14'\u001b[39m,\n    location: {\n      file: \u001b[32m'C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts'\u001b[39m,\n      line: \u001b[33m36\u001b[39m,\n      column: \u001b[33m18\u001b[39m,\n      function: \u001b[32m'loginIfNeeded'\u001b[39m\n    },\n    category: \u001b[32m'pw:api'\u001b[39m,\n    title: \u001b[32m'Wait for navigation'\u001b[39m,\n    apiName: \u001b[32m'page.waitForURL'\u001b[39m,\n    params: { info: \u001b[36m[Object]\u001b[39m },\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'pw:api@14'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1754667479989\u001b[39m,\n    error: {\n      message: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================'\u001b[39m,\n      stack: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================\\n'\u001b[39m +\n        \u001b[32m'    at loginIfNeeded (C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:36:18)\\n'\u001b[39m +\n        \u001b[32m'    at C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:188:5'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:37:32.376Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                        "column": 18,
+                        "line": 36
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-ce653c3d25e140508b53",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 192,
+              "column": 7
+            },
+            {
+              "title": "🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Chrome",
+                  "projectName": "DRE-Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 30977,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5",
+                        "location": {
+                          "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                          "column": 18,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m\n\u001b[2m    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\u001b[22m\n\u001b[2m    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🔐 Login necessário, fazendo autenticação...\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded \u001b[90m(C:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:36:18\u001b[90m)\u001b[39m\n    at \u001b[90mC:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:188:5 {\n  name: \u001b[32m'TimeoutError'\u001b[39m,\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'pw:api@14'\u001b[39m,\n    location: {\n      file: \u001b[32m'C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts'\u001b[39m,\n      line: \u001b[33m36\u001b[39m,\n      column: \u001b[33m18\u001b[39m,\n      function: \u001b[32m'loginIfNeeded'\u001b[39m\n    },\n    category: \u001b[32m'pw:api'\u001b[39m,\n    title: \u001b[32m'Wait for navigation'\u001b[39m,\n    apiName: \u001b[32m'page.waitForURL'\u001b[39m,\n    params: { info: \u001b[36m[Object]\u001b[39m },\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'pw:api@14'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1754667512674\u001b[39m,\n    error: {\n      message: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================'\u001b[39m,\n      stack: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================\\n'\u001b[39m +\n        \u001b[32m'    at loginIfNeeded (C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:36:18)\\n'\u001b[39m +\n        \u001b[32m'    at C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:188:5'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:38:09.029Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                        "column": 18,
+                        "line": 36
+                      }
+                    },
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 30799,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5",
+                        "location": {
+                          "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                          "column": 18,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m\n\u001b[2m    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\u001b[22m\n\u001b[2m    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🔐 Login necessário, fazendo autenticação...\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded \u001b[90m(C:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:36:18\u001b[90m)\u001b[39m\n    at \u001b[90mC:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:188:5 {\n  name: \u001b[32m'TimeoutError'\u001b[39m,\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'pw:api@14'\u001b[39m,\n    location: {\n      file: \u001b[32m'C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts'\u001b[39m,\n      line: \u001b[33m36\u001b[39m,\n      column: \u001b[33m18\u001b[39m,\n      function: \u001b[32m'loginIfNeeded'\u001b[39m\n    },\n    category: \u001b[32m'pw:api'\u001b[39m,\n    title: \u001b[32m'Wait for navigation'\u001b[39m,\n    apiName: \u001b[32m'page.waitForURL'\u001b[39m,\n    params: { info: \u001b[36m[Object]\u001b[39m },\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'pw:api@14'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1754667547691\u001b[39m,\n    error: {\n      message: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================'\u001b[39m,\n      stack: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================\\n'\u001b[39m +\n        \u001b[32m'    at loginIfNeeded (C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:36:18)\\n'\u001b[39m +\n        \u001b[32m'    at C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:188:5'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:38:44.169Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                        "column": 18,
+                        "line": 36
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-6a02e52cebc1917558e0",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 241,
+              "column": 7
+            },
+            {
+              "title": "📊 Testar navegação entre tabs e persistência de dados",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Chrome",
+                  "projectName": "DRE-Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 29865,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5",
+                        "location": {
+                          "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                          "column": 18,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m\n\u001b[2m    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\u001b[22m\n\u001b[2m    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🔐 Login necessário, fazendo autenticação...\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded \u001b[90m(C:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:36:18\u001b[90m)\u001b[39m\n    at \u001b[90mC:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:188:5 {\n  name: \u001b[32m'TimeoutError'\u001b[39m,\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'pw:api@14'\u001b[39m,\n    location: {\n      file: \u001b[32m'C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts'\u001b[39m,\n      line: \u001b[33m36\u001b[39m,\n      column: \u001b[33m18\u001b[39m,\n      function: \u001b[32m'loginIfNeeded'\u001b[39m\n    },\n    category: \u001b[32m'pw:api'\u001b[39m,\n    title: \u001b[32m'Wait for navigation'\u001b[39m,\n    apiName: \u001b[32m'page.waitForURL'\u001b[39m,\n    params: { info: \u001b[36m[Object]\u001b[39m },\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'pw:api@14'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1754667585839\u001b[39m,\n    error: {\n      message: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================'\u001b[39m,\n      stack: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================\\n'\u001b[39m +\n        \u001b[32m'    at loginIfNeeded (C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:36:18)\\n'\u001b[39m +\n        \u001b[32m'    at C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:188:5'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:39:20.709Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                        "column": 18,
+                        "line": 36
+                      }
+                    },
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 30348,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5",
+                        "location": {
+                          "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                          "column": 18,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m\n\u001b[2m    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\u001b[22m\n\u001b[2m    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🔐 Login necessário, fazendo autenticação...\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded \u001b[90m(C:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:36:18\u001b[90m)\u001b[39m\n    at \u001b[90mC:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:188:5 {\n  name: \u001b[32m'TimeoutError'\u001b[39m,\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'pw:api@14'\u001b[39m,\n    location: {\n      file: \u001b[32m'C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts'\u001b[39m,\n      line: \u001b[33m36\u001b[39m,\n      column: \u001b[33m18\u001b[39m,\n      function: \u001b[32m'loginIfNeeded'\u001b[39m\n    },\n    category: \u001b[32m'pw:api'\u001b[39m,\n    title: \u001b[32m'Wait for navigation'\u001b[39m,\n    apiName: \u001b[32m'page.waitForURL'\u001b[39m,\n    params: { info: \u001b[36m[Object]\u001b[39m },\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'pw:api@14'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1754667619474\u001b[39m,\n    error: {\n      message: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================'\u001b[39m,\n      stack: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================\\n'\u001b[39m +\n        \u001b[32m'    at loginIfNeeded (C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:36:18)\\n'\u001b[39m +\n        \u001b[32m'    at C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:188:5'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:39:55.577Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                        "column": 18,
+                        "line": 36
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-bb9f89bc78720b4cb51f",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 298,
+              "column": 7
+            },
+            {
+              "title": "🕵️ Debug: Capturar logs do console durante operações",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Chrome",
+                  "projectName": "DRE-Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 30372,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5",
+                        "location": {
+                          "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                          "column": 18,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m\n\u001b[2m    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\u001b[22m\n\u001b[2m    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🔐 Login necessário, fazendo autenticação...\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded \u001b[90m(C:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:36:18\u001b[90m)\u001b[39m\n    at \u001b[90mC:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:188:5 {\n  name: \u001b[32m'TimeoutError'\u001b[39m,\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'pw:api@14'\u001b[39m,\n    location: {\n      file: \u001b[32m'C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts'\u001b[39m,\n      line: \u001b[33m36\u001b[39m,\n      column: \u001b[33m18\u001b[39m,\n      function: \u001b[32m'loginIfNeeded'\u001b[39m\n    },\n    category: \u001b[32m'pw:api'\u001b[39m,\n    title: \u001b[32m'Wait for navigation'\u001b[39m,\n    apiName: \u001b[32m'page.waitForURL'\u001b[39m,\n    params: { info: \u001b[36m[Object]\u001b[39m },\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'pw:api@14'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1754667653890\u001b[39m,\n    error: {\n      message: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================'\u001b[39m,\n      stack: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================\\n'\u001b[39m +\n        \u001b[32m'    at loginIfNeeded (C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:36:18)\\n'\u001b[39m +\n        \u001b[32m'    at C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:188:5'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:40:30.343Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Chrome\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Chrome\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                        "column": 18,
+                        "line": 36
+                      }
+                    },
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 29579,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5",
+                        "location": {
+                          "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                          "column": 18,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m\n\u001b[2m    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\u001b[22m\n\u001b[2m    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🔐 Login necessário, fazendo autenticação...\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded \u001b[90m(C:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:36:18\u001b[90m)\u001b[39m\n    at \u001b[90mC:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:188:5 {\n  name: \u001b[32m'TimeoutError'\u001b[39m,\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'pw:api@14'\u001b[39m,\n    location: {\n      file: \u001b[32m'C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts'\u001b[39m,\n      line: \u001b[33m36\u001b[39m,\n      column: \u001b[33m18\u001b[39m,\n      function: \u001b[32m'loginIfNeeded'\u001b[39m\n    },\n    category: \u001b[32m'pw:api'\u001b[39m,\n    title: \u001b[32m'Wait for navigation'\u001b[39m,\n    apiName: \u001b[32m'page.waitForURL'\u001b[39m,\n    params: { info: \u001b[36m[Object]\u001b[39m },\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'pw:api@14'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1754667690207\u001b[39m,\n    error: {\n      message: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================'\u001b[39m,\n      stack: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================\\n'\u001b[39m +\n        \u001b[32m'    at loginIfNeeded (C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:36:18)\\n'\u001b[39m +\n        \u001b[32m'    at C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:188:5'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:41:06.297Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                        "column": 18,
+                        "line": 36
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-a5f0900d1ed2e351bc6b",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 340,
+              "column": 7
+            },
+            {
+              "title": "📸 Capturar screenshots de diferentes estados",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Chrome",
+                  "projectName": "DRE-Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 30202,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5",
+                        "location": {
+                          "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                          "column": 18,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m\n\u001b[2m    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\u001b[22m\n\u001b[2m    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🔐 Login necessário, fazendo autenticação...\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded \u001b[90m(C:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:36:18\u001b[90m)\u001b[39m\n    at \u001b[90mC:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:188:5 {\n  name: \u001b[32m'TimeoutError'\u001b[39m,\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'pw:api@14'\u001b[39m,\n    location: {\n      file: \u001b[32m'C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts'\u001b[39m,\n      line: \u001b[33m36\u001b[39m,\n      column: \u001b[33m18\u001b[39m,\n      function: \u001b[32m'loginIfNeeded'\u001b[39m\n    },\n    category: \u001b[32m'pw:api'\u001b[39m,\n    title: \u001b[32m'Wait for navigation'\u001b[39m,\n    apiName: \u001b[32m'page.waitForURL'\u001b[39m,\n    params: { info: \u001b[36m[Object]\u001b[39m },\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'pw:api@14'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1754667723637\u001b[39m,\n    error: {\n      message: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================'\u001b[39m,\n      stack: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================\\n'\u001b[39m +\n        \u001b[32m'    at loginIfNeeded (C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:36:18)\\n'\u001b[39m +\n        \u001b[32m'    at C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:188:5'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:41:40.215Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                        "column": 18,
+                        "line": 36
+                      }
+                    },
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 29360,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5",
+                        "location": {
+                          "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                          "column": 18,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m\n\u001b[2m    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\u001b[22m\n\u001b[2m    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🔐 Login necessário, fazendo autenticação...\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded \u001b[90m(C:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:36:18\u001b[90m)\u001b[39m\n    at \u001b[90mC:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:188:5 {\n  name: \u001b[32m'TimeoutError'\u001b[39m,\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'pw:api@14'\u001b[39m,\n    location: {\n      file: \u001b[32m'C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts'\u001b[39m,\n      line: \u001b[33m36\u001b[39m,\n      column: \u001b[33m18\u001b[39m,\n      function: \u001b[32m'loginIfNeeded'\u001b[39m\n    },\n    category: \u001b[32m'pw:api'\u001b[39m,\n    title: \u001b[32m'Wait for navigation'\u001b[39m,\n    apiName: \u001b[32m'page.waitForURL'\u001b[39m,\n    params: { info: \u001b[36m[Object]\u001b[39m },\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'pw:api@14'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1754667758449\u001b[39m,\n    error: {\n      message: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================'\u001b[39m,\n      stack: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================\\n'\u001b[39m +\n        \u001b[32m'    at loginIfNeeded (C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:36:18)\\n'\u001b[39m +\n        \u001b[32m'    at C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:188:5'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:42:14.693Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                        "column": 18,
+                        "line": 36
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-ba96ac00f8e44ad353db",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 388,
+              "column": 7
+            },
+            {
+              "title": "🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Firefox",
+                  "projectName": "DRE-Desktop-Firefox",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 71,
+                      "error": {
+                        "message": "Error: browser.newContext: Unknown permission: clipboard-read",
+                        "stack": "Error: browser.newContext: Unknown permission: clipboard-read"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:43:54.409Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox\\trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 55,
+                      "error": {
+                        "message": "Error: browser.newContext: Unknown permission: clipboard-read",
+                        "stack": "Error: browser.newContext: Unknown permission: clipboard-read"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:44:08.507Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-4f05eb039d67a9c37af5",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 192,
+              "column": 7
+            },
+            {
+              "title": "🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Firefox",
+                  "projectName": "DRE-Desktop-Firefox",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 55,
+                      "error": {
+                        "message": "Error: browser.newContext: Unknown permission: clipboard-read",
+                        "stack": "Error: browser.newContext: Unknown permission: clipboard-read"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:44:15.302Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox\\trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 65,
+                      "error": {
+                        "message": "Error: browser.newContext: Unknown permission: clipboard-read",
+                        "stack": "Error: browser.newContext: Unknown permission: clipboard-read"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:44:21.851Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-076e48dbdfde6d471e8f",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 241,
+              "column": 7
+            },
+            {
+              "title": "📊 Testar navegação entre tabs e persistência de dados",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Firefox",
+                  "projectName": "DRE-Desktop-Firefox",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 172,
+                      "error": {
+                        "message": "Error: browser.newContext: Unknown permission: clipboard-read",
+                        "stack": "Error: browser.newContext: Unknown permission: clipboard-read"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:44:28.448Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox\\trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 62,
+                      "error": {
+                        "message": "Error: browser.newContext: Unknown permission: clipboard-read",
+                        "stack": "Error: browser.newContext: Unknown permission: clipboard-read"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:44:35.676Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-f044dd70bdd61645cab6",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 298,
+              "column": 7
+            },
+            {
+              "title": "🕵️ Debug: Capturar logs do console durante operações",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Firefox",
+                  "projectName": "DRE-Desktop-Firefox",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 58,
+                      "error": {
+                        "message": "Error: browser.newContext: Unknown permission: clipboard-read",
+                        "stack": "Error: browser.newContext: Unknown permission: clipboard-read"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:44:42.527Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Firefox\\trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 75,
+                      "error": {
+                        "message": "Error: browser.newContext: Unknown permission: clipboard-read",
+                        "stack": "Error: browser.newContext: Unknown permission: clipboard-read"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:44:48.740Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Firefox-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-a6ef24671ae05c77841b",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 340,
+              "column": 7
+            },
+            {
+              "title": "📸 Capturar screenshots de diferentes estados",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Firefox",
+                  "projectName": "DRE-Desktop-Firefox",
+                  "results": [
+                    {
+                      "workerIndex": 20,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 86,
+                      "error": {
+                        "message": "Error: browser.newContext: Unknown permission: clipboard-read",
+                        "stack": "Error: browser.newContext: Unknown permission: clipboard-read"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:44:56.549Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox\\trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 21,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 96,
+                      "error": {
+                        "message": "Error: browser.newContext: Unknown permission: clipboard-read",
+                        "stack": "Error: browser.newContext: Unknown permission: clipboard-read"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:45:04.834Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-0352cbc0b3f8e6e77938",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 388,
+              "column": 7
+            },
+            {
+              "title": "🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Safari",
+                  "projectName": "DRE-Desktop-Safari",
+                  "results": [
+                    {
+                      "workerIndex": 24,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 2119,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
+                        "stack": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:45:25.363Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari\\test-failed-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari\\trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 25,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1654,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
+                        "stack": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:45:33.340Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-79e9c85d39d5aca2c7ac",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 192,
+              "column": 7
+            },
+            {
+              "title": "🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Safari",
+                  "projectName": "DRE-Desktop-Safari",
+                  "results": [
+                    {
+                      "workerIndex": 26,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 2111,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
+                        "stack": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:45:37.617Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari\\test-failed-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari\\trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 27,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1953,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
+                        "stack": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:45:42.479Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-1c28426e34a85c77aff3",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 241,
+              "column": 7
+            },
+            {
+              "title": "📊 Testar navegação entre tabs e persistência de dados",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Safari",
+                  "projectName": "DRE-Desktop-Safari",
+                  "results": [
+                    {
+                      "workerIndex": 28,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1657,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
+                        "stack": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:45:46.953Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari\\test-failed-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari\\trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 29,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1693,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
+                        "stack": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:45:51.883Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-6f38bcebc2b1786529ca",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 298,
+              "column": 7
+            },
+            {
+              "title": "🕵️ Debug: Capturar logs do console durante operações",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Safari",
+                  "projectName": "DRE-Desktop-Safari",
+                  "results": [
+                    {
+                      "workerIndex": 30,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1778,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
+                        "stack": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:45:56.958Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Safari\\test-failed-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Safari\\trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 31,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1987,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
+                        "stack": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:46:02.454Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Safari-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Safari-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-74d790a7d3ad9eb74957",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 340,
+              "column": 7
+            },
+            {
+              "title": "📸 Capturar screenshots de diferentes estados",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Safari",
+                  "projectName": "DRE-Desktop-Safari",
+                  "results": [
+                    {
+                      "workerIndex": 32,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1558,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
+                        "stack": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:46:08.189Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari\\test-failed-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari\\trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 33,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1567,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
+                        "stack": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:46:12.640Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-4dcf41813c59f4664c84",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 388,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "⚡ Performance Tests",
+          "file": "playwright-dre-interface.test.ts",
+          "line": 417,
+          "column": 6,
+          "specs": [
+            {
+              "title": "📊 Medir tempo de carregamento do DRE",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Chrome",
+                  "projectName": "DRE-Desktop-Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 28938,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:421:5",
+                        "location": {
+                          "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                          "column": 18,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m\n\u001b[2m    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\u001b[22m\n\u001b[2m    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:421:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🔐 Login necessário, fazendo autenticação...\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded \u001b[90m(C:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:36:18\u001b[90m)\u001b[39m\n    at \u001b[90mC:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:421:5 {\n  name: \u001b[32m'TimeoutError'\u001b[39m,\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'pw:api@13'\u001b[39m,\n    location: {\n      file: \u001b[32m'C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts'\u001b[39m,\n      line: \u001b[33m36\u001b[39m,\n      column: \u001b[33m18\u001b[39m,\n      function: \u001b[32m'loginIfNeeded'\u001b[39m\n    },\n    category: \u001b[32m'pw:api'\u001b[39m,\n    title: \u001b[32m'Wait for navigation'\u001b[39m,\n    apiName: \u001b[32m'page.waitForURL'\u001b[39m,\n    params: { info: \u001b[36m[Object]\u001b[39m },\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'pw:api@13'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1754667791858\u001b[39m,\n    error: {\n      message: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================'\u001b[39m,\n      stack: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================\\n'\u001b[39m +\n        \u001b[32m'    at loginIfNeeded (C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:36:18)\\n'\u001b[39m +\n        \u001b[32m'    at C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:421:5'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:42:48.118Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                        "column": 18,
+                        "line": 36
+                      }
+                    },
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 28920,
+                      "error": {
+                        "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
+                        "stack": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:421:5",
+                        "location": {
+                          "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                          "column": 18,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \n \u001b[90m 35 |\u001b[39m       \u001b[90m// Aguardar redirecionamento\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dre'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     }\n \u001b[90m 38 |\u001b[39m     \n \u001b[90m 39 |\u001b[39m     \u001b[90m// Verificar se está na página DRE\u001b[39m\u001b[0m\n\u001b[2m    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\u001b[22m\n\u001b[2m    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:421:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🔐 Login necessário, fazendo autenticação...\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================\n    at loginIfNeeded \u001b[90m(C:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:36:18\u001b[90m)\u001b[39m\n    at \u001b[90mC:\\federal-clone\\federal-novo-main\\\u001b[39m__tests__\\playwright-dre-interface.test.ts:421:5 {\n  name: \u001b[32m'TimeoutError'\u001b[39m,\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'pw:api@13'\u001b[39m,\n    location: {\n      file: \u001b[32m'C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts'\u001b[39m,\n      line: \u001b[33m36\u001b[39m,\n      column: \u001b[33m18\u001b[39m,\n      function: \u001b[32m'loginIfNeeded'\u001b[39m\n    },\n    category: \u001b[32m'pw:api'\u001b[39m,\n    title: \u001b[32m'Wait for navigation'\u001b[39m,\n    apiName: \u001b[32m'page.waitForURL'\u001b[39m,\n    params: { info: \u001b[36m[Object]\u001b[39m },\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'pw:api@13'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1754667824132\u001b[39m,\n    error: {\n      message: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================'\u001b[39m,\n      stack: \u001b[32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\\n'\u001b[39m +\n        \u001b[32m'=========================== logs ===========================\\n'\u001b[39m +\n        \u001b[32m'waiting for navigation to \"**/dre\" until \"load\"\\n'\u001b[39m +\n        \u001b[32m'============================================================\\n'\u001b[39m +\n        \u001b[32m'    at loginIfNeeded (C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:36:18)\\n'\u001b[39m +\n        \u001b[32m'    at C:\\\\federal-clone\\\\federal-novo-main\\\\__tests__\\\\playwright-dre-interface.test.ts:421:5'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:43:21.081Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts",
+                        "column": 18,
+                        "line": 36
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-4fa5060d76d8750f5ca5",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 418,
+              "column": 7
+            },
+            {
+              "title": "📊 Medir tempo de carregamento do DRE",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Firefox",
+                  "projectName": "DRE-Desktop-Firefox",
+                  "results": [
+                    {
+                      "workerIndex": 22,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 59,
+                      "error": {
+                        "message": "Error: browser.newContext: Unknown permission: clipboard-read",
+                        "stack": "Error: browser.newContext: Unknown permission: clipboard-read"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:45:12.485Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox\\trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 23,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 47,
+                      "error": {
+                        "message": "Error: browser.newContext: Unknown permission: clipboard-read",
+                        "stack": "Error: browser.newContext: Unknown permission: clipboard-read"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:45:18.580Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-82a6c0fc4f5eb028bd3a",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 418,
+              "column": 7
+            },
+            {
+              "title": "📊 Medir tempo de carregamento do DRE",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "DRE-Desktop-Safari",
+                  "projectName": "DRE-Desktop-Safari",
+                  "results": [
+                    {
+                      "workerIndex": 34,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1615,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
+                        "stack": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T15:46:17.182Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari\\test-failed-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari\\trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 35,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 2006,
+                      "error": {
+                        "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
+                        "stack": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T15:46:21.425Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari-retry1\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "58828de70949a49b3df1-7a332b2c37bd84e9ecc3",
+              "file": "playwright-dre-interface.test.ts",
+              "line": 418,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-08-08T15:36:51.249Z",
+    "duration": 572941.779,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 18,
+    "flaky": 0
+  }
+}

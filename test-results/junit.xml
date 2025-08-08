@@ -1,0 +1,1572 @@
+<testsuites id="" name="" tests="18" failures="18" skipped="0" errors="0" time="572.941779">
+<testsuite name="playwright-dre-interface.test.ts" timestamp="2025-08-08T15:36:51.732Z" hostname="DRE-Desktop-Chrome" tests="6" failures="6" skipped="0" time="360.702" errors="0">
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela" classname="playwright-dre-interface.test.ts" time="61.342">
+<failure message="playwright-dre-interface.test.ts:192:7 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Chrome] › playwright-dre-interface.test.ts:192:7 › 🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela 
+
+    TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="dre-table"], .dre-table, table') to be visible
+
+
+      48 | const waitForDREDataLoad = async (page: Page) => {
+      49 |   // Aguardar elementos do DRE carregar
+    > 50 |   await page.waitForSelector('[data-testid="dre-table"], .dre-table, table', { timeout: 15000 });
+         |              ^
+      51 |   await page.waitForTimeout(2000); // Aguardar estabilizar
+      52 |   console.log('✅ Dados do DRE carregados');
+      53 | };
+        at waitForDREDataLoad (C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:50:14)
+        at C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:189:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/dre" until "load"
+    ============================================================
+
+      34 |       
+      35 |       // Aguardar redirecionamento
+    > 36 |       await page.waitForURL('**/dre', { timeout: 15000 });
+         |                  ^
+      37 |     }
+      38 |     
+      39 |     // Verificar se está na página DRE
+        at loginIfNeeded (C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:36:18)
+        at C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:188:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[✅ Autenticado e na página DRE
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\video.webm]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\error-context.md]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\trace.zip]]
+🔐 Login necessário, fazendo autenticação...
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\video.webm]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\error-context.md]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\trace.zip]]
+]]>
+</system-out>
+<system-err>
+<![CDATA[❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/dre" until "load"
+============================================================
+    at loginIfNeeded [90m(C:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:36:18[90m)[39m
+    at [90mC:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:188:5 {
+  name: [32m'TimeoutError'[39m,
+  [[32mSymbol(step)[39m]: {
+    stepId: [32m'pw:api@14'[39m,
+    location: {
+      file: [32m'C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts'[39m,
+      line: [33m36[39m,
+      column: [33m18[39m,
+      function: [32m'loginIfNeeded'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m'Wait for navigation'[39m,
+    apiName: [32m'page.waitForURL'[39m,
+    params: { info: [36m[Object][39m },
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@14'[39m
+    },
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1754667479989[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================'[39m,
+      stack: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================\n'[39m +
+        [32m'    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n'[39m +
+        [32m'    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
+]]>
+</system-err>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)" classname="playwright-dre-interface.test.ts" time="61.776">
+<failure message="playwright-dre-interface.test.ts:241:7 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Chrome] › playwright-dre-interface.test.ts:241:7 › 🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333) 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/dre" until "load"
+    ============================================================
+
+      34 |       
+      35 |       // Aguardar redirecionamento
+    > 36 |       await page.waitForURL('**/dre', { timeout: 15000 });
+         |                  ^
+      37 |     }
+      38 |     
+      39 |     // Verificar se está na página DRE
+        at loginIfNeeded (C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:36:18)
+        at C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:188:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/dre" until "load"
+    ============================================================
+
+      34 |       
+      35 |       // Aguardar redirecionamento
+    > 36 |       await page.waitForURL('**/dre', { timeout: 15000 });
+         |                  ^
+      37 |     }
+      38 |     
+      39 |     // Verificar se está na página DRE
+        at loginIfNeeded (C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:36:18)
+        at C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:188:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[🔐 Login necessário, fazendo autenticação...
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\video.webm]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\error-context.md]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\trace.zip]]
+🔐 Login necessário, fazendo autenticação...
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\video.webm]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\error-context.md]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\trace.zip]]
+]]>
+</system-out>
+<system-err>
+<![CDATA[❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/dre" until "load"
+============================================================
+    at loginIfNeeded [90m(C:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:36:18[90m)[39m
+    at [90mC:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:188:5 {
+  name: [32m'TimeoutError'[39m,
+  [[32mSymbol(step)[39m]: {
+    stepId: [32m'pw:api@14'[39m,
+    location: {
+      file: [32m'C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts'[39m,
+      line: [33m36[39m,
+      column: [33m18[39m,
+      function: [32m'loginIfNeeded'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m'Wait for navigation'[39m,
+    apiName: [32m'page.waitForURL'[39m,
+    params: { info: [36m[Object][39m },
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@14'[39m
+    },
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1754667512674[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================'[39m,
+      stack: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================\n'[39m +
+        [32m'    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n'[39m +
+        [32m'    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
+❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/dre" until "load"
+============================================================
+    at loginIfNeeded [90m(C:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:36:18[90m)[39m
+    at [90mC:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:188:5 {
+  name: [32m'TimeoutError'[39m,
+  [[32mSymbol(step)[39m]: {
+    stepId: [32m'pw:api@14'[39m,
+    location: {
+      file: [32m'C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts'[39m,
+      line: [33m36[39m,
+      column: [33m18[39m,
+      function: [32m'loginIfNeeded'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m'Wait for navigation'[39m,
+    apiName: [32m'page.waitForURL'[39m,
+    params: { info: [36m[Object][39m },
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@14'[39m
+    },
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1754667547691[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================'[39m,
+      stack: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================\n'[39m +
+        [32m'    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n'[39m +
+        [32m'    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
+]]>
+</system-err>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 📊 Testar navegação entre tabs e persistência de dados" classname="playwright-dre-interface.test.ts" time="60.213">
+<failure message="playwright-dre-interface.test.ts:298:7 📊 Testar navegação entre tabs e persistência de dados" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Chrome] › playwright-dre-interface.test.ts:298:7 › 🧪 DRE Tax Deductions Interface Tests › 📊 Testar navegação entre tabs e persistência de dados 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/dre" until "load"
+    ============================================================
+
+      34 |       
+      35 |       // Aguardar redirecionamento
+    > 36 |       await page.waitForURL('**/dre', { timeout: 15000 });
+         |                  ^
+      37 |     }
+      38 |     
+      39 |     // Verificar se está na página DRE
+        at loginIfNeeded (C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:36:18)
+        at C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:188:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/dre" until "load"
+    ============================================================
+
+      34 |       
+      35 |       // Aguardar redirecionamento
+    > 36 |       await page.waitForURL('**/dre', { timeout: 15000 });
+         |                  ^
+      37 |     }
+      38 |     
+      39 |     // Verificar se está na página DRE
+        at loginIfNeeded (C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:36:18)
+        at C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:188:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[🔐 Login necessário, fazendo autenticação...
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\video.webm]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\error-context.md]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\trace.zip]]
+🔐 Login necessário, fazendo autenticação...
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\video.webm]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\error-context.md]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\trace.zip]]
+]]>
+</system-out>
+<system-err>
+<![CDATA[❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/dre" until "load"
+============================================================
+    at loginIfNeeded [90m(C:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:36:18[90m)[39m
+    at [90mC:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:188:5 {
+  name: [32m'TimeoutError'[39m,
+  [[32mSymbol(step)[39m]: {
+    stepId: [32m'pw:api@14'[39m,
+    location: {
+      file: [32m'C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts'[39m,
+      line: [33m36[39m,
+      column: [33m18[39m,
+      function: [32m'loginIfNeeded'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m'Wait for navigation'[39m,
+    apiName: [32m'page.waitForURL'[39m,
+    params: { info: [36m[Object][39m },
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@14'[39m
+    },
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1754667585839[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================'[39m,
+      stack: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================\n'[39m +
+        [32m'    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n'[39m +
+        [32m'    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
+❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/dre" until "load"
+============================================================
+    at loginIfNeeded [90m(C:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:36:18[90m)[39m
+    at [90mC:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:188:5 {
+  name: [32m'TimeoutError'[39m,
+  [[32mSymbol(step)[39m]: {
+    stepId: [32m'pw:api@14'[39m,
+    location: {
+      file: [32m'C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts'[39m,
+      line: [33m36[39m,
+      column: [33m18[39m,
+      function: [32m'loginIfNeeded'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m'Wait for navigation'[39m,
+    apiName: [32m'page.waitForURL'[39m,
+    params: { info: [36m[Object][39m },
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@14'[39m
+    },
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1754667619474[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================'[39m,
+      stack: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================\n'[39m +
+        [32m'    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n'[39m +
+        [32m'    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
+]]>
+</system-err>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🕵️ Debug: Capturar logs do console durante operações" classname="playwright-dre-interface.test.ts" time="59.951">
+<failure message="playwright-dre-interface.test.ts:340:7 🕵️ Debug: Capturar logs do console durante operações" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Chrome] › playwright-dre-interface.test.ts:340:7 › 🧪 DRE Tax Deductions Interface Tests › 🕵️ Debug: Capturar logs do console durante operações 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/dre" until "load"
+    ============================================================
+
+      34 |       
+      35 |       // Aguardar redirecionamento
+    > 36 |       await page.waitForURL('**/dre', { timeout: 15000 });
+         |                  ^
+      37 |     }
+      38 |     
+      39 |     // Verificar se está na página DRE
+        at loginIfNeeded (C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:36:18)
+        at C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:188:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/dre" until "load"
+    ============================================================
+
+      34 |       
+      35 |       // Aguardar redirecionamento
+    > 36 |       await page.waitForURL('**/dre', { timeout: 15000 });
+         |                  ^
+      37 |     }
+      38 |     
+      39 |     // Verificar se está na página DRE
+        at loginIfNeeded (C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:36:18)
+        at C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:188:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[🔐 Login necessário, fazendo autenticação...
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome\video.webm]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome\error-context.md]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome\trace.zip]]
+🔐 Login necessário, fazendo autenticação...
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\video.webm]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\error-context.md]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\trace.zip]]
+]]>
+</system-out>
+<system-err>
+<![CDATA[❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/dre" until "load"
+============================================================
+    at loginIfNeeded [90m(C:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:36:18[90m)[39m
+    at [90mC:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:188:5 {
+  name: [32m'TimeoutError'[39m,
+  [[32mSymbol(step)[39m]: {
+    stepId: [32m'pw:api@14'[39m,
+    location: {
+      file: [32m'C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts'[39m,
+      line: [33m36[39m,
+      column: [33m18[39m,
+      function: [32m'loginIfNeeded'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m'Wait for navigation'[39m,
+    apiName: [32m'page.waitForURL'[39m,
+    params: { info: [36m[Object][39m },
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@14'[39m
+    },
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1754667653890[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================'[39m,
+      stack: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================\n'[39m +
+        [32m'    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n'[39m +
+        [32m'    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
+❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/dre" until "load"
+============================================================
+    at loginIfNeeded [90m(C:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:36:18[90m)[39m
+    at [90mC:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:188:5 {
+  name: [32m'TimeoutError'[39m,
+  [[32mSymbol(step)[39m]: {
+    stepId: [32m'pw:api@14'[39m,
+    location: {
+      file: [32m'C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts'[39m,
+      line: [33m36[39m,
+      column: [33m18[39m,
+      function: [32m'loginIfNeeded'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m'Wait for navigation'[39m,
+    apiName: [32m'page.waitForURL'[39m,
+    params: { info: [36m[Object][39m },
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@14'[39m
+    },
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1754667690207[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================'[39m,
+      stack: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================\n'[39m +
+        [32m'    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n'[39m +
+        [32m'    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
+]]>
+</system-err>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 📸 Capturar screenshots de diferentes estados" classname="playwright-dre-interface.test.ts" time="59.562">
+<failure message="playwright-dre-interface.test.ts:388:7 📸 Capturar screenshots de diferentes estados" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Chrome] › playwright-dre-interface.test.ts:388:7 › 🧪 DRE Tax Deductions Interface Tests › 📸 Capturar screenshots de diferentes estados 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/dre" until "load"
+    ============================================================
+
+      34 |       
+      35 |       // Aguardar redirecionamento
+    > 36 |       await page.waitForURL('**/dre', { timeout: 15000 });
+         |                  ^
+      37 |     }
+      38 |     
+      39 |     // Verificar se está na página DRE
+        at loginIfNeeded (C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:36:18)
+        at C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:188:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/dre" until "load"
+    ============================================================
+
+      34 |       
+      35 |       // Aguardar redirecionamento
+    > 36 |       await page.waitForURL('**/dre', { timeout: 15000 });
+         |                  ^
+      37 |     }
+      38 |     
+      39 |     // Verificar se está na página DRE
+        at loginIfNeeded (C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:36:18)
+        at C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:188:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[🔐 Login necessário, fazendo autenticação...
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\video.webm]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\error-context.md]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\trace.zip]]
+🔐 Login necessário, fazendo autenticação...
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\video.webm]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\error-context.md]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\trace.zip]]
+]]>
+</system-out>
+<system-err>
+<![CDATA[❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/dre" until "load"
+============================================================
+    at loginIfNeeded [90m(C:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:36:18[90m)[39m
+    at [90mC:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:188:5 {
+  name: [32m'TimeoutError'[39m,
+  [[32mSymbol(step)[39m]: {
+    stepId: [32m'pw:api@14'[39m,
+    location: {
+      file: [32m'C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts'[39m,
+      line: [33m36[39m,
+      column: [33m18[39m,
+      function: [32m'loginIfNeeded'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m'Wait for navigation'[39m,
+    apiName: [32m'page.waitForURL'[39m,
+    params: { info: [36m[Object][39m },
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@14'[39m
+    },
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1754667723637[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================'[39m,
+      stack: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================\n'[39m +
+        [32m'    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n'[39m +
+        [32m'    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
+❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/dre" until "load"
+============================================================
+    at loginIfNeeded [90m(C:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:36:18[90m)[39m
+    at [90mC:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:188:5 {
+  name: [32m'TimeoutError'[39m,
+  [[32mSymbol(step)[39m]: {
+    stepId: [32m'pw:api@14'[39m,
+    location: {
+      file: [32m'C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts'[39m,
+      line: [33m36[39m,
+      column: [33m18[39m,
+      function: [32m'loginIfNeeded'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m'Wait for navigation'[39m,
+    apiName: [32m'page.waitForURL'[39m,
+    params: { info: [36m[Object][39m },
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@14'[39m
+    },
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1754667758449[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================'[39m,
+      stack: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================\n'[39m +
+        [32m'    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n'[39m +
+        [32m'    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:188:5'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
+]]>
+</system-err>
+</testcase>
+<testcase name="⚡ Performance Tests › 📊 Medir tempo de carregamento do DRE" classname="playwright-dre-interface.test.ts" time="57.858">
+<failure message="playwright-dre-interface.test.ts:418:7 📊 Medir tempo de carregamento do DRE" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Chrome] › playwright-dre-interface.test.ts:418:7 › ⚡ Performance Tests › 📊 Medir tempo de carregamento do DRE 
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/dre" until "load"
+    ============================================================
+
+      34 |       
+      35 |       // Aguardar redirecionamento
+    > 36 |       await page.waitForURL('**/dre', { timeout: 15000 });
+         |                  ^
+      37 |     }
+      38 |     
+      39 |     // Verificar se está na página DRE
+        at loginIfNeeded (C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:36:18)
+        at C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:421:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    TimeoutError: page.waitForURL: Timeout 15000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "**/dre" until "load"
+    ============================================================
+
+      34 |       
+      35 |       // Aguardar redirecionamento
+    > 36 |       await page.waitForURL('**/dre', { timeout: 15000 });
+         |                  ^
+      37 |     }
+      38 |     
+      39 |     // Verificar se está na página DRE
+        at loginIfNeeded (C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:36:18)
+        at C:\federal-clone\federal-novo-main\__tests__\playwright-dre-interface.test.ts:421:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[🔐 Login necessário, fazendo autenticação...
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\video.webm]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\error-context.md]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\trace.zip]]
+🔐 Login necessário, fazendo autenticação...
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\video.webm]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\error-context.md]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\trace.zip]]
+]]>
+</system-out>
+<system-err>
+<![CDATA[❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/dre" until "load"
+============================================================
+    at loginIfNeeded [90m(C:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:36:18[90m)[39m
+    at [90mC:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:421:5 {
+  name: [32m'TimeoutError'[39m,
+  [[32mSymbol(step)[39m]: {
+    stepId: [32m'pw:api@13'[39m,
+    location: {
+      file: [32m'C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts'[39m,
+      line: [33m36[39m,
+      column: [33m18[39m,
+      function: [32m'loginIfNeeded'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m'Wait for navigation'[39m,
+    apiName: [32m'page.waitForURL'[39m,
+    params: { info: [36m[Object][39m },
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@13'[39m
+    },
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1754667791858[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================'[39m,
+      stack: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================\n'[39m +
+        [32m'    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n'[39m +
+        [32m'    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:421:5'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
+❌ Erro na autenticação: page.waitForURL: Timeout 15000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/dre" until "load"
+============================================================
+    at loginIfNeeded [90m(C:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:36:18[90m)[39m
+    at [90mC:\federal-clone\federal-novo-main\[39m__tests__\playwright-dre-interface.test.ts:421:5 {
+  name: [32m'TimeoutError'[39m,
+  [[32mSymbol(step)[39m]: {
+    stepId: [32m'pw:api@13'[39m,
+    location: {
+      file: [32m'C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts'[39m,
+      line: [33m36[39m,
+      column: [33m18[39m,
+      function: [32m'loginIfNeeded'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m'Wait for navigation'[39m,
+    apiName: [32m'page.waitForURL'[39m,
+    params: { info: [36m[Object][39m },
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    attachmentIndices: [],
+    info: TestStepInfoImpl {
+      annotations: [],
+      _testInfo: [36m[TestInfoImpl][39m,
+      _stepId: [32m'pw:api@13'[39m
+    },
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1754667824132[39m,
+    error: {
+      message: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================'[39m,
+      stack: [32m'TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n'[39m +
+        [32m'=========================== logs ===========================\n'[39m +
+        [32m'waiting for navigation to "**/dre" until "load"\n'[39m +
+        [32m'============================================================\n'[39m +
+        [32m'    at loginIfNeeded (C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:36:18)\n'[39m +
+        [32m'    at C:\\federal-clone\\federal-novo-main\\__tests__\\playwright-dre-interface.test.ts:421:5'[39m,
+      cause: [90mundefined[39m
+    }
+  }
+}
+]]>
+</system-err>
+</testcase>
+</testsuite>
+<testsuite name="playwright-dre-interface.test.ts" timestamp="2025-08-08T15:36:51.732Z" hostname="DRE-Desktop-Firefox" tests="6" failures="6" skipped="0" time="0.901" errors="0">
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela" classname="playwright-dre-interface.test.ts" time="0.126">
+<failure message="playwright-dre-interface.test.ts:192:7 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Firefox] › playwright-dre-interface.test.ts:192:7 › 🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela 
+
+    Error: browser.newContext: Unknown permission: clipboard-read
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browser.newContext: Unknown permission: clipboard-read
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)" classname="playwright-dre-interface.test.ts" time="0.12">
+<failure message="playwright-dre-interface.test.ts:241:7 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Firefox] › playwright-dre-interface.test.ts:241:7 › 🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333) 
+
+    Error: browser.newContext: Unknown permission: clipboard-read
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browser.newContext: Unknown permission: clipboard-read
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 📊 Testar navegação entre tabs e persistência de dados" classname="playwright-dre-interface.test.ts" time="0.234">
+<failure message="playwright-dre-interface.test.ts:298:7 📊 Testar navegação entre tabs e persistência de dados" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Firefox] › playwright-dre-interface.test.ts:298:7 › 🧪 DRE Tax Deductions Interface Tests › 📊 Testar navegação entre tabs e persistência de dados 
+
+    Error: browser.newContext: Unknown permission: clipboard-read
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browser.newContext: Unknown permission: clipboard-read
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🕵️ Debug: Capturar logs do console durante operações" classname="playwright-dre-interface.test.ts" time="0.133">
+<failure message="playwright-dre-interface.test.ts:340:7 🕵️ Debug: Capturar logs do console durante operações" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Firefox] › playwright-dre-interface.test.ts:340:7 › 🧪 DRE Tax Deductions Interface Tests › 🕵️ Debug: Capturar logs do console durante operações 
+
+    Error: browser.newContext: Unknown permission: clipboard-read
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browser.newContext: Unknown permission: clipboard-read
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Firefox\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 📸 Capturar screenshots de diferentes estados" classname="playwright-dre-interface.test.ts" time="0.182">
+<failure message="playwright-dre-interface.test.ts:388:7 📸 Capturar screenshots de diferentes estados" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Firefox] › playwright-dre-interface.test.ts:388:7 › 🧪 DRE Tax Deductions Interface Tests › 📸 Capturar screenshots de diferentes estados 
+
+    Error: browser.newContext: Unknown permission: clipboard-read
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browser.newContext: Unknown permission: clipboard-read
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="⚡ Performance Tests › 📊 Medir tempo de carregamento do DRE" classname="playwright-dre-interface.test.ts" time="0.106">
+<failure message="playwright-dre-interface.test.ts:418:7 📊 Medir tempo de carregamento do DRE" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Firefox] › playwright-dre-interface.test.ts:418:7 › ⚡ Performance Tests › 📊 Medir tempo de carregamento do DRE 
+
+    Error: browser.newContext: Unknown permission: clipboard-read
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browser.newContext: Unknown permission: clipboard-read
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="playwright-dre-interface.test.ts" timestamp="2025-08-08T15:36:51.732Z" hostname="DRE-Desktop-Safari" tests="6" failures="6" skipped="0" time="21.698" errors="0">
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela" classname="playwright-dre-interface.test.ts" time="3.773">
+<failure message="playwright-dre-interface.test.ts:192:7 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Safari] › playwright-dre-interface.test.ts:192:7 › 🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela 
+
+    Error: browserContext.newPage: Unknown permission: clipboard-write
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserContext.newPage: Unknown permission: clipboard-write
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)" classname="playwright-dre-interface.test.ts" time="4.064">
+<failure message="playwright-dre-interface.test.ts:241:7 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Safari] › playwright-dre-interface.test.ts:241:7 › 🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333) 
+
+    Error: browserContext.newPage: Unknown permission: clipboard-write
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserContext.newPage: Unknown permission: clipboard-write
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 📊 Testar navegação entre tabs e persistência de dados" classname="playwright-dre-interface.test.ts" time="3.35">
+<failure message="playwright-dre-interface.test.ts:298:7 📊 Testar navegação entre tabs e persistência de dados" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Safari] › playwright-dre-interface.test.ts:298:7 › 🧪 DRE Tax Deductions Interface Tests › 📊 Testar navegação entre tabs e persistência de dados 
+
+    Error: browserContext.newPage: Unknown permission: clipboard-write
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserContext.newPage: Unknown permission: clipboard-write
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🕵️ Debug: Capturar logs do console durante operações" classname="playwright-dre-interface.test.ts" time="3.765">
+<failure message="playwright-dre-interface.test.ts:340:7 🕵️ Debug: Capturar logs do console durante operações" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Safari] › playwright-dre-interface.test.ts:340:7 › 🧪 DRE Tax Deductions Interface Tests › 🕵️ Debug: Capturar logs do console durante operações 
+
+    Error: browserContext.newPage: Unknown permission: clipboard-write
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserContext.newPage: Unknown permission: clipboard-write
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 📸 Capturar screenshots de diferentes estados" classname="playwright-dre-interface.test.ts" time="3.125">
+<failure message="playwright-dre-interface.test.ts:388:7 📸 Capturar screenshots de diferentes estados" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Safari] › playwright-dre-interface.test.ts:388:7 › 🧪 DRE Tax Deductions Interface Tests › 📸 Capturar screenshots de diferentes estados 
+
+    Error: browserContext.newPage: Unknown permission: clipboard-write
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserContext.newPage: Unknown permission: clipboard-write
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="⚡ Performance Tests › 📊 Medir tempo de carregamento do DRE" classname="playwright-dre-interface.test.ts" time="3.621">
+<failure message="playwright-dre-interface.test.ts:418:7 📊 Medir tempo de carregamento do DRE" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Safari] › playwright-dre-interface.test.ts:418:7 › ⚡ Performance Tests › 📊 Medir tempo de carregamento do DRE 
+
+    Error: browserContext.newPage: Unknown permission: clipboard-write
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserContext.newPage: Unknown permission: clipboard-write
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

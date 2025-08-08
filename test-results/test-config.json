@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-08-08T15:36:51.387Z",
+  "baseURL": "http://localhost:3000",
+  "testDir": "./__tests__",
+  "outputDir": "test-results/artifacts"
+}

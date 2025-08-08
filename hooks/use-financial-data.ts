@@ -42,6 +42,7 @@ export interface UseFinancialDataOptions {
   // Configurações de cache e atualização
   enableCache?: boolean;
   refetchInterval?: number;
+  refetchOnWindowFocus?: boolean;
   
   // Configurações de persistência
   persistPreferences?: boolean;
@@ -108,6 +109,7 @@ export function useFinancialData(options: UseFinancialDataOptions = {}): UseFina
     includePreviousPeriod = true,
     enableCache = true,
     refetchInterval,
+    refetchOnWindowFocus = false,
     persistPreferences = true,
     preferenceKey = 'dashboard',
     onDataLoaded,
@@ -216,7 +218,7 @@ export function useFinancialData(options: UseFinancialDataOptions = {}): UseFina
     refetchInterval,
     retry: 1, // Reduzido de 2 para 1 para falhar mais rapidamente
     retryDelay: 1000, // Delay fixo de 1s ao invés de exponential
-    refetchOnWindowFocus: false, // Evitar refetch desnecessário
+    refetchOnWindowFocus, // Configurável por página
     refetchOnMount: 'always', // Sempre buscar dados frescos ao montar
   });
 
@@ -325,6 +327,38 @@ export function useFinancialData(options: UseFinancialDataOptions = {}): UseFina
       description: "O cache de dados financeiros foi limpo.",
     });
   }, [queryClient, toast]);
+
+  // Broadcast interno: atualizar automaticamente quando alguma parte publicar uma mudança (CSLL/IRPJ/Dedução)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    let channel: BroadcastChannel | null = null;
+    try {
+      channel = new BroadcastChannel('dre-updates');
+      channel.onmessage = async (event) => {
+        const message = event?.data;
+        if (message?.type === 'dre:update') {
+          logger.debug('Recebido broadcast de atualização do DRE', {
+            source: 'frontend',
+            context: 'use-financial-data',
+            tags: ['broadcast', 'dre-updates'],
+            data: message,
+          });
+          await queryClient.invalidateQueries({ queryKey: ['financial-data'] });
+          await refetch();
+        }
+      };
+    } catch (e) {
+      // Ambiente sem suporte a BroadcastChannel
+      logger.warn('BroadcastChannel não suportado para dre-updates', {
+        source: 'frontend',
+        context: 'use-financial-data',
+        tags: ['broadcast', 'unsupported'],
+      });
+    }
+    return () => {
+      try { channel?.close(); } catch {}
+    };
+  }, [queryClient, refetch]);
 
   const updateTaxDeduction = useCallback(async (deduction: number) => {
     try {

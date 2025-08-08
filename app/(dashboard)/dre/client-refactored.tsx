@@ -26,6 +26,7 @@ import { transformDataForChart, chartOptions } from "./utils";
 import { ExportCard, ExportChart } from "@/lib/services/advanced-export-service";
 import { ActionTooltip } from "@/components/ui/financial-tooltip";
 import { ManualTaxesDialog } from "./_components/manual-taxes-dialog";
+import { useQueryClient } from "@tanstack/react-query";
 
 // Dynamic imports para melhorar a performance
 const DynamicCSVUpload = dynamic(() => import("./_components/csv-upload").then(mod => ({ default: mod.CSVUpload })), { ssr: false });
@@ -34,6 +35,8 @@ import { container, item, availableYears, months, quarters } from "./_constants"
 
 export default function DREClientRefactored() {
   // Usar o hook unificado para dados do DRE
+  const queryClient = useQueryClient();
+  
   const {
     data: effectiveData,
     isLoading,
@@ -414,51 +417,84 @@ export default function DREClientRefactored() {
       let body: any;
 
       if (currentPeriod.periodType === 'monthly') {
+        // Para mensal, usar a MESMA LÓGICA ROBUSTA que funcionou no trimestral
+        console.log("🔍 [DRE-DEBUG] Salvamento MENSAL - usando lógica robusta");
+        
+        const monthToSave = currentPeriod.month!;
+        const valueToSave = localState.deducaoFiscal;
+        
         endpoint = "/api/finance/monthly-tax-deduction";
         body = {
           year: currentPeriod.year,
-          month: currentPeriod.month,
-          value: localState.deducaoFiscal
+          month: monthToSave,
+          value: valueToSave
         };
-        console.log("🔍 [DRE-DEBUG] Salvamento MENSAL", { endpoint, body });
+        
+        console.log(`🔍 [DRE-DEBUG] Salvando mês ${monthToSave}:`, { endpoint, body });
+        
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+        
+        console.log(`🔍 [DRE-DEBUG] Resposta mês ${monthToSave}:`, {
+          status: response.status,
+          statusText: response.statusText,
+          ok: response.ok
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error(`🔍 [DRE-DEBUG] Erro ao salvar mês ${monthToSave}:`, errorData);
+          throw new Error(`Falha ao salvar dedução para mês ${monthToSave}: ${errorData.error || 'Erro desconhecido'}`);
+        }
+        
+        const responseData = await response.json();
+        console.log(`🔍 [DRE-DEBUG] Sucesso mês ${monthToSave}:`, responseData);
       } else if (currentPeriod.periodType === 'quarterly') {
-        endpoint = "/api/finance/tax_deduction";
-        body = {
-          year: currentPeriod.year,
-          quarter: currentPeriod.quarter,
-          value: localState.deducaoFiscal
-        };
-        console.log("🔍 [DRE-DEBUG] Salvamento TRIMESTRAL", { endpoint, body });
+        // Para trimestral, salvar distribuído nos 3 meses do trimestre
+        console.log("🔍 [DRE-DEBUG] Salvamento TRIMESTRAL - distribuindo nos meses");
+        
+        const startMonth = ((currentPeriod.quarter! - 1) * 3) + 1;
+        const valuePerMonth = localState.deducaoFiscal / 3;
+        
+        for (let i = 0; i < 3; i++) {
+          const monthToSave = startMonth + i;
+          endpoint = "/api/finance/monthly-tax-deduction";
+          body = {
+            year: currentPeriod.year,
+            month: monthToSave,
+            value: valuePerMonth
+          };
+          
+          console.log(`🔍 [DRE-DEBUG] Salvando mês ${monthToSave}:`, { endpoint, body });
+          
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+          });
+          
+          console.log(`🔍 [DRE-DEBUG] Resposta mês ${monthToSave}:`, {
+            status: response.status,
+            ok: response.ok
+          });
+          
+          if (!response.ok) {
+            const errorData = await response.json();
+            console.error(`🔍 [DRE-DEBUG] Erro ao salvar mês ${monthToSave}:`, errorData);
+            throw new Error(`Falha ao salvar dedução para mês ${monthToSave}`);
+          }
+          
+          const responseData = await response.json();
+          console.log(`🔍 [DRE-DEBUG] Sucesso mês ${monthToSave}:`, responseData);
+        }
       } else {
         throw new Error(`Tipo de período não suportado: ${currentPeriod.periodType}`);
       }
 
-      console.log("🔍 [DRE-DEBUG] Fazendo requisição:", {
-        endpoint,
-        method: "POST",
-        body: JSON.stringify(body)
-      });
-
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-
-      console.log("🔍 [DRE-DEBUG] Resposta recebida:", {
-        status: response.status,
-        statusText: response.statusText,
-        ok: response.ok
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("🔍 [DRE-DEBUG] Erro na resposta:", errorData);
-        throw new Error(errorData.error || "Falha ao salvar dedução fiscal");
-      }
-
-      const responseData = await response.json();
-      console.log("🔍 [DRE-DEBUG] Dados da resposta:", responseData);
+      // Fluxo trimestral já executa o POST dentro do bloco acima
       
       toast({
         title: "Dedução fiscal salva",
@@ -467,12 +503,14 @@ export default function DREClientRefactored() {
       
       setTaxDeductionDialog(false);
       
-      console.log("🔍 [DRE-DEBUG] Aguardando refetch dos dados...");
+      console.log("🔍 [DRE-DEBUG] Preparando para atualizar a página...");
       
-      // Usar o refetch do hook ao invés de reload
-      await refetch();
+      // Aguardar um pouco para garantir que o banco processou e o toast apareceu
+      await new Promise(resolve => setTimeout(resolve, 800));
       
-      console.log("🔍 [DRE-DEBUG] Refetch concluído!");
+      // HARD REFRESH da página (equivalente ao F5)
+      console.log("🔍 [DRE-DEBUG] Executando hard refresh da página...");
+      window.location.reload();
       
     } catch (error) {
       console.error("🔍 [DRE-DEBUG] Erro ao salvar dedução fiscal:", error);
@@ -507,15 +545,30 @@ export default function DREClientRefactored() {
       // Atualizar estado local imediatamente
       setLocalState(prev => ({ ...prev, csll, irpj }));
       
-      // Recarregar dados e fechar diálogo
-      await refetch();
       setManualTaxesDialog(false);
+
+      // Toast de sucesso
+      toast({
+        title: "Impostos manuais salvos",
+        description: "CSLL e IRPJ foram atualizados. A página será recarregada automaticamente."
+      });
+
+      console.log("🔍 [DRE-DEBUG] Preparando para atualizar a página após salvar impostos manuais...");
+      
+      // Aguardar um pouco para garantir que o banco processou e o toast apareceu
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
+      // HARD REFRESH da página (equivalente ao F5)
+      console.log("🔍 [DRE-DEBUG] Executando hard refresh da página...");
+      window.location.reload();
       
     } catch (error) {
       console.error("Erro ao salvar impostos manuais:", error);
       throw error;
     }
   };
+
+  // Função removida - agora usamos hard refresh em vez de broadcast
 
 
   return (
