@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Teste de Cadastro de Investidor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .status {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+        button:hover { transform: translateY(-2px); }
+        button:disabled { opacity: 0.6; cursor: not-allowed; }
+        .form-group {
+            margin: 15px 0;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .form-group input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        .logs {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+        .test-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 Teste de Cadastro de Investidor</h1>
+            <p>Sistema de debug para identificar problemas no cadastro</p>
+        </div>
+
+        <div class="test-section">
+            <h2>📋 Dados do Teste</h2>
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" value="Teste Investidor Novo">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" value="investidor.teste.novo.2024@exemplo.com">
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefone:</label>
+                <input type="text" id="phone" value="11888777666">
+            </div>
+            <div class="form-group">
+                <label for="city">Cidade:</label>
+                <input type="text" id="city" value="Rio de Janeiro">
+            </div>
+            <div class="form-group">
+                <label for="address">Endereço:</label>
+                <input type="text" id="address" value="Avenida Teste Nova, 456, Copacabana">
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔧 Testes Disponíveis</h2>
+            <button onclick="checkAuth()">1. 🔐 Verificar Autenticação</button>
+            <button onclick="testInvestorCreation()">2. 🚀 Cadastrar Investidor</button>
+            <button onclick="testWithExistingEmail()">3. 🔄 Teste com Email Existente</button>
+            <button onclick="clearLogs()">🧹 Limpar Logs</button>
+        </div>
+
+        <div id="status"></div>
+        <div id="logs" class="logs"></div>
+    </div>
+
+    <script>
+        let logContainer = document.getElementById('logs');
+        let statusContainer = document.getElementById('status');
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logMessage = `[${timestamp}] ${message}`;
+            logContainer.textContent += logMessage + '\n';
+            logContainer.scrollTop = logContainer.scrollHeight;
+            console.log(message);
+        }
+
+        function showStatus(message, type = 'info') {
+            statusContainer.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+
+        function clearLogs() {
+            logContainer.textContent = '';
+            statusContainer.innerHTML = '';
+        }
+
+        async function checkAuth() {
+            log('🔐 Verificando autenticação...');
+            showStatus('🔐 Verificando se está logado...', 'info');
+            
+            try {
+                const response = await fetch('/api/auth/role', {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    log(`✅ Autenticado como: ${data.email} (${data.role})`);
+                    showStatus(`✅ Logado como: ${data.email} (${data.role})`, 'success');
+                } else {
+                    log(`❌ Não autenticado: ${response.status} ${response.statusText}`);
+                    showStatus('❌ Você não está logado! Acesse /sign-in para fazer login.', 'error');
+                }
+            } catch (error) {
+                log('💥 Erro ao verificar autenticação: ' + error.message);
+                showStatus('💥 Erro ao verificar autenticação', 'error');
+            }
+        }
+
+        async function testInvestorCreation() {
+            const payload = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                city: document.getElementById('city').value,
+                address: document.getElementById('address').value,
+            };
+
+            log('🚀 Iniciando teste de cadastro...');
+            log('📤 Payload: ' + JSON.stringify(payload, null, 2));
+            showStatus('🚀 Enviando dados...', 'info');
+
+            try {
+                const response = await fetch('/api/investors', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(payload)
+                });
+
+                const responseData = await response.json();
+                
+                if (response.ok) {
+                    log('✅ SUCESSO! Investidor cadastrado');
+                    log('📊 Resposta: ' + JSON.stringify(responseData, null, 2));
+                    
+                    let statusMessage = `✅ ${responseData.message}`;
+                    if (responseData.invitationStatus === 'ALREADY_EXISTS') {
+                        statusMessage += ' (Convite já existia)';
+                    } else if (responseData.invitationStatus === 'CREATED') {
+                        statusMessage += ' (Convite enviado)';
+                    } else if (responseData.invitationStatus === 'FAILED') {
+                        statusMessage += ' (Problema no convite)';
+                    }
+                    
+                    showStatus(statusMessage, 'success');
+                } else {
+                    log(`❌ ERRO ${response.status}: ${response.statusText}`);
+                    log('📊 Resposta de erro: ' + JSON.stringify(responseData, null, 2));
+                    showStatus(`❌ Erro ${response.status}: ${responseData.error || response.statusText}`, 'error');
+                }
+
+            } catch (error) {
+                log('💥 Erro na requisição: ' + error.message);
+                showStatus('💥 Erro na conexão: ' + error.message, 'error');
+            }
+        }
+
+        async function testWithExistingEmail() {
+            // Usar o email que sabemos que já existe
+            document.getElementById('email').value = 'rafafantacini@hotmail.com';
+            document.getElementById('name').value = 'Rafael Existente';
+            
+            log('🔄 Testando com email que já existe...');
+            showStatus('🔄 Testando email duplicado...', 'warning');
+            
+            await testInvestorCreation();
+        }
+
+        // Verificar autenticação automaticamente ao carregar
+        window.onload = function() {
+            log('🌟 Página carregada. Sistema pronto para testes.');
+            checkAuth();
+        };
+    </script>
+</body>
+</html> 
