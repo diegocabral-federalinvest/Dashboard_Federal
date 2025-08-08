@@ -43,9 +43,16 @@ export const useCreateInvestment = () => {
       console.log("📥 [CREATE] Response status:", response.status);
       
       if (!response.ok) {
-        const error = await response.json();
-        console.error("❌ [CREATE] Erro da API:", error);
-        throw new Error(error.message || error.error || "Falha ao criar investimento");
+        let errorPayload: any = {};
+        try {
+          errorPayload = await response.json();
+        } catch {}
+        console.error("❌ [CREATE] Erro da API:", errorPayload);
+        const baseMessage = errorPayload?.error || errorPayload?.message || "Falha ao criar investimento";
+        if (response.status === 422 && errorPayload?.code === "RETIRADA_ACIMA_DO_SALDO") {
+          throw new Error(baseMessage);
+        }
+        throw new Error(baseMessage);
       }
       
       const result = await response.json();

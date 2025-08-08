@@ -337,10 +337,10 @@ export async function GET(req: Request) {
     
     if (validParams.monthly) {
       // Para período mensal, buscar dedução fiscal mensal
-      logger.debug(`Querying monthly tax deduction`, {
+      logger.debug(`🔍 [DRE-API-DEBUG] Consultando dedução mensal`, {
         source: 'backend',
         context: 'api:reports:dre',
-        tags: ['query', 'monthly-tax-deduction'],
+        tags: ['debug', 'tax-deduction', 'monthly'],
         data: { 
           requestId,
           year: validParams.year,
@@ -350,7 +350,7 @@ export async function GET(req: Request) {
       
       const monthlyTaxDeductionResult = await db
         .select({
-          value: sql`COALESCE(value, 0)`.as("value")
+          value: monthlyTaxDeductions.value
         })
         .from(monthlyTaxDeductions)
         .where(
@@ -360,8 +360,33 @@ export async function GET(req: Request) {
           )
         );
       
-      if (monthlyTaxDeductionResult.length > 0) {
-        taxDeductionValue = Number(monthlyTaxDeductionResult[0].value);
+      logger.debug(`🔍 [DRE-API-DEBUG] Resultado consulta dedução mensal`, {
+        source: 'backend',
+        context: 'api:reports:dre',
+        tags: ['debug', 'tax-deduction', 'monthly'],
+        data: { 
+          requestId,
+          resultLength: monthlyTaxDeductionResult.length,
+          result: monthlyTaxDeductionResult,
+          rawValue: monthlyTaxDeductionResult[0]?.value,
+          typeOfValue: typeof monthlyTaxDeductionResult[0]?.value
+        }
+      });
+      
+      if (monthlyTaxDeductionResult.length > 0 && monthlyTaxDeductionResult[0].value !== null) {
+        // Garantir conversão correta de string numeric para número
+        const rawValue = monthlyTaxDeductionResult[0].value;
+        taxDeductionValue = typeof rawValue === 'string' ? parseFloat(rawValue) : Number(rawValue);
+        logger.debug(`🔍 [DRE-API-DEBUG] Valor mensal convertido`, {
+          source: 'backend',
+          context: 'api:reports:dre',
+          tags: ['debug', 'tax-deduction', 'monthly'],
+          data: { 
+            requestId,
+            originalValue: monthlyTaxDeductionResult[0].value,
+            convertedValue: taxDeductionValue
+          }
+        });
       }
       
     } else if (validParams.quarterly) {
@@ -382,9 +407,23 @@ export async function GET(req: Request) {
         }
       });
       
+      // Debug: Log dos parâmetros da consulta trimestral
+      logger.debug(`🔍 [DRE-API-DEBUG] Consultando deduções trimestrais`, {
+        source: 'backend',
+        context: 'api:reports:dre',
+        tags: ['debug', 'tax-deduction', 'quarterly'],
+        data: { 
+          requestId,
+          year: validParams.year,
+          quarter: quarterNumber,
+          startMonth,
+          endMonth
+        }
+      });
+
       const quarterlyTaxDeductionResult = await db
         .select({
-          totalValue: sql`COALESCE(SUM(value), 0)`.as('totalValue')
+          totalValue: sql`COALESCE(SUM(CAST(value AS NUMERIC)), 0)`.as('totalValue')
         })
         .from(monthlyTaxDeductions)
         .where(
@@ -395,12 +434,44 @@ export async function GET(req: Request) {
           )
         );
       
-      if (quarterlyTaxDeductionResult.length > 0) {
-        taxDeductionValue = Number(quarterlyTaxDeductionResult[0].totalValue);
+      logger.debug(`🔍 [DRE-API-DEBUG] Resultado consulta deduções mensais para trimestre`, {
+        source: 'backend',
+        context: 'api:reports:dre',
+        tags: ['debug', 'tax-deduction', 'quarterly'],
+        data: { 
+          requestId,
+          resultLength: quarterlyTaxDeductionResult.length,
+          result: quarterlyTaxDeductionResult,
+          rawTotalValue: quarterlyTaxDeductionResult[0]?.totalValue,
+          typeOfTotalValue: typeof quarterlyTaxDeductionResult[0]?.totalValue
+        }
+      });
+      
+      if (quarterlyTaxDeductionResult.length > 0 && quarterlyTaxDeductionResult[0].totalValue !== null) {
+        // Garantir conversão correta de string numeric para número
+        const rawValue = quarterlyTaxDeductionResult[0].totalValue;
+        taxDeductionValue = typeof rawValue === 'string' ? parseFloat(rawValue) : Number(rawValue);
+        logger.debug(`🔍 [DRE-API-DEBUG] Valor convertido para trimestre`, {
+          source: 'backend',
+          context: 'api:reports:dre',
+          tags: ['debug', 'tax-deduction', 'quarterly'],
+          data: { 
+            requestId,
+            originalValue: quarterlyTaxDeductionResult[0].totalValue,
+            convertedValue: taxDeductionValue
+          }
+        });
       }
       
       // Fallback: Se não houver deduções mensais, buscar na tabela antiga
       if (taxDeductionValue === 0) {
+        logger.debug(`🔍 [DRE-API-DEBUG] Valor zerado, buscando na tabela trimestral antiga`, {
+          source: 'backend',
+          context: 'api:reports:dre',
+          tags: ['debug', 'tax-deduction', 'fallback'],
+          data: { requestId, year: validParams.year, quarter: quarterNumber }
+        });
+
         const oldTaxDeductionResult = await db
           .select({
             value: sql`COALESCE(value, 0)`.as("value")
@@ -413,8 +484,28 @@ export async function GET(req: Request) {
             )
           );
         
+        logger.debug(`🔍 [DRE-API-DEBUG] Resultado da tabela trimestral antiga`, {
+          source: 'backend',
+          context: 'api:reports:dre',
+          tags: ['debug', 'tax-deduction', 'fallback'],
+          data: { 
+            requestId,
+            resultLength: oldTaxDeductionResult.length,
+            result: oldTaxDeductionResult
+          }
+        });
+        
         if (oldTaxDeductionResult.length > 0) {
           taxDeductionValue = Number(oldTaxDeductionResult[0].value);
+          logger.debug(`🔍 [DRE-API-DEBUG] Valor final da dedução trimestral`, {
+            source: 'backend',
+            context: 'api:reports:dre',
+            tags: ['debug', 'tax-deduction', 'final'],
+            data: { 
+              requestId,
+              finalTaxDeductionValue: taxDeductionValue
+            }
+          });
         }
       }
       

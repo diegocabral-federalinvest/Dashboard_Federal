@@ -54,6 +54,7 @@ export default function RawDataClient() {
 
   // Configuração das colunas para a tabela avançada
   const columns: TableColumn[] = [
+    { key: "__rowId", title: "ID", type: "text", sortable: false, filterable: false, width: "160px", render: (_, row) => row.id || row.IdOperacao },
     { key: "IdOperacao", title: "ID Operação", type: "text", sortable: true },
     { key: "Data", title: "Data", type: "date", sortable: true },
     { key: "CPFCNPJCedente", title: "CPF/CNPJ Cedente", type: "text", sortable: true },
@@ -119,6 +120,39 @@ export default function RawDataClient() {
       description: "O arquivo será baixado em instantes.",
     });
   }, [toast]);
+
+  const handleDeleteSelected = useCallback(async (ids: string[]) => {
+    if (!ids.length) return;
+    try {
+      const res = await fetch('/api/finance/raw-data', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids })
+      });
+      if (!res.ok) throw new Error('Falha ao excluir registros');
+      toast({ title: 'Registros excluídos', description: `${ids.length} registro(s) removido(s).` });
+      await refetch();
+    } catch (e: any) {
+      toast({ title: 'Erro ao excluir', description: e?.message || 'Tente novamente.', variant: 'destructive' });
+    }
+  }, [refetch, toast]);
+
+  const handleDeleteAll = useCallback(async () => {
+    try {
+      const confirmed = window.confirm('Tem certeza que deseja excluir TODOS os registros? Esta ação não pode ser desfeita.');
+      if (!confirmed) return;
+      const res = await fetch('/api/finance/raw-data', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ all: true })
+      });
+      if (!res.ok) throw new Error('Falha ao excluir todos os registros');
+      toast({ title: 'Todos os registros excluídos', description: 'A tabela foi limpa.' });
+      await refetch();
+    } catch (e: any) {
+      toast({ title: 'Erro ao excluir', description: e?.message || 'Tente novamente.', variant: 'destructive' });
+    }
+  }, [refetch, toast]);
 
   const handleDateRangeChange = useCallback((range: any) => {
     setDateRange({
@@ -272,6 +306,10 @@ export default function RawDataClient() {
                       onExport={handleExport}
                       defaultVisibleColumns={["IdOperacao", "Data", "CPFCNPJCedente", "ValorLiquido", "Etapa"]}
                       className="border-0 shadow-lg"
+                      enableRowSelection
+                      onDeleteSelected={handleDeleteSelected}
+                      onDeleteAll={handleDeleteAll}
+                      getRowId={(row) => row.id || row.IdOperacao}
                     />
             </motion.div>
           </TabsContent>

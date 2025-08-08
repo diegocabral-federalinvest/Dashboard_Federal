@@ -1,0 +1,926 @@
+<testsuites id="" name="" tests="18" failures="18" skipped="0" errors="0" time="26.045065">
+<testsuite name="playwright-dre-interface.test.ts" timestamp="2025-08-08T16:01:17.476Z" hostname="DRE-Desktop-Chrome" tests="6" failures="6" skipped="0" time="0.03" errors="0">
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela" classname="playwright-dre-interface.test.ts" time="0.005">
+<failure message="playwright-dre-interface.test.ts:208:7 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Chrome] › playwright-dre-interface.test.ts:208:7 › 🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\chromium_headless_shell-1178\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\chromium_headless_shell-1178\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)" classname="playwright-dre-interface.test.ts" time="0.005">
+<failure message="playwright-dre-interface.test.ts:257:7 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Chrome] › playwright-dre-interface.test.ts:257:7 › 🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333) 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\chromium_headless_shell-1178\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\chromium_headless_shell-1178\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 📊 Testar navegação entre tabs e persistência de dados" classname="playwright-dre-interface.test.ts" time="0.005">
+<failure message="playwright-dre-interface.test.ts:314:7 📊 Testar navegação entre tabs e persistência de dados" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Chrome] › playwright-dre-interface.test.ts:314:7 › 🧪 DRE Tax Deductions Interface Tests › 📊 Testar navegação entre tabs e persistência de dados 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\chromium_headless_shell-1178\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\chromium_headless_shell-1178\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🕵️ Debug: Capturar logs do console durante operações" classname="playwright-dre-interface.test.ts" time="0.005">
+<failure message="playwright-dre-interface.test.ts:356:7 🕵️ Debug: Capturar logs do console durante operações" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Chrome] › playwright-dre-interface.test.ts:356:7 › 🧪 DRE Tax Deductions Interface Tests › 🕵️ Debug: Capturar logs do console durante operações 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\chromium_headless_shell-1178\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\chromium_headless_shell-1178\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 📸 Capturar screenshots de diferentes estados" classname="playwright-dre-interface.test.ts" time="0.005">
+<failure message="playwright-dre-interface.test.ts:404:7 📸 Capturar screenshots de diferentes estados" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Chrome] › playwright-dre-interface.test.ts:404:7 › 🧪 DRE Tax Deductions Interface Tests › 📸 Capturar screenshots de diferentes estados 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\chromium_headless_shell-1178\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\chromium_headless_shell-1178\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="⚡ Performance Tests › 📊 Medir tempo de carregamento do DRE" classname="playwright-dre-interface.test.ts" time="0.005">
+<failure message="playwright-dre-interface.test.ts:434:7 📊 Medir tempo de carregamento do DRE" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Chrome] › playwright-dre-interface.test.ts:434:7 › ⚡ Performance Tests › 📊 Medir tempo de carregamento do DRE 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\chromium_headless_shell-1178\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\chromium_headless_shell-1178\chrome-win\headless_shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="playwright-dre-interface.test.ts" timestamp="2025-08-08T16:01:17.476Z" hostname="DRE-Desktop-Firefox" tests="6" failures="6" skipped="0" time="0.028" errors="0">
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela" classname="playwright-dre-interface.test.ts" time="0.006">
+<failure message="playwright-dre-interface.test.ts:208:7 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Firefox] › playwright-dre-interface.test.ts:208:7 › 🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\firefox-1487\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\firefox-1487\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)" classname="playwright-dre-interface.test.ts" time="0.004">
+<failure message="playwright-dre-interface.test.ts:257:7 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Firefox] › playwright-dre-interface.test.ts:257:7 › 🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333) 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\firefox-1487\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\firefox-1487\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 📊 Testar navegação entre tabs e persistência de dados" classname="playwright-dre-interface.test.ts" time="0.004">
+<failure message="playwright-dre-interface.test.ts:314:7 📊 Testar navegação entre tabs e persistência de dados" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Firefox] › playwright-dre-interface.test.ts:314:7 › 🧪 DRE Tax Deductions Interface Tests › 📊 Testar navegação entre tabs e persistência de dados 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\firefox-1487\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\firefox-1487\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🕵️ Debug: Capturar logs do console durante operações" classname="playwright-dre-interface.test.ts" time="0.005">
+<failure message="playwright-dre-interface.test.ts:356:7 🕵️ Debug: Capturar logs do console durante operações" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Firefox] › playwright-dre-interface.test.ts:356:7 › 🧪 DRE Tax Deductions Interface Tests › 🕵️ Debug: Capturar logs do console durante operações 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\firefox-1487\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\firefox-1487\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Firefox\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 📸 Capturar screenshots de diferentes estados" classname="playwright-dre-interface.test.ts" time="0.004">
+<failure message="playwright-dre-interface.test.ts:404:7 📸 Capturar screenshots de diferentes estados" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Firefox] › playwright-dre-interface.test.ts:404:7 › 🧪 DRE Tax Deductions Interface Tests › 📸 Capturar screenshots de diferentes estados 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\firefox-1487\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\firefox-1487\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="⚡ Performance Tests › 📊 Medir tempo de carregamento do DRE" classname="playwright-dre-interface.test.ts" time="0.005">
+<failure message="playwright-dre-interface.test.ts:434:7 📊 Medir tempo de carregamento do DRE" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Firefox] › playwright-dre-interface.test.ts:434:7 › ⚡ Performance Tests › 📊 Medir tempo de carregamento do DRE 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\firefox-1487\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\firefox-1487\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="playwright-dre-interface.test.ts" timestamp="2025-08-08T16:01:17.476Z" hostname="DRE-Desktop-Safari" tests="6" failures="6" skipped="0" time="0.027" errors="0">
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela" classname="playwright-dre-interface.test.ts" time="0.004">
+<failure message="playwright-dre-interface.test.ts:208:7 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Safari] › playwright-dre-interface.test.ts:208:7 › 🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 1: Testar tab Mensal - Valor zerado na tabela 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\webkit-2182\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\webkit-2182\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)" classname="playwright-dre-interface.test.ts" time="0.005">
+<failure message="playwright-dre-interface.test.ts:257:7 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333)" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Safari] › playwright-dre-interface.test.ts:257:7 › 🧪 DRE Tax Deductions Interface Tests › 🔍 Bug 2: Testar tab Trimestral - Valor incorreto (23.333.333) 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\webkit-2182\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\webkit-2182\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 📊 Testar navegação entre tabs e persistência de dados" classname="playwright-dre-interface.test.ts" time="0.004">
+<failure message="playwright-dre-interface.test.ts:314:7 📊 Testar navegação entre tabs e persistência de dados" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Safari] › playwright-dre-interface.test.ts:314:7 › 🧪 DRE Tax Deductions Interface Tests › 📊 Testar navegação entre tabs e persistência de dados 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\webkit-2182\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\webkit-2182\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 🕵️ Debug: Capturar logs do console durante operações" classname="playwright-dre-interface.test.ts" time="0.004">
+<failure message="playwright-dre-interface.test.ts:356:7 🕵️ Debug: Capturar logs do console durante operações" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Safari] › playwright-dre-interface.test.ts:356:7 › 🧪 DRE Tax Deductions Interface Tests › 🕵️ Debug: Capturar logs do console durante operações 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\webkit-2182\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\webkit-2182\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-7e730-o-console-durante-operações-DRE-Desktop-Safari-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="🧪 DRE Tax Deductions Interface Tests › 📸 Capturar screenshots de diferentes estados" classname="playwright-dre-interface.test.ts" time="0.005">
+<failure message="playwright-dre-interface.test.ts:404:7 📸 Capturar screenshots de diferentes estados" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Safari] › playwright-dre-interface.test.ts:404:7 › 🧪 DRE Tax Deductions Interface Tests › 📸 Capturar screenshots de diferentes estados 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\webkit-2182\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\webkit-2182\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-�-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="⚡ Performance Tests › 📊 Medir tempo de carregamento do DRE" classname="playwright-dre-interface.test.ts" time="0.005">
+<failure message="playwright-dre-interface.test.ts:434:7 📊 Medir tempo de carregamento do DRE" type="FAILURE">
+<![CDATA[  [DRE-Desktop-Safari] › playwright-dre-interface.test.ts:434:7 › ⚡ Performance Tests › 📊 Medir tempo de carregamento do DRE 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\webkit-2182\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\rafaf\AppData\Local\ms-playwright\webkit-2182\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari-retry1\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari-retry1\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari\trace.zip]]
+
+[[ATTACHMENT|artifacts\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari-retry1\trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

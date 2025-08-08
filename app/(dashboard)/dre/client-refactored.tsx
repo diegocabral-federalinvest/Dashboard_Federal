@@ -195,6 +195,33 @@ export default function DREClientRefactored() {
     }
   }, [effectiveData]);
 
+  // Carregar impostos manuais atuais ao abrir o diálogo (visão trimestral)
+  useEffect(() => {
+    const fetchManualTaxes = async () => {
+      try {
+        if (manualTaxesDialog && currentPeriod.periodType === 'quarterly' && currentPeriod.year && currentPeriod.quarter) {
+          const params = new URLSearchParams({
+            year: String(currentPeriod.year),
+            quarter: String(currentPeriod.quarter)
+          });
+          const res = await fetch(`/api/finance/manual-quarterly-taxes?${params.toString()}`);
+          if (res.ok) {
+            const json = await res.json();
+            const data = json?.data || {};
+            setLocalState(prev => ({
+              ...prev,
+              csll: Number(data.csll || 0),
+              irpj: Number(data.irpj || 0)
+            }));
+          }
+        }
+      } catch (err) {
+        // silencioso
+      }
+    };
+    fetchManualTaxes();
+  }, [manualTaxesDialog, currentPeriod.periodType, currentPeriod.year, currentPeriod.quarter]);
+
   // Sync local state with period changes
   useEffect(() => {
     setLocalState(prev => ({
@@ -374,16 +401,43 @@ export default function DREClientRefactored() {
   };
 
   const handleSaveTaxDeduction = async () => {
+    console.log("🔍 [DRE-DEBUG] Iniciando salvamento de dedução fiscal", {
+      currentPeriod,
+      localState,
+      activeTab,
+      timestamp: new Date().toISOString()
+    });
+
     try {
-      // Salvar dedução fiscal mensal
-      const endpoint = "/api/finance/monthly-tax-deduction";
-      const body = {
-        year: currentPeriod.year,
-        month: currentPeriod.periodType === 'monthly' 
-          ? currentPeriod.month 
-          : ((currentPeriod.quarter! - 1) * 3 + 1), // Primeiro mês do trimestre
-        value: localState.deducaoFiscal
-      };
+      // Determinar endpoint baseado no tipo de período
+      let endpoint: string;
+      let body: any;
+
+      if (currentPeriod.periodType === 'monthly') {
+        endpoint = "/api/finance/monthly-tax-deduction";
+        body = {
+          year: currentPeriod.year,
+          month: currentPeriod.month,
+          value: localState.deducaoFiscal
+        };
+        console.log("🔍 [DRE-DEBUG] Salvamento MENSAL", { endpoint, body });
+      } else if (currentPeriod.periodType === 'quarterly') {
+        endpoint = "/api/finance/tax_deduction";
+        body = {
+          year: currentPeriod.year,
+          quarter: currentPeriod.quarter,
+          value: localState.deducaoFiscal
+        };
+        console.log("🔍 [DRE-DEBUG] Salvamento TRIMESTRAL", { endpoint, body });
+      } else {
+        throw new Error(`Tipo de período não suportado: ${currentPeriod.periodType}`);
+      }
+
+      console.log("🔍 [DRE-DEBUG] Fazendo requisição:", {
+        endpoint,
+        method: "POST",
+        body: JSON.stringify(body)
+      });
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -391,9 +445,20 @@ export default function DREClientRefactored() {
         body: JSON.stringify(body)
       });
 
+      console.log("🔍 [DRE-DEBUG] Resposta recebida:", {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok
+      });
+
       if (!response.ok) {
-        throw new Error("Falha ao salvar dedução fiscal");
+        const errorData = await response.json();
+        console.error("🔍 [DRE-DEBUG] Erro na resposta:", errorData);
+        throw new Error(errorData.error || "Falha ao salvar dedução fiscal");
       }
+
+      const responseData = await response.json();
+      console.log("🔍 [DRE-DEBUG] Dados da resposta:", responseData);
       
       toast({
         title: "Dedução fiscal salva",
@@ -402,16 +467,18 @@ export default function DREClientRefactored() {
       
       setTaxDeductionDialog(false);
       
-      // Aguardar um pouco para o toast aparecer antes do reload
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
+      console.log("🔍 [DRE-DEBUG] Aguardando refetch dos dados...");
+      
+      // Usar o refetch do hook ao invés de reload
+      await refetch();
+      
+      console.log("🔍 [DRE-DEBUG] Refetch concluído!");
       
     } catch (error) {
-      console.error("Erro ao salvar dedução fiscal:", error);
+      console.error("🔍 [DRE-DEBUG] Erro ao salvar dedução fiscal:", error);
       toast({
         title: "Erro ao salvar",
-        description: "Ocorreu um erro ao salvar a dedução fiscal. Tente novamente.",
+        description: error instanceof Error ? error.message : "Não foi possível salvar a dedução fiscal.",
         variant: "destructive"
       });
     }
@@ -437,10 +504,12 @@ export default function DREClientRefactored() {
         throw new Error("Falha ao salvar impostos manuais");
       }
 
+      // Atualizar estado local imediatamente
       setLocalState(prev => ({ ...prev, csll, irpj }));
       
-      // Recarregar dados
+      // Recarregar dados e fechar diálogo
       await refetch();
+      setManualTaxesDialog(false);
       
     } catch (error) {
       console.error("Erro ao salvar impostos manuais:", error);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { CalendarIcon, Trash } from "lucide-react";
@@ -38,6 +38,9 @@ import { DEFAULT_DAILY_RATE } from "../hooks/use-investment-return";
 import { Investment } from "../api/use-get-investment";
 import { useGetInvestors } from "../api/use-get-investors";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useGetInvestments } from "../api/use-get-investments";
+import { calculateIndividualNetBalance } from "@/app/(dashboard)/investimentos/_utils/compound-interest";
+import { formatCurrency } from "@/lib/utils";
 
 // Esquema de validação do formulário usando zod - SIMPLIFICADO
 const formSchema = z.object({
@@ -75,6 +78,7 @@ export function InvestmentForm({
   // Inicializar o formulário com defaultValues ou valores vazios
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
+    mode: "onChange",
     defaultValues: {
       value: 0,
       type: "aporte",
@@ -84,12 +88,73 @@ export function InvestmentForm({
     },
   });
 
+  // Estado para saldo atual do investidor selecionado
+  const selectedInvestorId = form.watch("investorId");
+  const operationType = form.watch("type");
+  const inputValue = form.watch("value");
+
+  const { data: investorInvestments = [], isLoading: loadingInvestorInvestments } = useGetInvestments(
+    selectedInvestorId || undefined
+  );
+
+  const [currentBalance, setCurrentBalance] = useState<number>(0);
+
+  useEffect(() => {
+    let isActive = true;
+    async function computeBalance() {
+      try {
+        if (!selectedInvestorId) {
+          if (isActive) setCurrentBalance(0);
+          return;
+        }
+        // Mapear contribuições do investidor
+        const contributions = investorInvestments
+          .filter((inv) => inv.investorId === selectedInvestorId)
+          .map((inv) => ({
+            date: new Date(inv.date),
+            value: Math.abs(typeof inv.value === "string" ? parseFloat(inv.value) : inv.value),
+            type: ((inv as any).type || (inv.status === "withdrawn" ? "retirada" : "aporte")) as
+              | "aporte"
+              | "retirada",
+          }));
+
+        const balance = await calculateIndividualNetBalance(contributions, new Date());
+        if (isActive) setCurrentBalance(Math.max(0, balance));
+      } catch {
+        if (isActive) setCurrentBalance(0);
+      }
+    }
+    computeBalance();
+    return () => {
+      isActive = false;
+    };
+  }, [selectedInvestorId, investorInvestments]);
+
+  // Revalidar campo de valor quando mudar tipo ou saldo
+  useEffect(() => {
+    const isWithdrawal = operationType === "retirada";
+    const numericValue = typeof inputValue === "string" ? parseFloat(inputValue as any) : (inputValue as number);
+
+    if (isWithdrawal && selectedInvestorId) {
+      if (numericValue && numericValue > currentBalance) {
+        form.setError("value", {
+          type: "manual",
+          message: `Valor excede o saldo disponível (${formatCurrency(currentBalance)}).`,
+        });
+      } else {
+        form.clearErrors("value");
+      }
+    } else {
+      form.clearErrors("value");
+    }
+  }, [operationType, inputValue, currentBalance, selectedInvestorId, form]);
+
   // Preencher o formulário se um investimento for fornecido
   useEffect(() => {
     if (investment) {
       const formValues: Partial<FormValues> = {
-        value: typeof investment.value === "string" 
-          ? parseFloat(investment.value) 
+        value: typeof investment.value === "string"
+          ? parseFloat(investment.value)
           : investment.value,
         type: (investment as any).type || "aporte", // Default para aporte se não existir
         investorId: investment.investorId,
@@ -107,12 +172,26 @@ export function InvestmentForm({
 
   // Enviar o formulário
   const handleSubmit = (values: FormValues) => {
+    // Bloquear envio se retirada inválida
+    if (values.type === "retirada" && values.value > currentBalance) {
+      form.setError("value", {
+        type: "manual",
+        message: `Valor excede o saldo disponível (${formatCurrency(currentBalance)}).`,
+      });
+      return;
+    }
     onSubmit(values);
   };
 
   const handleDelete = () => {
     onDelete?.();
   };
+
+  const isWithdrawalDisabled = useMemo(() => {
+    return (currentBalance || 0) === 0;
+  }, [currentBalance]);
+
+  const isSubmitDisabled = isLoading || !!form.formState.errors.value || (operationType === "retirada" && isWithdrawalDisabled);
 
   return (
     <Form {...form}>
@@ -128,18 +207,28 @@ export function InvestmentForm({
                   Tipo de Operação
                 </FormLabel>
                 <FormDescription>
-                  {field.value === "aporte" 
-                    ? "💰 Aporte - Adiciona valor ao investimento" 
+                  {field.value === "aporte"
+                    ? "💰 Aporte - Adiciona valor ao investimento"
                     : "📤 Retirada - Remove valor do investimento"}
                 </FormDescription>
+                {field.value === "retirada" && (
+                  <div aria-live="polite" className="text-sm text-muted-foreground">
+                    Saldo disponível: <span className="font-medium">{formatCurrency(currentBalance || 0)}</span>
+                  </div>
+                )}
+                {isWithdrawalDisabled && (
+                  <div aria-live="polite" className="text-sm text-red-600">
+                    Saldo atual é R$ 0,00. Retirada indisponível.
+                  </div>
+                )}
               </div>
               <FormControl>
                 <Switch
                   checked={field.value === "retirada"}
-                  onCheckedChange={(checked) => 
+                  onCheckedChange={(checked) =>
                     field.onChange(checked ? "retirada" : "aporte")
                   }
-                  disabled={isLoading}
+                  disabled={isLoading || loadingInvestorInvestments || (field.value !== "retirada" && isWithdrawalDisabled)}
                 />
               </FormControl>
             </FormItem>
@@ -199,9 +288,10 @@ export function InvestmentForm({
                     placeholder="0,00"
                     disabled={isLoading}
                     {...field}
+                    aria-invalid={!!form.formState.errors.value}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage data-testid="withdrawal-error" aria-live="polite" />
               </FormItem>
             )}
           />
@@ -252,7 +342,7 @@ export function InvestmentForm({
         <Button
           type="submit"
           className="w-full"
-          disabled={isLoading}
+          disabled={isSubmitDisabled}
         >
           {isLoading ? "Processando..." : investment ? "Atualizar Investimento" : "Criar Investimento"}
         </Button>

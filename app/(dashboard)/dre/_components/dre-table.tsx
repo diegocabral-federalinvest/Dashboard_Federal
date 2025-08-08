@@ -92,40 +92,24 @@ const getTooltipInfo = (description: string, data: DREData): DREItem['tooltip'] 
 };
 
 // Constrói os itens para a tabela RESUMIDA
-const buildSummaryDREItems = (data: DREData | null, periodType?: "monthly" | "quarterly" | "annual"): DREItem[] => {
+const buildSummaryDREItems = (data: DREData | null): DREItem[] => {
   if (!data) return [];
-  
-  const items: DREItem[] = [
+  return [
     { description: "Operação", value: data.receitas.operacoes, level: 0, operation: 'plus', tooltip: getTooltipInfo("Operação", data) },
     { description: "Dedução", value: data.deducaoFiscal, level: 0, operation: 'plus', tooltip: getTooltipInfo("Dedução Fiscal", data) },
     { description: "Receita Bruta", value: data.receitas.total, level: 0, isTotal: true, tooltip: getTooltipInfo("Receita Bruta", data) },
     { description: "Receita Líquida", value: data.resultadoBruto, level: 0, isTotal: true, tooltip: getTooltipInfo("Receita Líquida", data) },
     { description: "Despesas", value: data.despesas.total, level: 0, operation: 'minus', tooltip: getTooltipInfo("Despesas Operacionais", data) },
     { description: "Resultado Bruto", value: data.resultadoOperacional, level: 0, isTotal: true, tooltip: getTooltipInfo("Resultado Operacional", data) },
-  ];
-  
-  // Adicionar CSLL e IRPJ apenas para período trimestral
-  if (periodType === 'quarterly') {
-    items.push(
-      { description: "CSLL (Manual)", value: data.impostos.csll, level: 1, operation: 'minus' },
-      { description: "IRPJ (Manual)", value: data.impostos.ir, level: 1, operation: 'minus' }
-    );
-  }
-  
-  // Adicionar Entradas e Resultado Líquido
-  items.push(
     { description: "Entradas", value: data.receitas.outras, level: 0, operation: 'plus', tooltip: getTooltipInfo("Outras Receitas", data) },
-    { description: "Resultado Líquido", value: data.resultadoLiquido, level: 0, isHighlighted: true, isTotal: true, tooltip: getTooltipInfo("Resultado Líquido", data) }
-  );
-  
-  return items;
+    { description: "Resultado Líquido", value: data.resultadoLiquido, level: 0, isHighlighted: true, isTotal: true, tooltip: getTooltipInfo("Resultado Líquido", data) },
+  ];
 };
 
 // Constrói os itens para a tabela DETALHADA
-const buildDetailedDREItems = (data: DREData | null, periodType?: "monthly" | "quarterly" | "annual"): DREItem[] => {
+const buildDetailedDREItems = (data: DREData | null): DREItem[] => {
   if (!data) return [];
-  
-  const items: DREItem[] = [
+  return [
     // Receitas detalhadas
     { description: "Operação", value: data.receitas.operacoes, level: 0, operation: 'plus', tooltip: getTooltipInfo("Operação", data) },
     { description: "Valor Fator", value: data.custos.fator, level: 1, operation: 'plus' },
@@ -142,28 +126,18 @@ const buildDetailedDREItems = (data: DREData | null, periodType?: "monthly" | "q
     { description: "Despesas Tributáveis", value: data.despesas.tributaveis, level: 1, operation: 'minus' },
     { description: "Despesas Não Tributáveis", value: data.despesas.total - data.despesas.tributaveis, level: 1, operation: 'minus' },
     { description: "Resultado Bruto", value: data.resultadoOperacional, level: 0, isTotal: true, tooltip: getTooltipInfo("Resultado Operacional", data) },
-  ];
-  
-  // Adicionar CSLL e IRPJ apenas para período trimestral
-  if (periodType === 'quarterly') {
-    items.push(
-      { description: "CSLL (Manual)", value: data.impostos.csll, level: 1, operation: 'minus' },
-      { description: "IRPJ (Manual)", value: data.impostos.ir, level: 1, operation: 'minus' }
-    );
-  }
-  
-  // Adicionar Entradas e Resultado Líquido
-  items.push(
+    // Impostos sobre resultado
+    { description: "CSLL", value: data.impostos.csll, level: 1, operation: 'minus' },
+    { description: "IRPJ", value: data.impostos.ir, level: 1, operation: 'minus' },
+    // Entradas e resultado final
     { description: "Entradas", value: data.receitas.outras, level: 0, operation: 'plus', tooltip: getTooltipInfo("Outras Receitas", data) },
-    { description: "Resultado Líquido", value: data.resultadoLiquido, level: 0, isHighlighted: true, isTotal: true, tooltip: getTooltipInfo("Resultado Líquido", data) }
-  );
-  
-  return items;
+    { description: "Resultado Líquido", value: data.resultadoLiquido, level: 0, isHighlighted: true, isTotal: true, tooltip: getTooltipInfo("Resultado Líquido", data) },
+  ];
 };
 
 // Função para exportar dados
-export const getTableDataForExport = (data: DREData, isDetailed: boolean, periodType?: "monthly" | "quarterly" | "annual"): ExportableRow[] => {
-  const items = isDetailed ? buildDetailedDREItems(data, periodType) : buildSummaryDREItems(data, periodType);
+export const getTableDataForExport = (data: DREData, isDetailed: boolean): ExportableRow[] => {
+  const items = isDetailed ? buildDetailedDREItems(data) : buildSummaryDREItems(data);
   return items.map(item => ({
     descricao: `${' '.repeat(item.level * 2)}${item.description}`,
     valor: item.value
@@ -172,7 +146,7 @@ export const getTableDataForExport = (data: DREData, isDetailed: boolean, period
 
 // Função para exportar para CSV
 const exportToCSV = (data: DREData, isDetailed: boolean, periodLabel?: string, periodType?: string, selectedPeriod?: string) => {
-  const items = getTableDataForExport(data, isDetailed, periodType as "monthly" | "quarterly" | "annual");
+  const items = getTableDataForExport(data, isDetailed);
   const formattedPeriodLabel = formatPeriodLabel(periodLabel, periodType, selectedPeriod);
   
   const csvContent = [
@@ -466,43 +440,48 @@ const LoadingState = () => <Card className="h-64 flex items-center justify-cente
 const ErrorState = () => <Card className="h-64 flex items-center justify-center text-red-500">Erro ao carregar dados.</Card>;
 
 // Componente da Linha da Tabela com melhor padding
-const TableRow: React.FC<{ item: DREItem; isModal?: boolean }> = ({ item, isModal = false }) => (
-  <div
-    className={`grid grid-cols-3 py-4 ${isModal ? 'px-6' : 'px-4'} border-b last:border-b-0 hover:bg-muted/20 transition-colors ${
-      item.isHighlighted ? 'bg-blue-50 dark:bg-blue-950/20 font-semibold' : ''
-    } ${item.isTotal ? 'font-bold' : ''}`}
-  >
-    <div className="flex items-center gap-2 col-span-2">
-      <span 
-        style={{ paddingLeft: `${item.level * (isModal ? 2 : 1.5)}rem` }} 
-        className={`${isModal ? 'text-base' : 'text-sm'}`}
-      >
-        {item.description}
-      </span>
-      {item.tooltip && (
-        <FinancialInfoTooltip 
-          title={item.tooltip.title} 
-          description={item.tooltip.description} 
-          value={formatCurrency(item.value)} 
-          variant={item.tooltip.variant || "info"}
-          side="right"
+const TableRow: React.FC<{ item: DREItem; isModal?: boolean }> = ({ item, isModal = false }) => {
+  const isNegative = item.value < 0;
+  const valueColor = isNegative ? "text-red-500" : "text-foreground";
+
+  return (
+    <div
+      className={`grid grid-cols-3 py-4 ${isModal ? 'px-6' : 'px-4'} border-b last:border-b-0 hover:bg-muted/20 transition-colors ${
+        item.isHighlighted ? 'bg-blue-50 dark:bg-blue-950/20 font-semibold' : ''
+      } ${item.isTotal ? 'font-bold' : ''}`}
+    >
+      <div className="flex items-center gap-2 col-span-2">
+        <span 
+          style={{ paddingLeft: `${item.level * (isModal ? 2 : 1.5)}rem` }} 
+          className={`${isModal ? 'text-base' : 'text-sm'}`}
         >
-          <Info className="h-4 w-4 text-blue-500 cursor-help" />
-        </FinancialInfoTooltip>
-      )}
+          {item.description}
+        </span>
+        {item.tooltip && (
+          <FinancialInfoTooltip 
+            title={item.tooltip.title} 
+            description={item.tooltip.description} 
+            value={formatCurrency(item.value)} 
+            variant={item.tooltip.variant || "info"}
+            side="right"
+          >
+            <Info className="h-4 w-4 text-blue-500 cursor-help" />
+          </FinancialInfoTooltip>
+        )}
+      </div>
+      <div className="flex items-center justify-end gap-2">
+        {item.operation && (
+          <Badge variant={item.operation === 'plus' ? 'default' : 'destructive'} className="w-6 h-6 flex items-center justify-center p-0">
+            {item.operation === 'plus' ? <Plus className="h-3 w-3" /> : <Minus className="h-3 w-3" />}
+          </Badge>
+        )}
+        <span className={`${isModal ? 'text-base font-medium' : 'text-sm'} ${valueColor}`}>
+          {formatCurrency(item.value)}
+        </span>
+      </div>
     </div>
-    <div className="flex items-center justify-end gap-2">
-      {item.operation && (
-        <Badge variant={item.operation === 'plus' ? 'default' : 'destructive'} className="w-6 h-6 flex items-center justify-center p-0">
-          {item.operation === 'plus' ? <Plus className="h-3 w-3" /> : <Minus className="h-3 w-3" />}
-        </Badge>
-      )}
-      <span className={`${isModal ? 'text-base font-medium' : 'text-sm'}`}>
-        {formatCurrency(item.value)}
-      </span>
-    </div>
-  </div>
-);
+  );
+};
 
 // Componente de Exportação Melhorado
 const ExportDropdown: React.FC<{ 
@@ -588,8 +567,8 @@ export const DRETable: React.FC<DRETableProps> = ({ data, isLoading, error, isDe
   if (isLoading) return <LoadingState />;
   if (error || !data) return <ErrorState />;
 
-  const summaryItems = buildSummaryDREItems(data, periodType);
-  const detailedItems = buildDetailedDREItems(data, periodType);
+  const summaryItems = buildSummaryDREItems(data);
+  const detailedItems = buildDetailedDREItems(data);
   const displayItems = isDetailed ? detailedItems : summaryItems;
 
   return (

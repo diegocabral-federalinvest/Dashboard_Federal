@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth-config";
 import { db } from "@/db/drizzle";
 import { financialDataCSV } from "@/db/schema";
-import { and, asc, desc, gte, lte, like, sql } from "drizzle-orm";
+import { and, asc, desc, gte, lte, like, sql, inArray } from "drizzle-orm";
 import logger from "@/lib/logger";
 
 export async function GET(req: Request) {
@@ -147,3 +147,54 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 } 
+
+export async function DELETE(req: Request) {
+  const requestId = crypto.randomUUID();
+
+  logger.info(`API Request: DELETE Raw Financial Data`, {
+    source: 'backend',
+    context: 'api:finance:raw-data',
+    tags: ['request', 'delete', 'financial-data'],
+    data: { requestId }
+  });
+
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) {
+      logger.warn(`Unauthorized access attempt to delete raw financial data`, {
+        source: 'backend', context: 'api:finance:raw-data', tags: ['auth','unauthorized'], data: { requestId }
+      });
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const bodyText = await req.text();
+    let body: any = {};
+    try { body = bodyText ? JSON.parse(bodyText) : {}; } catch {}
+
+    const ids: string[] | undefined = Array.isArray(body?.ids) ? body.ids : undefined;
+    const deleteAll: boolean = Boolean(body?.all);
+
+    let deletedCount = 0;
+
+    if (deleteAll) {
+      const result = await db.delete(financialDataCSV).returning({ id: financialDataCSV.id });
+      deletedCount = result.length;
+      logger.info(`Deleted all raw financial rows`, { source: 'backend', context: 'api:finance:raw-data', tags: ['delete','all'], data: { requestId, deletedCount } });
+    } else if (ids && ids.length > 0) {
+      const result = await db
+        .delete(financialDataCSV)
+        .where(inArray(financialDataCSV.id, ids))
+        .returning({ id: financialDataCSV.id });
+      deletedCount = result.length;
+      logger.info(`Deleted selected raw financial rows`, { source: 'backend', context: 'api:finance:raw-data', tags: ['delete','selected'], data: { requestId, deletedCount } });
+    } else {
+      return NextResponse.json({ error: 'No ids provided and all=false' }, { status: 400 });
+    }
+
+    return NextResponse.json({ success: true, deleted: deletedCount });
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    logger.error(`Error deleting raw financial data`, { source: 'backend', context: 'api:finance:raw-data', tags: ['error','delete'], data: { requestId, error: errorMessage } });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
