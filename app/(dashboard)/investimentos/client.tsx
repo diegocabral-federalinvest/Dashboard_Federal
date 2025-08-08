@@ -236,7 +236,7 @@ export default function InvestmentsClient() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as "overview" | "contributions" | "investors" | "analytics")}>
+          <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as "overview" | "contributions")}>
             <div className="flex justify-between items-center mb-6">
               <TabsList className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 p-1 rounded-xl shadow-lg">
                 {TABS_CONFIG.map((tab) => (
@@ -343,53 +343,7 @@ export default function InvestmentsClient() {
               </Card>
             </TabsContent>
 
-            {/* Investors Tab */}
-            <TabsContent value="investors" className="space-y-6">
-              <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-xl">
-                <CardHeader>
-                  <CardTitle className="text-xl">Gestão de Investidores</CardTitle>
-                  <CardDescription>
-                    Lista completa de investidores e seus totais investidos
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {/* Investors content will be implemented */}
-                  <div className="text-center py-8">
-                    <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-500 dark:text-gray-400">
-                      Gestão de investidores em desenvolvimento
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            {/* Analytics Tab */}
-            <TabsContent value="analytics" className="space-y-6">
-              <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-xl">
-                <CardHeader>
-                  <CardTitle className="text-xl">Análises Avançadas</CardTitle>
-                  <CardDescription>
-                    Projeções e análises detalhadas dos investimentos
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
-                      Análises Avançadas
-                    </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Funcionalidade em desenvolvimento
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
+            
           </Tabs>
         </motion.div>
       </div>

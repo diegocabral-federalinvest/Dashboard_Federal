@@ -68,7 +68,7 @@ export interface InvestmentFilters {
 }
 
 export interface TabState {
-  activeTab: 'overview' | 'contributions' | 'investors' | 'analytics';
+  activeTab: 'overview' | 'contributions';
 }
 
 export interface DialogState {

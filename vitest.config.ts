@@ -14,7 +14,8 @@ export default defineConfig({
       '**/e2e/**',
       '**/*e2e*',
       '**/*.e2e.*',
-      'playwright-report'
+      'playwright-report',
+      '__tests__/playwright-*.test.ts'
     ],
   },
   resolve: {

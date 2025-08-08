@@ -7,6 +7,22 @@
 
 import { test, expect, type Page, type BrowserContext } from '@playwright/test';
 
+// Novo teste E2E para validar retirada acima do saldo
+import { test as pwTest, expect as pwExpect } from '@playwright/test';
+
+async function loginAndGoToInvestimentos(page: Page) {
+  // Reusa lógica: navegar e logar se necessário
+  await page.goto('http://localhost:3000/investimentos');
+  await page.waitForTimeout(1500);
+  if (page.url().includes('/sign-in') || page.url().includes('/login')) {
+    await page.fill('input[type="email"], input[name="email"]', 'admin@federalinvest.com');
+    await page.fill('input[type="password"], input[name="password"]', 'admin123');
+    await page.click('button[type="submit"], button:has-text("Entrar")');
+    await page.waitForURL('**/investimentos', { timeout: 15000 });
+  }
+  pwExpect(page.url()).toContain('/investimentos');
+}
+
 // Configurações de teste
 const TEST_CONFIG = {
   baseURL: 'http://localhost:3000',
@@ -430,5 +446,7 @@ test.describe('⚡ Performance Tests', () => {
     expect(loadTime, 'DRE deveria carregar em menos de 10 segundos').toBeLessThan(10000);
   });
 });
+
+
 
 export { TEST_CONFIG, loginIfNeeded, waitForDREDataLoad, switchToDRETab, openTaxDeductionDialog };

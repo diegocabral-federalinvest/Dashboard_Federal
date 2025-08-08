@@ -1,11 +1,20 @@
 {
   "config": {
+<<<<<<< HEAD
     "configFile": "C:\\federal-clone\\federal-novo-main\\playwright.config.ts",
     "rootDir": "C:/federal-clone/federal-novo-main/__tests__",
     "forbidOnly": false,
     "fullyParallel": false,
     "globalSetup": "C:\\federal-clone\\federal-novo-main\\test-setup\\global-setup.ts",
     "globalTeardown": "C:\\federal-clone\\federal-novo-main\\test-setup\\global-teardown.ts",
+=======
+    "configFile": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\playwright.config.ts",
+    "rootDir": "C:/Users/rafaf/Desktop/Dashboard_Federal-main/__tests__",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-setup\\global-setup.ts",
+    "globalTeardown": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-setup\\global-teardown.ts",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
     "globalTimeout": 0,
     "grep": {},
     "grepInvert": null,
@@ -45,7 +54,11 @@
     "quiet": false,
     "projects": [
       {
+<<<<<<< HEAD
         "outputDir": "C:/federal-clone/federal-novo-main/test-results/artifacts",
+=======
+        "outputDir": "C:/Users/rafaf/Desktop/Dashboard_Federal-main/test-results/artifacts",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
@@ -53,7 +66,11 @@
         },
         "id": "DRE-Desktop-Chrome",
         "name": "DRE-Desktop-Chrome",
+<<<<<<< HEAD
         "testDir": "C:/federal-clone/federal-novo-main/__tests__",
+=======
+        "testDir": "C:/Users/rafaf/Desktop/Dashboard_Federal-main/__tests__",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
         "testIgnore": [],
         "testMatch": [
           "**/*playwright*.test.ts",
@@ -62,7 +79,11 @@
         "timeout": 60000
       },
       {
+<<<<<<< HEAD
         "outputDir": "C:/federal-clone/federal-novo-main/test-results/artifacts",
+=======
+        "outputDir": "C:/Users/rafaf/Desktop/Dashboard_Federal-main/test-results/artifacts",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
@@ -70,7 +91,11 @@
         },
         "id": "DRE-Desktop-Firefox",
         "name": "DRE-Desktop-Firefox",
+<<<<<<< HEAD
         "testDir": "C:/federal-clone/federal-novo-main/__tests__",
+=======
+        "testDir": "C:/Users/rafaf/Desktop/Dashboard_Federal-main/__tests__",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
         "testIgnore": [],
         "testMatch": [
           "**/*playwright*.test.ts",
@@ -79,7 +104,11 @@
         "timeout": 60000
       },
       {
+<<<<<<< HEAD
         "outputDir": "C:/federal-clone/federal-novo-main/test-results/artifacts",
+=======
+        "outputDir": "C:/Users/rafaf/Desktop/Dashboard_Federal-main/test-results/artifacts",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
@@ -87,7 +116,11 @@
         },
         "id": "DRE-Desktop-Safari",
         "name": "DRE-Desktop-Safari",
+<<<<<<< HEAD
         "testDir": "C:/federal-clone/federal-novo-main/__tests__",
+=======
+        "testDir": "C:/Users/rafaf/Desktop/Dashboard_Federal-main/__tests__",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
         "testIgnore": [],
         "testMatch": [
           "**/*playwright*.test.ts",
@@ -121,7 +154,11 @@
         {
           "title": "🧪 DRE Tax Deductions Interface Tests",
           "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
           "line": 186,
+=======
+          "line": 202,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
           "column": 6,
           "specs": [
             {
@@ -140,6 +177,7 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 29297,
                       "error": {
                         "message": "TimeoutError: page.waitForSelector: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"dre-table\"], .dre-table, table') to be visible\u001b[22m\n",
@@ -197,11 +235,36 @@
                         "column": 14,
                         "line": 50
                       }
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T16:01:18.159Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome\\trace.zip"
+                        }
+                      ]
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                     },
                     {
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 32045,
                       "error": {
                         "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
@@ -263,6 +326,30 @@
                         "column": 18,
                         "line": 36
                       }
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T16:01:18.879Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Chrome-retry1\\trace.zip"
+                        }
+                      ]
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                     }
                   ],
                   "status": "unexpected"
@@ -270,7 +357,11 @@
               ],
               "id": "58828de70949a49b3df1-ce653c3d25e140508b53",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 192,
+=======
+              "line": 208,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -289,6 +380,7 @@
                       "workerIndex": 2,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 30977,
                       "error": {
                         "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
@@ -350,11 +442,36 @@
                         "column": 18,
                         "line": 36
                       }
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T16:01:19.631Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\\trace.zip"
+                        }
+                      ]
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                     },
                     {
                       "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 30799,
                       "error": {
                         "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
@@ -416,6 +533,30 @@
                         "column": 18,
                         "line": 36
                       }
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T16:01:20.346Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\\trace.zip"
+                        }
+                      ]
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                     }
                   ],
                   "status": "unexpected"
@@ -423,7 +564,11 @@
               ],
               "id": "58828de70949a49b3df1-6a02e52cebc1917558e0",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 241,
+=======
+              "line": 257,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -442,6 +587,7 @@
                       "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 29865,
                       "error": {
                         "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
@@ -503,11 +649,36 @@
                         "column": 18,
                         "line": 36
                       }
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T16:01:21.056Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome\\trace.zip"
+                        }
+                      ]
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                     },
                     {
                       "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 30348,
                       "error": {
                         "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
@@ -569,6 +740,30 @@
                         "column": 18,
                         "line": 36
                       }
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T16:01:21.782Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Chrome-retry1\\trace.zip"
+                        }
+                      ]
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                     }
                   ],
                   "status": "unexpected"
@@ -576,7 +771,11 @@
               ],
               "id": "58828de70949a49b3df1-bb9f89bc78720b4cb51f",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 298,
+=======
+              "line": 314,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -595,6 +794,7 @@
                       "workerIndex": 6,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 30372,
                       "error": {
                         "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
@@ -656,11 +856,36 @@
                         "column": 18,
                         "line": 36
                       }
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T16:01:22.522Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Chrome\\trace.zip"
+                        }
+                      ]
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                     },
                     {
                       "workerIndex": 7,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 29579,
                       "error": {
                         "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
@@ -722,6 +947,30 @@
                         "column": 18,
                         "line": 36
                       }
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T16:01:23.234Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Chrome-retry1\\trace.zip"
+                        }
+                      ]
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                     }
                   ],
                   "status": "unexpected"
@@ -729,7 +978,11 @@
               ],
               "id": "58828de70949a49b3df1-a5f0900d1ed2e351bc6b",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 340,
+=======
+              "line": 356,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -748,6 +1001,7 @@
                       "workerIndex": 8,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 30202,
                       "error": {
                         "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
@@ -809,11 +1063,36 @@
                         "column": 18,
                         "line": 36
                       }
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T16:01:23.954Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome\\trace.zip"
+                        }
+                      ]
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                     },
                     {
                       "workerIndex": 9,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 29360,
                       "error": {
                         "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
@@ -875,6 +1154,30 @@
                         "column": 18,
                         "line": 36
                       }
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T16:01:24.669Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Chrome-retry1\\trace.zip"
+                        }
+                      ]
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                     }
                   ],
                   "status": "unexpected"
@@ -882,7 +1185,11 @@
               ],
               "id": "58828de70949a49b3df1-ba96ac00f8e44ad353db",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 388,
+=======
+              "line": 404,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -901,6 +1208,7 @@
                       "workerIndex": 12,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 71,
                       "error": {
                         "message": "Error: browser.newContext: Unknown permission: clipboard-read",
@@ -909,18 +1217,36 @@
                       "errors": [
                         {
                           "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:43:54.409Z",
+=======
+                      "startTime": "2025-08-08T16:01:26.854Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
+<<<<<<< HEAD
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox\\trace.zip"
+=======
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     },
@@ -928,6 +1254,7 @@
                       "workerIndex": 13,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 55,
                       "error": {
                         "message": "Error: browser.newContext: Unknown permission: clipboard-read",
@@ -936,18 +1263,36 @@
                       "errors": [
                         {
                           "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:44:08.507Z",
+=======
+                      "startTime": "2025-08-08T16:01:27.595Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
+<<<<<<< HEAD
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox-retry1\\trace.zip"
+=======
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Firefox-retry1\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     }
@@ -957,7 +1302,11 @@
               ],
               "id": "58828de70949a49b3df1-4f05eb039d67a9c37af5",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 192,
+=======
+              "line": 208,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -976,6 +1325,7 @@
                       "workerIndex": 14,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 55,
                       "error": {
                         "message": "Error: browser.newContext: Unknown permission: clipboard-read",
@@ -984,18 +1334,36 @@
                       "errors": [
                         {
                           "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:44:15.302Z",
+=======
+                      "startTime": "2025-08-08T16:01:28.334Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
+<<<<<<< HEAD
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox\\trace.zip"
+=======
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     },
@@ -1003,6 +1371,7 @@
                       "workerIndex": 15,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 65,
                       "error": {
                         "message": "Error: browser.newContext: Unknown permission: clipboard-read",
@@ -1011,18 +1380,36 @@
                       "errors": [
                         {
                           "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:44:21.851Z",
+=======
+                      "startTime": "2025-08-08T16:01:29.053Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
+<<<<<<< HEAD
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox-retry1\\trace.zip"
+=======
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Firefox-retry1\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     }
@@ -1032,7 +1419,11 @@
               ],
               "id": "58828de70949a49b3df1-076e48dbdfde6d471e8f",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 241,
+=======
+              "line": 257,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -1051,6 +1442,7 @@
                       "workerIndex": 16,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 172,
                       "error": {
                         "message": "Error: browser.newContext: Unknown permission: clipboard-read",
@@ -1059,18 +1451,36 @@
                       "errors": [
                         {
                           "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:44:28.448Z",
+=======
+                      "startTime": "2025-08-08T16:01:29.758Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
+<<<<<<< HEAD
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox\\trace.zip"
+=======
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     },
@@ -1078,6 +1488,7 @@
                       "workerIndex": 17,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 62,
                       "error": {
                         "message": "Error: browser.newContext: Unknown permission: clipboard-read",
@@ -1086,18 +1497,36 @@
                       "errors": [
                         {
                           "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:44:35.676Z",
+=======
+                      "startTime": "2025-08-08T16:01:30.480Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
+<<<<<<< HEAD
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox-retry1\\trace.zip"
+=======
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Firefox-retry1\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     }
@@ -1107,7 +1536,11 @@
               ],
               "id": "58828de70949a49b3df1-f044dd70bdd61645cab6",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 298,
+=======
+              "line": 314,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -1126,6 +1559,7 @@
                       "workerIndex": 18,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 58,
                       "error": {
                         "message": "Error: browser.newContext: Unknown permission: clipboard-read",
@@ -1134,18 +1568,36 @@
                       "errors": [
                         {
                           "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:44:42.527Z",
+=======
+                      "startTime": "2025-08-08T16:01:31.188Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
+<<<<<<< HEAD
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Firefox\\trace.zip"
+=======
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Firefox\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     },
@@ -1153,6 +1605,7 @@
                       "workerIndex": 19,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 75,
                       "error": {
                         "message": "Error: browser.newContext: Unknown permission: clipboard-read",
@@ -1161,18 +1614,36 @@
                       "errors": [
                         {
                           "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:44:48.740Z",
+=======
+                      "startTime": "2025-08-08T16:01:31.893Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
+<<<<<<< HEAD
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Firefox-retry1\\trace.zip"
+=======
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Firefox-retry1\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     }
@@ -1182,7 +1653,11 @@
               ],
               "id": "58828de70949a49b3df1-a6ef24671ae05c77841b",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 340,
+=======
+              "line": 356,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -1201,6 +1676,7 @@
                       "workerIndex": 20,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 86,
                       "error": {
                         "message": "Error: browser.newContext: Unknown permission: clipboard-read",
@@ -1209,18 +1685,36 @@
                       "errors": [
                         {
                           "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:44:56.549Z",
+=======
+                      "startTime": "2025-08-08T16:01:32.619Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
+<<<<<<< HEAD
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox\\trace.zip"
+=======
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     },
@@ -1228,6 +1722,7 @@
                       "workerIndex": 21,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 96,
                       "error": {
                         "message": "Error: browser.newContext: Unknown permission: clipboard-read",
@@ -1236,18 +1731,36 @@
                       "errors": [
                         {
                           "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:45:04.834Z",
+=======
+                      "startTime": "2025-08-08T16:01:33.327Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
+<<<<<<< HEAD
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox-retry1\\trace.zip"
+=======
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Firefox-retry1\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     }
@@ -1257,7 +1770,11 @@
               ],
               "id": "58828de70949a49b3df1-0352cbc0b3f8e6e77938",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 388,
+=======
+              "line": 404,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -1276,6 +1793,7 @@
                       "workerIndex": 24,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 2119,
                       "error": {
                         "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
@@ -1284,11 +1802,22 @@
                       "errors": [
                         {
                           "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:45:25.363Z",
                       "annotations": [],
                       "attachments": [
@@ -1301,6 +1830,15 @@
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari\\trace.zip"
+=======
+                      "startTime": "2025-08-08T16:01:35.445Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     },
@@ -1308,6 +1846,7 @@
                       "workerIndex": 25,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 1654,
                       "error": {
                         "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
@@ -1316,11 +1855,22 @@
                       "errors": [
                         {
                           "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:45:33.340Z",
                       "annotations": [],
                       "attachments": [
@@ -1333,6 +1883,15 @@
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari-retry1\\trace.zip"
+=======
+                      "startTime": "2025-08-08T16:01:36.160Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-1e805-al---Valor-zerado-na-tabela-DRE-Desktop-Safari-retry1\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     }
@@ -1342,7 +1901,11 @@
               ],
               "id": "58828de70949a49b3df1-79e9c85d39d5aca2c7ac",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 192,
+=======
+              "line": 208,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -1361,6 +1924,7 @@
                       "workerIndex": 26,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 2111,
                       "error": {
                         "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
@@ -1369,11 +1933,22 @@
                       "errors": [
                         {
                           "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:45:37.617Z",
                       "annotations": [],
                       "attachments": [
@@ -1386,6 +1961,15 @@
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari\\trace.zip"
+=======
+                      "startTime": "2025-08-08T16:01:36.886Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     },
@@ -1393,6 +1977,7 @@
                       "workerIndex": 27,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 1953,
                       "error": {
                         "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
@@ -1401,11 +1986,22 @@
                       "errors": [
                         {
                           "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:45:42.479Z",
                       "annotations": [],
                       "attachments": [
@@ -1418,6 +2014,15 @@
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari-retry1\\trace.zip"
+=======
+                      "startTime": "2025-08-08T16:01:37.600Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Safari-retry1\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     }
@@ -1427,7 +2032,11 @@
               ],
               "id": "58828de70949a49b3df1-1c28426e34a85c77aff3",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 241,
+=======
+              "line": 257,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -1446,6 +2055,7 @@
                       "workerIndex": 28,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 1657,
                       "error": {
                         "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
@@ -1454,11 +2064,22 @@
                       "errors": [
                         {
                           "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:45:46.953Z",
                       "annotations": [],
                       "attachments": [
@@ -1471,6 +2092,15 @@
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari\\trace.zip"
+=======
+                      "startTime": "2025-08-08T16:01:38.331Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     },
@@ -1478,6 +2108,7 @@
                       "workerIndex": 29,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 1693,
                       "error": {
                         "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
@@ -1486,11 +2117,22 @@
                       "errors": [
                         {
                           "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:45:51.883Z",
                       "annotations": [],
                       "attachments": [
@@ -1503,6 +2145,15 @@
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari-retry1\\trace.zip"
+=======
+                      "startTime": "2025-08-08T16:01:39.056Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-fa4c8-abs-e-persistência-de-dados-DRE-Desktop-Safari-retry1\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     }
@@ -1512,7 +2163,11 @@
               ],
               "id": "58828de70949a49b3df1-6f38bcebc2b1786529ca",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 298,
+=======
+              "line": 314,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -1531,6 +2186,7 @@
                       "workerIndex": 30,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 1778,
                       "error": {
                         "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
@@ -1539,11 +2195,22 @@
                       "errors": [
                         {
                           "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:45:56.958Z",
                       "annotations": [],
                       "attachments": [
@@ -1556,6 +2223,15 @@
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Safari\\trace.zip"
+=======
+                      "startTime": "2025-08-08T16:01:39.765Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Safari\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     },
@@ -1563,6 +2239,7 @@
                       "workerIndex": 31,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 1987,
                       "error": {
                         "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
@@ -1571,11 +2248,22 @@
                       "errors": [
                         {
                           "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:46:02.454Z",
                       "annotations": [],
                       "attachments": [
@@ -1588,6 +2276,15 @@
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Safari-retry1\\trace.zip"
+=======
+                      "startTime": "2025-08-08T16:01:40.471Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-7e730-o-console-durante-operações-DRE-Desktop-Safari-retry1\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     }
@@ -1597,7 +2294,11 @@
               ],
               "id": "58828de70949a49b3df1-74d790a7d3ad9eb74957",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 340,
+=======
+              "line": 356,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -1616,6 +2317,7 @@
                       "workerIndex": 32,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 1558,
                       "error": {
                         "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
@@ -1624,11 +2326,22 @@
                       "errors": [
                         {
                           "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:46:08.189Z",
                       "annotations": [],
                       "attachments": [
@@ -1641,6 +2354,15 @@
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari\\trace.zip"
+=======
+                      "startTime": "2025-08-08T16:01:41.197Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     },
@@ -1648,6 +2370,7 @@
                       "workerIndex": 33,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 1567,
                       "error": {
                         "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
@@ -1656,11 +2379,22 @@
                       "errors": [
                         {
                           "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:46:12.640Z",
                       "annotations": [],
                       "attachments": [
@@ -1673,6 +2407,15 @@
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari-retry1\\trace.zip"
+=======
+                      "startTime": "2025-08-08T16:01:41.900Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-\ud83e-dd5d0-shots-de-diferentes-estados-DRE-Desktop-Safari-retry1\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     }
@@ -1682,7 +2425,11 @@
               ],
               "id": "58828de70949a49b3df1-4dcf41813c59f4664c84",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 388,
+=======
+              "line": 404,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             }
           ]
@@ -1690,7 +2437,11 @@
         {
           "title": "⚡ Performance Tests",
           "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
           "line": 417,
+=======
+          "line": 433,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
           "column": 6,
           "specs": [
             {
@@ -1709,6 +2460,7 @@
                       "workerIndex": 10,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 28938,
                       "error": {
                         "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
@@ -1770,11 +2522,36 @@
                         "column": 18,
                         "line": 36
                       }
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-08T16:01:25.399Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\\trace.zip"
+                        }
+                      ]
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                     },
                     {
                       "workerIndex": 11,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 28920,
                       "error": {
                         "message": "TimeoutError: page.waitForURL: Timeout 15000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation to \"**/dre\" until \"load\"\n============================================================",
@@ -1836,6 +2613,30 @@
                         "column": 18,
                         "line": 36
                       }
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1178\\chrome-win\\headless_shell.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-08T16:01:26.134Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\\trace.zip"
+                        }
+                      ]
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                     }
                   ],
                   "status": "unexpected"
@@ -1843,7 +2644,11 @@
               ],
               "id": "58828de70949a49b3df1-4fa5060d76d8750f5ca5",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 418,
+=======
+              "line": 434,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -1862,6 +2667,7 @@
                       "workerIndex": 22,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 59,
                       "error": {
                         "message": "Error: browser.newContext: Unknown permission: clipboard-read",
@@ -1870,18 +2676,36 @@
                       "errors": [
                         {
                           "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:45:12.485Z",
+=======
+                      "startTime": "2025-08-08T16:01:34.034Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
+<<<<<<< HEAD
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox\\trace.zip"
+=======
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     },
@@ -1889,6 +2713,7 @@
                       "workerIndex": 23,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 47,
                       "error": {
                         "message": "Error: browser.newContext: Unknown permission: clipboard-read",
@@ -1897,18 +2722,36 @@
                       "errors": [
                         {
                           "message": "Error: browser.newContext: Unknown permission: clipboard-read"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\firefox-1487\\firefox\\firefox.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:45:18.580Z",
+=======
+                      "startTime": "2025-08-08T16:01:34.745Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
+<<<<<<< HEAD
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox-retry1\\trace.zip"
+=======
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Firefox-retry1\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     }
@@ -1918,7 +2761,11 @@
               ],
               "id": "58828de70949a49b3df1-82a6c0fc4f5eb028bd3a",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 418,
+=======
+              "line": 434,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             },
             {
@@ -1937,6 +2784,7 @@
                       "workerIndex": 34,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 1615,
                       "error": {
                         "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
@@ -1945,11 +2793,22 @@
                       "errors": [
                         {
                           "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+=======
+                      "duration": 2,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:46:17.182Z",
                       "annotations": [],
                       "attachments": [
@@ -1962,6 +2821,15 @@
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari\\trace.zip"
+=======
+                      "startTime": "2025-08-08T16:01:42.630Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     },
@@ -1969,6 +2837,7 @@
                       "workerIndex": 35,
                       "parallelIndex": 0,
                       "status": "failed",
+<<<<<<< HEAD
                       "duration": 2006,
                       "error": {
                         "message": "Error: browserContext.newPage: Unknown permission: clipboard-write",
@@ -1977,11 +2846,22 @@
                       "errors": [
                         {
                           "message": "Error: browserContext.newPage: Unknown permission: clipboard-write"
+=======
+                      "duration": 3,
+                      "error": {
+                        "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
+                        "stack": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+                      },
+                      "errors": [
+                        {
+                          "message": "Error: browserType.launch: Executable doesn't exist at C:\\Users\\rafaf\\AppData\\Local\\ms-playwright\\webkit-2182\\Playwright.exe\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
+<<<<<<< HEAD
                       "startTime": "2025-08-08T15:46:21.425Z",
                       "annotations": [],
                       "attachments": [
@@ -1994,6 +2874,15 @@
                           "name": "trace",
                           "contentType": "application/zip",
                           "path": "C:\\federal-clone\\federal-novo-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari-retry1\\trace.zip"
+=======
+                      "startTime": "2025-08-08T16:01:43.330Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\rafaf\\Desktop\\Dashboard_Federal-main\\test-results\\artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Safari-retry1\\trace.zip"
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
                         }
                       ]
                     }
@@ -2003,7 +2892,11 @@
               ],
               "id": "58828de70949a49b3df1-7a332b2c37bd84e9ecc3",
               "file": "playwright-dre-interface.test.ts",
+<<<<<<< HEAD
               "line": 418,
+=======
+              "line": 434,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
               "column": 7
             }
           ]
@@ -2013,8 +2906,13 @@
   ],
   "errors": [],
   "stats": {
+<<<<<<< HEAD
     "startTime": "2025-08-08T15:36:51.249Z",
     "duration": 572941.779,
+=======
+    "startTime": "2025-08-08T16:01:17.364Z",
+    "duration": 26045.065000000002,
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
     "expected": 0,
     "skipped": 0,
     "unexpected": 18,

@@ -298,27 +298,21 @@ export function applyInvestmentFilters(
  * Valida dados do formulário de investimento
  */
 export function validateInvestmentForm(data: {
-  investorId: string;
-  amount: string;
+  investorId?: string;
+  amount?: string;
   date?: Date;
-}): { isValid: boolean; errors: string[] } {
+}) {
   const errors: string[] = [];
+  const isValidInvestor = !!data.investorId;
+  const amountNum = data.amount ? parseFloat(data.amount) : NaN;
+  const isValidAmount = !isNaN(amountNum) && amountNum > 0;
 
-  if (!data.investorId) {
-    errors.push("Selecione um investidor");
-  }
-
-  if (!data.amount || parseFloat(data.amount) <= 0) {
-    errors.push("Valor deve ser maior que zero");
-  }
-
-  if (!data.date) {
-    errors.push("Selecione uma data");
-  }
+  if (!isValidInvestor) errors.push("Selecione um investidor");
+  if (!isValidAmount) errors.push("Informe um valor válido maior que zero");
 
   return {
     isValid: errors.length === 0,
-    errors
+    errors,
   };
 }
 

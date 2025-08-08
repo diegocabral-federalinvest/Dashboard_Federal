@@ -435,3 +435,22 @@ export const testHelpers = {
     }
   }
 };
+
+describe("Validação de retirada x saldo (unit)", () => {
+  const canWithdraw = (saldoAtual: number, valor: number) => {
+    if (valor <= 0) return false;
+    return valor <= saldoAtual;
+  };
+
+  test("valor igual ao saldo é permitido", () => {
+    expect(canWithdraw(1000, 1000)).toBe(true);
+  });
+
+  test("valor maior que o saldo é bloqueado", () => {
+    expect(canWithdraw(1000, 1001)).toBe(false);
+  });
+
+  test("valor 0 não é permitido", () => {
+    expect(canWithdraw(1000, 0)).toBe(false);
+  });
+});

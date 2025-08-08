@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "timestamp": "2025-08-08T15:46:24.133Z",
   "artifacts": {
     "screenshots": [
@@ -41,6 +42,12 @@
       "artifacts\\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome\\video.webm",
       "artifacts\\playwright-dre-interface-�-fdd79-Valor-incorreto-23-333-333--DRE-Desktop-Chrome-retry1\\video.webm"
     ],
+=======
+  "timestamp": "2025-08-08T16:01:43.403Z",
+  "artifacts": {
+    "screenshots": [],
+    "videos": [],
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
     "traces": [
       "artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome\\trace.zip",
       "artifacts\\playwright-dre-interface-⚡-841a8-empo-de-carregamento-do-DRE-DRE-Desktop-Chrome-retry1\\trace.zip",

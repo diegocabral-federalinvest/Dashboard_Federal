@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "timestamp": "2025-08-08T15:36:51.387Z",
+=======
+  "timestamp": "2025-08-08T16:01:17.398Z",
+>>>>>>> c10fed3e5432c01cfc3035d31d7049d1407e7bed
   "baseURL": "http://localhost:3000",
   "testDir": "./__tests__",
   "outputDir": "test-results/artifacts"

@@ -70,16 +70,6 @@ export const TABS_CONFIG = [
     value: "contributions", 
     label: "Aportes e Retiradas",
     icon: "ArrowUpDown"
-  },
-  {
-    value: "investors",
-    label: "Investidores", 
-    icon: "Users"
-  },
-  {
-    value: "analytics",
-    label: "Análises",
-    icon: "TrendingUp"
   }
 ];
 

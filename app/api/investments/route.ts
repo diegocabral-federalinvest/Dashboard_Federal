@@ -6,6 +6,7 @@ import { contributionsOrWithdrawals, investors, users } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
+import { formatCurrency } from "@/lib/utils";
 
 // Schema de validação para criação de aportes/retiradas
 const createInvestmentSchema = z.object({
@@ -30,6 +31,16 @@ const createInvestmentSchema = z.object({
   returnRate: z.coerce.number().optional().default(0.0004),
   status: z.enum(["active", "completed", "withdrawn"]).optional().default("active"),
 });
+
+// Juros compostos diário simplificado (mesma taxa padrão do frontend)
+const DAILY_RATE = 0.0004;
+function calculateCompoundAmount(principal: number, start: Date, end: Date): number {
+  if (principal <= 0) return principal;
+  const ms = end.getTime() - start.getTime();
+  const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+  if (days <= 0) return principal;
+  return principal * Math.pow(1 + DAILY_RATE, days);
+}
 
 export async function GET(req: Request) {
   try {
@@ -159,6 +170,45 @@ export async function POST(req: Request) {
       sentName: validatedData.investorName,
       usingFoundName: investorName 
     });
+
+    // Se for retirada, validar saldo disponível (aportes positivos, retiradas negativas)
+    if (validatedData.type === "retirada") {
+      // Buscar todos os movimentos do investidor
+      const records = await db
+        .select({ amount: contributionsOrWithdrawals.amount, date: contributionsOrWithdrawals.date })
+        .from(contributionsOrWithdrawals)
+        .where(eq(contributionsOrWithdrawals.investorId, validatedData.investorId));
+
+      // Calcular saldo atual com juros compostos até hoje (simplificado)
+      let balance = 0;
+      let lastDate: Date | null = null;
+      const sorted = [...records].sort((a, b) => a.date.getTime() - b.date.getTime());
+      for (const r of sorted) {
+        const amt = Number(r.amount);
+        if (lastDate && balance > 0) {
+          balance = calculateCompoundAmount(balance, lastDate, r.date);
+        }
+        balance += amt; // aportes positivos, retiradas negativas
+        lastDate = r.date;
+      }
+      if (lastDate && balance > 0) {
+        balance = calculateCompoundAmount(balance, lastDate, new Date());
+      }
+
+      const requested = validatedData.value;
+      if (requested > Math.max(0, balance)) {
+        const available = Math.max(0, balance);
+        const message = `Valor solicitado excede o saldo disponível (${formatCurrency(available)}).`;
+        return NextResponse.json(
+          {
+            error: message,
+            code: "RETIRADA_ACIMA_DO_SALDO",
+            availableBalance: available,
+          },
+          { status: 422 }
+        );
+      }
+    }
 
     // Calcular valor final (aporte = positivo, retirada = negativo)
     const finalAmount = validatedData.type === "aporte" 
