@@ -92,24 +92,40 @@ const getTooltipInfo = (description: string, data: DREData): DREItem['tooltip'] 
 };
 
 // Constrói os itens para a tabela RESUMIDA
-const buildSummaryDREItems = (data: DREData | null): DREItem[] => {
+const buildSummaryDREItems = (data: DREData | null, periodType?: "monthly" | "quarterly" | "annual"): DREItem[] => {
   if (!data) return [];
-  return [
+  
+  const items: DREItem[] = [
     { description: "Operação", value: data.receitas.operacoes, level: 0, operation: 'plus', tooltip: getTooltipInfo("Operação", data) },
     { description: "Dedução", value: data.deducaoFiscal, level: 0, operation: 'plus', tooltip: getTooltipInfo("Dedução Fiscal", data) },
     { description: "Receita Bruta", value: data.receitas.total, level: 0, isTotal: true, tooltip: getTooltipInfo("Receita Bruta", data) },
     { description: "Receita Líquida", value: data.resultadoBruto, level: 0, isTotal: true, tooltip: getTooltipInfo("Receita Líquida", data) },
     { description: "Despesas", value: data.despesas.total, level: 0, operation: 'minus', tooltip: getTooltipInfo("Despesas Operacionais", data) },
     { description: "Resultado Bruto", value: data.resultadoOperacional, level: 0, isTotal: true, tooltip: getTooltipInfo("Resultado Operacional", data) },
-    { description: "Entradas", value: data.receitas.outras, level: 0, operation: 'plus', tooltip: getTooltipInfo("Outras Receitas", data) },
-    { description: "Resultado Líquido", value: data.resultadoLiquido, level: 0, isHighlighted: true, isTotal: true, tooltip: getTooltipInfo("Resultado Líquido", data) },
   ];
+  
+  // Adicionar CSLL e IRPJ apenas para período trimestral
+  if (periodType === 'quarterly') {
+    items.push(
+      { description: "CSLL (Manual)", value: data.impostos.csll, level: 1, operation: 'minus' },
+      { description: "IRPJ (Manual)", value: data.impostos.ir, level: 1, operation: 'minus' }
+    );
+  }
+  
+  // Adicionar Entradas e Resultado Líquido
+  items.push(
+    { description: "Entradas", value: data.receitas.outras, level: 0, operation: 'plus', tooltip: getTooltipInfo("Outras Receitas", data) },
+    { description: "Resultado Líquido", value: data.resultadoLiquido, level: 0, isHighlighted: true, isTotal: true, tooltip: getTooltipInfo("Resultado Líquido", data) }
+  );
+  
+  return items;
 };
 
 // Constrói os itens para a tabela DETALHADA
-const buildDetailedDREItems = (data: DREData | null): DREItem[] => {
+const buildDetailedDREItems = (data: DREData | null, periodType?: "monthly" | "quarterly" | "annual"): DREItem[] => {
   if (!data) return [];
-  return [
+  
+  const items: DREItem[] = [
     // Receitas detalhadas
     { description: "Operação", value: data.receitas.operacoes, level: 0, operation: 'plus', tooltip: getTooltipInfo("Operação", data) },
     { description: "Valor Fator", value: data.custos.fator, level: 1, operation: 'plus' },
@@ -126,18 +142,28 @@ const buildDetailedDREItems = (data: DREData | null): DREItem[] => {
     { description: "Despesas Tributáveis", value: data.despesas.tributaveis, level: 1, operation: 'minus' },
     { description: "Despesas Não Tributáveis", value: data.despesas.total - data.despesas.tributaveis, level: 1, operation: 'minus' },
     { description: "Resultado Bruto", value: data.resultadoOperacional, level: 0, isTotal: true, tooltip: getTooltipInfo("Resultado Operacional", data) },
-    // Impostos sobre resultado
-    { description: "CSLL", value: data.impostos.csll, level: 1, operation: 'minus' },
-    { description: "IRPJ", value: data.impostos.ir, level: 1, operation: 'minus' },
-    // Entradas e resultado final
-    { description: "Entradas", value: data.receitas.outras, level: 0, operation: 'plus', tooltip: getTooltipInfo("Outras Receitas", data) },
-    { description: "Resultado Líquido", value: data.resultadoLiquido, level: 0, isHighlighted: true, isTotal: true, tooltip: getTooltipInfo("Resultado Líquido", data) },
   ];
+  
+  // Adicionar CSLL e IRPJ apenas para período trimestral
+  if (periodType === 'quarterly') {
+    items.push(
+      { description: "CSLL (Manual)", value: data.impostos.csll, level: 1, operation: 'minus' },
+      { description: "IRPJ (Manual)", value: data.impostos.ir, level: 1, operation: 'minus' }
+    );
+  }
+  
+  // Adicionar Entradas e Resultado Líquido
+  items.push(
+    { description: "Entradas", value: data.receitas.outras, level: 0, operation: 'plus', tooltip: getTooltipInfo("Outras Receitas", data) },
+    { description: "Resultado Líquido", value: data.resultadoLiquido, level: 0, isHighlighted: true, isTotal: true, tooltip: getTooltipInfo("Resultado Líquido", data) }
+  );
+  
+  return items;
 };
 
 // Função para exportar dados
-export const getTableDataForExport = (data: DREData, isDetailed: boolean): ExportableRow[] => {
-  const items = isDetailed ? buildDetailedDREItems(data) : buildSummaryDREItems(data);
+export const getTableDataForExport = (data: DREData, isDetailed: boolean, periodType?: "monthly" | "quarterly" | "annual"): ExportableRow[] => {
+  const items = isDetailed ? buildDetailedDREItems(data, periodType) : buildSummaryDREItems(data, periodType);
   return items.map(item => ({
     descricao: `${' '.repeat(item.level * 2)}${item.description}`,
     valor: item.value
@@ -146,7 +172,7 @@ export const getTableDataForExport = (data: DREData, isDetailed: boolean): Expor
 
 // Função para exportar para CSV
 const exportToCSV = (data: DREData, isDetailed: boolean, periodLabel?: string, periodType?: string, selectedPeriod?: string) => {
-  const items = getTableDataForExport(data, isDetailed);
+  const items = getTableDataForExport(data, isDetailed, periodType as "monthly" | "quarterly" | "annual");
   const formattedPeriodLabel = formatPeriodLabel(periodLabel, periodType, selectedPeriod);
   
   const csvContent = [
@@ -562,8 +588,8 @@ export const DRETable: React.FC<DRETableProps> = ({ data, isLoading, error, isDe
   if (isLoading) return <LoadingState />;
   if (error || !data) return <ErrorState />;
 
-  const summaryItems = buildSummaryDREItems(data);
-  const detailedItems = buildDetailedDREItems(data);
+  const summaryItems = buildSummaryDREItems(data, periodType);
+  const detailedItems = buildDetailedDREItems(data, periodType);
   const displayItems = isDetailed ? detailedItems : summaryItems;
 
   return (

@@ -81,6 +81,7 @@ export interface UseFinancialDataResult {
   refetch: () => Promise<void>;
   clearCache: () => void;
   updateTaxDeduction: (deduction: number) => Promise<void>;
+  updateManualQuarterlyTaxes: (csll: number, irpj: number) => Promise<void>;
   
   // Shortcuts para diferentes visualizações
   setQuarterlyView: (year: number, quarter: number) => void;
@@ -339,7 +340,7 @@ export function useFinancialData(options: UseFinancialDataOptions = {}): UseFina
       await refetch();
       
       toast({
-        title: "Dedução fiscal atualizada",
+        title: "Dedução fiscal mensal atualizada",
         description: "Os impostos foram recalculados com a nova dedução.",
       });
     } catch (error) {
@@ -351,6 +352,30 @@ export function useFinancialData(options: UseFinancialDataOptions = {}): UseFina
       throw error;
     }
   }, [period, setPeriod, refetch, toast, queryClient]);
+  
+  const updateManualQuarterlyTaxes = useCallback(async (csll: number, irpj: number) => {
+    try {
+      await financialDataService.updateManualQuarterlyTaxes(period, csll, irpj);
+      
+      // Invalidar a query de dados financeiros para forçar o refetch
+      await queryClient.invalidateQueries({ queryKey: ['financial-data'] });
+      
+      // Recarregar dados
+      await refetch();
+      
+      toast({
+        title: "Impostos trimestrais atualizados",
+        description: "CSLL e IRPJ manuais foram salvos com sucesso.",
+      });
+    } catch (error) {
+      toast({
+        title: "Erro ao atualizar impostos",
+        description: error instanceof Error ? error.message : "Erro desconhecido",
+        variant: "destructive"
+      });
+      throw error;
+    }
+  }, [period, queryClient, refetch, toast]);
 
   // ===== SHORTCUTS =====
   
@@ -428,6 +453,7 @@ export function useFinancialData(options: UseFinancialDataOptions = {}): UseFina
     refetch,
     clearCache,
     updateTaxDeduction,
+    updateManualQuarterlyTaxes,
     
     // Shortcuts
     setQuarterlyView,

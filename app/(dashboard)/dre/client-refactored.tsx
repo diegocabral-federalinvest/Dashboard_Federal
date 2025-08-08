@@ -25,6 +25,7 @@ import { Label } from "@/components/ui/label";
 import { transformDataForChart, chartOptions } from "./utils";
 import { ExportCard, ExportChart } from "@/lib/services/advanced-export-service";
 import { ActionTooltip } from "@/components/ui/financial-tooltip";
+import { ManualTaxesDialog } from "./_components/manual-taxes-dialog";
 
 // Dynamic imports para melhorar a performance
 const DynamicCSVUpload = dynamic(() => import("./_components/csv-upload").then(mod => ({ default: mod.CSVUpload })), { ssr: false });
@@ -52,10 +53,13 @@ export default function DREClientRefactored() {
     year: currentPeriod.year,
     quarter: currentPeriod.quarter || 1,
     month: currentPeriod.month || 1,
-    deducaoFiscal: currentPeriod.deducaoFiscal || 0
+    deducaoFiscal: currentPeriod.deducaoFiscal || 0,
+    csll: 0,
+    irpj: 0
   });
   
   const [taxDeductionDialog, setTaxDeductionDialog] = useState(false);
+  const [manualTaxesDialog, setManualTaxesDialog] = useState(false);
   const [isDetailedViewOpen, setIsDetailedViewOpen] = useState(false);
   const [isExportDialogOpen, setIsExportDialogOpen] = useState(false);
   const [isCSVUploadOpen, setIsCSVUploadOpen] = useState(false);
@@ -371,7 +375,25 @@ export default function DREClientRefactored() {
 
   const handleSaveTaxDeduction = async () => {
     try {
-      await updateTaxDeductionHook(localState.deducaoFiscal);
+      // Salvar dedução fiscal mensal
+      const endpoint = "/api/finance/monthly-tax-deduction";
+      const body = {
+        year: currentPeriod.year,
+        month: currentPeriod.periodType === 'monthly' 
+          ? currentPeriod.month 
+          : ((currentPeriod.quarter! - 1) * 3 + 1), // Primeiro mês do trimestre
+        value: localState.deducaoFiscal
+      };
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+
+      if (!response.ok) {
+        throw new Error("Falha ao salvar dedução fiscal");
+      }
       
       toast({
         title: "Dedução fiscal salva",
@@ -382,7 +404,6 @@ export default function DREClientRefactored() {
       
       // Aguardar um pouco para o toast aparecer antes do reload
       setTimeout(() => {
-        // Dar refresh automático na página para garantir que todos os dados sejam atualizados
         window.location.reload();
       }, 1000);
       
@@ -393,6 +414,37 @@ export default function DREClientRefactored() {
         description: "Ocorreu um erro ao salvar a dedução fiscal. Tente novamente.",
         variant: "destructive"
       });
+    }
+  };
+
+  const handleSaveManualTaxes = async (csll: number, irpj: number) => {
+    try {
+      const endpoint = "/api/finance/manual-quarterly-taxes";
+      const body = {
+        year: currentPeriod.year,
+        quarter: currentPeriod.quarter || 1,
+        csll,
+        irpj
+      };
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+
+      if (!response.ok) {
+        throw new Error("Falha ao salvar impostos manuais");
+      }
+
+      setLocalState(prev => ({ ...prev, csll, irpj }));
+      
+      // Recarregar dados
+      await refetch();
+      
+    } catch (error) {
+      console.error("Erro ao salvar impostos manuais:", error);
+      throw error;
     }
   };
 
@@ -498,7 +550,8 @@ export default function DREClientRefactored() {
 
             {/* Botões de ações */}
             <div className="flex flex-wrap gap-1">
-              {currentPeriod.periodType === 'quarterly' && effectiveData && (
+              {/* Botão de Dedução Fiscal - Agora disponível para todos os períodos */}
+              {effectiveData && (
                 <Button
                   variant="outline"
                   size="sm"
@@ -507,6 +560,19 @@ export default function DREClientRefactored() {
                 >
                   <Calculator className="h-3 w-3 mr-1" />
                   <span>Dedução: {formatCurrency(localState.deducaoFiscal)}</span>
+                </Button>
+              )}
+              
+              {/* Botão de CSLL/IRPJ - Apenas para trimestral */}
+              {currentPeriod.periodType === 'quarterly' && effectiveData && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setManualTaxesDialog(true)}
+                  className="bg-white/80 dark:bg-gray-800/80 border-green-200 dark:border-green-800 hover:bg-green-100 dark:hover:bg-green-900/40 transition-all text-xs"
+                >
+                  <Calculator className="h-3 w-3 mr-1" />
+                  <span>CSLL/IRPJ</span>
                 </Button>
               )}
 
@@ -621,10 +687,15 @@ export default function DREClientRefactored() {
           <div className="space-y-4">
             <div className="space-y-2">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                Dedução Fiscal
+                Dedução Fiscal Mensal
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                {quarters.find(q => q.value === localState.quarter)?.label} de {localState.year}
+                {currentPeriod.periodType === 'monthly' 
+                  ? `${months.find(m => m.value === currentPeriod.month)?.label} de ${currentPeriod.year}`
+                  : currentPeriod.periodType === 'quarterly'
+                  ? `${quarters.find(q => q.value === currentPeriod.quarter)?.label} de ${currentPeriod.year}`
+                  : `Ano de ${currentPeriod.year}`
+                }
               </p>
             </div>
             
@@ -733,6 +804,20 @@ export default function DREClientRefactored() {
             }}
           />
         </Dialog>
+      )}
+
+      {/* Dialog para CSLL e IRPJ manuais */}
+      {currentPeriod.periodType === 'quarterly' && (
+        <ManualTaxesDialog
+          open={manualTaxesDialog}
+          onOpenChange={setManualTaxesDialog}
+          year={currentPeriod.year || new Date().getFullYear()}
+          quarter={currentPeriod.quarter || 1}
+          currentCsll={localState.csll}
+          currentIrpj={localState.irpj}
+          resultadoBruto={effectiveData?.resultadoBruto || 0}
+          onSave={handleSaveManualTaxes}
+        />
       )}
     </motion.div>
   );

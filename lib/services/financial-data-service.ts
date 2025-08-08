@@ -769,35 +769,83 @@ export class FinancialDataService {
    */
   async updateTaxDeduction(period: Period, deduction: number): Promise<void> {
     try {
-      const response = await fetch('/api/finance/tax_deduction', {
+      // Determinar o mês baseado no período
+      const month = period.month || (period.quarter ? period.quarter * 3 - 2 : new Date().getMonth() + 1);
+      
+      const response = await fetch('/api/finance/monthly-tax-deduction', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           year: period.year,
-          quarter: period.quarter,
+          month: month,
           value: deduction
         })
       });
 
       if (!response.ok) {
-        throw new Error('Erro ao salvar dedução fiscal');
+        throw new Error('Erro ao salvar dedução fiscal mensal');
       }
 
       // Invalidar cache para este período
       const cacheKey = PeriodUtils.generateCacheKey({ ...period, deducaoFiscal: deduction });
       this.clearCache(cacheKey);
 
-      logger.info("Dedução fiscal atualizada", {
+      logger.info("Dedução fiscal mensal atualizada", {
         source: "frontend",
         context: "financial-data-service",
-        tags: ["tax-deduction", "update"],
-        data: { period, deduction }
+        tags: ["monthly-tax-deduction", "update"],
+        data: { period, month, deduction }
       });
     } catch (error) {
-      logger.error("Erro ao atualizar dedução fiscal", {
+      logger.error("Erro ao atualizar dedução fiscal mensal", {
         source: "frontend",
         context: "financial-data-service",
-        tags: ["tax-deduction", "error"],
+        tags: ["monthly-tax-deduction", "error"],
+        data: { error: error instanceof Error ? error.message : String(error) }
+      });
+      throw error;
+    }
+  }
+  
+  /**
+   * Atualiza CSLL e IRPJ manuais (trimestral)
+   */
+  async updateManualQuarterlyTaxes(period: Period, csll: number, irpj: number): Promise<void> {
+    try {
+      if (!period.quarter) {
+        throw new Error('Trimestre é obrigatório para atualizar impostos manuais');
+      }
+      
+      const response = await fetch('/api/finance/manual-quarterly-taxes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          year: period.year,
+          quarter: period.quarter,
+          csll,
+          irpj
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao salvar impostos manuais trimestrais');
+      }
+
+      // Invalidar cache para este período
+      const cacheKey = PeriodUtils.generateCacheKey(period);
+      this.clearCache(cacheKey);
+
+      logger.info("Impostos manuais trimestrais atualizados", {
+        source: "frontend",
+        context: "financial-data-service",
+        tags: ["manual-quarterly-taxes", "update"],
+        data: { period, csll, irpj }
+      });
+    } catch (error) {
+      logger.error("Erro ao atualizar impostos manuais trimestrais", {
+        source: "frontend",
+        context: "financial-data-service",
+        tags: ["manual-quarterly-taxes", "error"],
         data: { error: error instanceof Error ? error.message : String(error) }
       });
       throw error;

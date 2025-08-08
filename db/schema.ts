@@ -434,7 +434,7 @@ export const expenseCategories = pgTable("expense_categories", {
 
 export const insertCategorySchema = createInsertSchema(categories);
 
-// Tax Deductions
+// Tax Deductions (DEPRECATED - mantido para compatibilidade)
 export const taxDeductions = pgTable("tax_deductions", {
   id: serial("id").primaryKey(),
   year: integer("year").notNull(),
@@ -445,6 +445,31 @@ export const taxDeductions = pgTable("tax_deductions", {
 });
 
 export const insertTaxDeductionSchema = createInsertSchema(taxDeductions);
+
+// Monthly Tax Deductions (NEW - dedução fiscal mensal)
+export const monthlyTaxDeductions = pgTable("monthly_tax_deductions", {
+  id: serial("id").primaryKey(),
+  year: integer("year").notNull(),
+  month: integer("month").notNull(), // 1-12
+  value: numeric("value").notNull().default("0"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const insertMonthlyTaxDeductionSchema = createInsertSchema(monthlyTaxDeductions);
+
+// Manual Quarterly Taxes (NEW - CSLL e IRPJ manuais trimestrais)
+export const manualQuarterlyTaxes = pgTable("manual_quarterly_taxes", {
+  id: serial("id").primaryKey(),
+  year: integer("year").notNull(),
+  quarter: integer("quarter").notNull(), // 1-4
+  csll: numeric("csll").notNull().default("0"),
+  irpj: numeric("irpj").notNull().default("0"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const insertManualQuarterlyTaxesSchema = createInsertSchema(manualQuarterlyTaxes);
 
 // File Uploads
 export const fileUploads = pgTable("file_uploads", {
