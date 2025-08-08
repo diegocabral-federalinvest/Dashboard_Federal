@@ -87,8 +87,8 @@ export interface TableData {
   [key: string]: any;
 }
 
-export interface AdvancedDataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
+export interface AdvancedDataTableProps<TData> {
+  columns: TableColumn[];
   data: TData[];
   searchPlaceholder?: string;
   enableFiltering?: boolean;
@@ -123,7 +123,7 @@ export interface AdvancedDataTableProps<TData, TValue> {
   getRowId?: (row: TableData) => string;
 }
 
-export function AdvancedDataTable<TData, TValue>({
+export function AdvancedDataTable<TData extends TableData = TableData>({
   columns,
   data,
   searchPlaceholder = "Buscar...",
@@ -157,7 +157,7 @@ export function AdvancedDataTable<TData, TValue>({
   onDeleteSelected,
   onDeleteAll,
   getRowId,
-}: AdvancedDataTableProps<TData, TValue>) {
+}: AdvancedDataTableProps<TData>) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
