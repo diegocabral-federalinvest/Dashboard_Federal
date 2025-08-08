@@ -11,7 +11,7 @@ import {
   manualQuarterlyTaxes
 } from "@/db/schema";
 import { z } from "zod";
-import { and, eq, gte, lte, sql, sum } from "drizzle-orm";
+import { and, eq, gte, lte, sql, sum, inArray } from "drizzle-orm";
 import logger from "@/lib/logger";
 
 // Interfaces para tipar os resultados das consultas
@@ -90,6 +90,17 @@ export async function GET(req: Request) {
     const monthParam = searchParams.get("month");
     const quarterlyParam = searchParams.get("quarterly") === "true";
     const annualParam = searchParams.get("annual") === "true";
+
+    // NOVOS FILTROS (CSV -> array de strings)
+    const parseCsv = (v: string | null): string[] | undefined => {
+      if (!v) return undefined;
+      const arr = v.split(',').map(s => s.trim()).filter(Boolean);
+      return arr.length ? arr : undefined;
+    };
+    const categoryIds = parseCsv(searchParams.get('categoryIds')); // despesas
+    const entryCategoryIds = parseCsv(searchParams.get('entryCategoryIds')); // receitas
+    const costCenterIds = parseCsv(searchParams.get('costCenterIds'));
+    const accountIds = parseCsv(searchParams.get('accountIds'));
     
     // CORREÇÃO: Não aplicar fallbacks - usar exatamente o que foi solicitado
     let year: number | null = null;
@@ -227,6 +238,36 @@ export async function GET(req: Request) {
       });
     }
     
+    // ===== CONDIÇÕES (AND) PARA FILTROS =====
+    const csvWhere = [
+      gte(financialDataCSV.Data, startDate),
+      lte(financialDataCSV.Data, endDate),
+    ];
+    // costCenterIds/accountIds não existem no schema CSV atual, então apenas logamos por enquanto
+    if (costCenterIds?.length) {
+      logger.debug('Ignoring costCenterIds (no field in CSV schema)', { source: 'backend', context: 'api:reports:dre', data: { requestId, costCenterIds } });
+    }
+    if (accountIds?.length) {
+      logger.debug('Ignoring accountIds (no field in CSV schema)', { source: 'backend', context: 'api:reports:dre', data: { requestId, accountIds } });
+    }
+
+    const expensesWhere = [
+      gte(expenses.date, startDate),
+      lte(expenses.date, endDate),
+    ];
+    if (categoryIds?.length) {
+      // Filtrar por categorias de despesas
+      expensesWhere.push(inArray(expenses.categoryId, categoryIds));
+    }
+
+    const entriesWhere = [
+      gte(entries.date, startDate),
+      lte(entries.date, endDate),
+    ];
+    if (entryCategoryIds?.length) {
+      entriesWhere.push(inArray(entries.categoryId, entryCategoryIds));
+    }
+    
     // 1. Calcular valores das operações financeiras do CSV
     logger.debug(`Querying financial operations data`, {
       source: 'backend',
@@ -283,19 +324,14 @@ export async function GET(req: Request) {
         totalISSQN: sql`COALESCE(SUM("issqn"), 0)`.as("total_issqn"),
       })
       .from(financialDataCSV)
-      .where(
-        and(
-          gte(financialDataCSV.Data, startDate),
-          lte(financialDataCSV.Data, endDate)
-        )
-      );
+      .where(and(...csvWhere));
     
     // 2. Calcular despesas do período
     logger.debug(`Querying expenses data`, {
       source: 'backend',
       context: 'api:reports:dre',
       tags: ['query', 'expenses'],
-      data: { requestId }
+      data: { requestId, categoryFilterCount: categoryIds?.length || 0 }
     });
     
     const expensesResult = await db
@@ -304,39 +340,28 @@ export async function GET(req: Request) {
         totalTaxableExpenses: sql`COALESCE(SUM(CASE WHEN "is_taxable" = true THEN "value" ELSE 0 END), 0)`.as("total_taxable_expenses"),
       })
       .from(expenses)
-      .where(
-        and(
-          gte(expenses.date, startDate),
-          lte(expenses.date, endDate)
-        )
-      );
+      .where(and(...expensesWhere));
     
     // 3. Calcular entradas adicionais do período
     logger.debug(`Querying additional entries data`, {
       source: 'backend',
       context: 'api:reports:dre',
       tags: ['query', 'entries'],
-      data: { requestId }
+      data: { requestId, entryCategoryFilterCount: entryCategoryIds?.length || 0 }
     });
     
+    // (Mantendo cálculo total de entries quando necessário futuramente)
     const entriesResult = await db
-      .select({
-        totalEntries: sql`COALESCE(SUM("value"), 0)`.as("total_entries"),
-      })
+      .select({ totalEntries: sql`COALESCE(SUM("value"), 0)` })
       .from(entries)
-      .where(
-        and(
-          gte(entries.date, startDate),
-          lte(entries.date, endDate)
-        )
-      );
+      .where(and(...entriesWhere));
     
     // 4. Obter dedução fiscal baseado no tipo de período
     let taxDeductionValue = 0;
     const quarterNumber = validParams.quarterly ? Math.floor((startDate.getMonth()) / 3) + 1 : 0;
     
-    if (validParams.monthly) {
-      // Para período mensal, buscar dedução fiscal mensal
+    if (!validParams.annual && !validParams.quarterly && validParams.month) {
+      // Período mensal: buscar dedução fiscal mensal
       logger.debug(`🔍 [DRE-API-DEBUG] Consultando dedução mensal`, {
         source: 'backend',
         context: 'api:reports:dre',
@@ -601,7 +626,7 @@ export async function GET(req: Request) {
     let csll = 0;
     
     // Para períodos mensais, não há CSLL e IRPJ
-    if (validParams.monthly) {
+    if (!validParams.annual && !validParams.quarterly && validParams.month) {
       irpj = 0;
       csll = 0;
       

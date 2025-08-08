@@ -11,7 +11,7 @@ import logger from "@/lib/logger";
 
 async function migrateTaxDeductions() {
   logger.info("Iniciando migração de deduções fiscais", {
-    source: 'migration',
+    source: 'backend',
     context: 'tax-data-migration',
     tags: ['migration', 'start']
   });
@@ -53,14 +53,12 @@ async function migrateTaxDeductions() {
             await db.insert(monthlyTaxDeductions).values({
               year,
               month,
-              // numeric aceita string, mas manteremos número para consistência
-              value: monthlyValue,
-              createdAt: new Date(),
-              updatedAt: new Date()
+              // numeric aceita string
+              value: monthlyValue.toString(),
             });
             
             logger.info(`Migrada dedução para ${month}/${year}`, {
-              source: 'migration',
+              source: 'backend',
               context: 'tax-data-migration',
               tags: ['migration', 'success'],
               data: {
@@ -76,7 +74,7 @@ async function migrateTaxDeductions() {
           }
         } catch (error) {
           logger.error(`Erro ao migrar dedução para ${month}/${year}`, {
-            source: 'migration',
+            source: 'backend',
             context: 'tax-data-migration',
             tags: ['migration', 'error'],
             data: {
@@ -92,7 +90,7 @@ async function migrateTaxDeductions() {
     }
     
     logger.info("Migração de deduções fiscais concluída com sucesso", {
-      source: 'migration',
+      source: 'backend',
       context: 'tax-data-migration',
       tags: ['migration', 'complete'],
       data: {
@@ -107,7 +105,7 @@ async function migrateTaxDeductions() {
     
   } catch (error) {
     logger.error("Erro fatal na migração", {
-      source: 'migration',
+      source: 'backend',
       context: 'tax-data-migration',
       tags: ['migration', 'fatal-error'],
       data: {

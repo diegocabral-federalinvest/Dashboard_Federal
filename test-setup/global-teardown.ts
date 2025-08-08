@@ -18,13 +18,13 @@ async function globalTeardown(config: FullConfig) {
     
     const summary = {
       timestamp: new Date().toISOString(),
-      testDir: config.testDir,
-      outputDir: config.outputDir,
+      testDir: (config as any)?.testDir,
+      outputDir: (config as any)?.outputDir,
       artifacts: {
-        screenshots: [],
-        videos: [],
-        traces: [],
-        reports: []
+        screenshots: [] as string[],
+        videos: [] as string[],
+        traces: [] as string[],
+        reports: [] as string[]
       }
     };
     

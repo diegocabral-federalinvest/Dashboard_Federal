@@ -125,6 +125,11 @@ export interface FinancialDataParams {
   includeInvestments?: boolean;
   includeOperational?: boolean;
   includePreviousPeriod?: boolean;
+  // NOVOS FILTROS
+  categoryIds?: string[];          // despesas (expense categories)
+  entryCategoryIds?: string[];     // receitas (entry categories)
+  costCenterIds?: string[];        // centros de custo
+  accountIds?: string[];           // contas/contas bancárias
 }
 
 // ===== SCHEMAS DE VALIDAÇÃO =====
@@ -145,6 +150,11 @@ const financialDataParamsSchema = z.object({
   includeInvestments: z.boolean().optional().default(true),
   includeOperational: z.boolean().optional().default(true),
   includePreviousPeriod: z.boolean().optional().default(true),
+  // Validar novos filtros
+  categoryIds: z.array(z.string()).optional(),
+  entryCategoryIds: z.array(z.string()).optional(),
+  costCenterIds: z.array(z.string()).optional(),
+  accountIds: z.array(z.string()).optional(),
 });
 
 // ===== UTILITÁRIOS =====
@@ -158,9 +168,18 @@ export class PeriodUtils {
     return result.data;
   }
 
-  static generateCacheKey(period: Period): string {
+  static generateCacheKey(period: Period, extra?: Partial<FinancialDataParams>): string {
     const yearKey = period.year === null ? "all" : period.year;
-    return `financial_data_${period.periodType}_${yearKey}_${period.quarter || period.month || 0}_${period.deducaoFiscal || 0}`;
+    const base = `financial_data_${period.periodType}_${yearKey}_${period.quarter || period.month || 0}_${period.deducaoFiscal || 0}`;
+    if (!extra) return base;
+    const pick = (arr?: string[]) => (arr && arr.length ? arr.slice().sort().join(',') : '');
+    return [
+      base,
+      pick(extra.categoryIds),
+      pick(extra.entryCategoryIds),
+      pick(extra.costCenterIds),
+      pick(extra.accountIds),
+    ].join('|');
   }
 
   static getPeriodLabel(period: Period): string {
@@ -281,7 +300,7 @@ export class FinancialDataService {
                  validatedParams.quarter ? "quarterly" : "monthly"
     };
 
-    const cacheKey = PeriodUtils.generateCacheKey(period);
+    const cacheKey = PeriodUtils.generateCacheKey(period, validatedParams);
     
     // Verificar cache primeiro
     const cached = this.getFromCache(cacheKey);
@@ -352,7 +371,6 @@ export class FinancialDataService {
     const queryParams = new URLSearchParams();
     
     // CORREÇÃO: Sempre passar o year, mesmo quando null (para "todos os anos")
-    // Se year for null, passar "null" como string para a API identificar
     if (params.year !== null) {
       queryParams.append("year", params.year.toString());
     } else {
@@ -368,6 +386,15 @@ export class FinancialDataService {
     } else if (params.month) {
       queryParams.append("month", params.month.toString());
     }
+
+    // Propagar filtros (arrays serializados como CSV)
+    const appendCsv = (key: string, values?: string[]) => {
+      if (values && values.length) queryParams.append(key, values.join(','));
+    };
+    appendCsv('categoryIds', params.categoryIds);
+    appendCsv('entryCategoryIds', params.entryCategoryIds);
+    appendCsv('costCenterIds', params.costCenterIds);
+    appendCsv('accountIds', params.accountIds);
 
     const response = await fetch(`/api/reports/dre?${queryParams.toString()}`);
     
@@ -635,114 +662,74 @@ export class FinancialDataService {
   ): ChartDataPoint[] {
     const chartData: ChartDataPoint[] = [];
 
+    // Helpers para mapear nomes esperados pelo gráfico
+    const mapCommonKeys = (source: BaseFinancialData, variation = 1) => ({
+      // Já existentes
+      receitas: Math.round(source.receitas.total * variation),
+      despesas: Math.round(source.despesas.total * variation),
+      lucro: Math.round(source.resultadoLiquido * variation),
+      operacao: Math.round(source.receitas.operacoes * variation),
+      resultadoBruto: Math.round(source.resultadoBruto * variation),
+      resultadoLiquido: Math.round(source.resultadoLiquido * variation),
+      resultadoOperacional: Math.round(source.resultadoOperacional * variation),
+      pis: Math.round(source.impostos.pis * variation),
+      cofins: Math.round(source.impostos.cofins * variation),
+      csll: Math.round(source.impostos.csll * variation),
+      irpj: Math.round(source.impostos.ir * variation),
+      issqn: Math.round(source.impostos.issqn * variation),
+      iof: Math.round(source.custos.iof * variation),
+      advalores: Math.round(source.custos.adValorem * variation),
+      fator: Math.round(source.custos.fator * variation),
+      margem: source.receitas.total > 0 ? (source.resultadoLiquido / source.receitas.total) * 100 * variation : 0,
+      // Novas chaves esperadas pelo EnhancedFinancialChart
+      valorFator: Math.round(source.custos.fator * variation),
+      valorAdvalorem: Math.round(source.custos.adValorem * variation),
+      valorTarifas: Math.round(source.custos.tarifas * variation),
+      deducao: Math.round(source.deducaoFiscal * variation),
+      receitaBruta: Math.round(source.receitas.total * variation),
+      receitaLiquida: Math.round((source.receitas.total - (source.impostos.pis + source.impostos.cofins + source.impostos.issqn)) * variation),
+      despesasTributaveis: Math.round(source.despesas.tributaveis * variation),
+      despesasNaoTributaveis: Math.round((source.despesas.total - source.despesas.tributaveis) * variation),
+      entradas: Math.round(source.receitas.total * variation),
+    });
+
     if (period.periodType === "annual") {
-      // Gerar 12 meses com dados simulados baseados no atual
       const monthNames = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-      
       for (let month = 1; month <= 12; month++) {
-        // Simular variação de ±30% nos dados
         const variation = 0.7 + Math.random() * 0.6; // 70% a 130%
-        
         chartData.push({
           period: monthNames[month - 1],
-          receitas: Math.round(baseData.receitas.total * variation),
-          despesas: Math.round(baseData.despesas.total * variation),
-          lucro: Math.round(baseData.resultadoLiquido * variation),
-          operacao: Math.round(baseData.receitas.operacoes * variation),
-          resultadoBruto: Math.round(baseData.resultadoBruto * variation),
-          resultadoLiquido: Math.round(baseData.resultadoLiquido * variation),
-          resultadoOperacional: Math.round(baseData.resultadoOperacional * variation),
-          pis: Math.round(baseData.impostos.pis * variation),
-          cofins: Math.round(baseData.impostos.cofins * variation),
-          csll: Math.round(baseData.impostos.csll * variation),
-          irpj: Math.round(baseData.impostos.ir * variation),
-          issqn: Math.round(baseData.impostos.issqn * variation),
-          iof: Math.round(baseData.custos.iof * variation),
-          advalores: Math.round(baseData.custos.adValorem * variation),
-          fator: Math.round(baseData.custos.fator * variation),
-          margem: baseData.receitas.total > 0 ? (baseData.resultadoLiquido / baseData.receitas.total) * 100 * variation : 0,
-        });
+          ...mapCommonKeys(baseData, variation),
+        } as any);
       }
     } else if (period.periodType === "quarterly" && period.quarter) {
-      // Gerar 3 meses do trimestre
       const quarterMonths = {
         1: ["Jan", "Fev", "Mar"],
         2: ["Abr", "Mai", "Jun"], 
         3: ["Jul", "Ago", "Set"],
         4: ["Out", "Nov", "Dez"]
-      };
-      
+      } as const;
       const months = quarterMonths[period.quarter as keyof typeof quarterMonths];
-      
       for (let i = 0; i < 3; i++) {
         const variation = 0.8 + Math.random() * 0.4; // 80% a 120%
-        
         chartData.push({
           period: months[i],
-          receitas: Math.round(baseData.receitas.total * variation),
-          despesas: Math.round(baseData.despesas.total * variation),
-          lucro: Math.round(baseData.resultadoLiquido * variation),
-          operacao: Math.round(baseData.receitas.operacoes * variation),
-          resultadoBruto: Math.round(baseData.resultadoBruto * variation),
-          resultadoLiquido: Math.round(baseData.resultadoLiquido * variation),
-          resultadoOperacional: Math.round(baseData.resultadoOperacional * variation),
-          pis: Math.round(baseData.impostos.pis * variation),
-          cofins: Math.round(baseData.impostos.cofins * variation),
-          csll: Math.round(baseData.impostos.csll * variation),
-          irpj: Math.round(baseData.impostos.ir * variation),
-          issqn: Math.round(baseData.impostos.issqn * variation),
-          iof: Math.round(baseData.custos.iof * variation),
-          advalores: Math.round(baseData.custos.adValorem * variation),
-          fator: Math.round(baseData.custos.fator * variation),
-          margem: baseData.receitas.total > 0 ? (baseData.resultadoLiquido / baseData.receitas.total) * 100 * variation : 0,
-        });
+          ...mapCommonKeys(baseData, variation),
+        } as any);
       }
     } else {
-      // Mensal: mostrar dados do mês atual e alguns pontos anteriores
       const currentPoint = {
         period: PeriodUtils.getPeriodLabel(period),
-        receitas: baseData.receitas.total,
-        despesas: baseData.despesas.total,
-        lucro: baseData.resultadoLiquido,
-        operacao: baseData.receitas.operacoes,
-        resultadoBruto: baseData.resultadoBruto,
-        resultadoLiquido: baseData.resultadoLiquido,
-        resultadoOperacional: baseData.resultadoOperacional,
-        pis: baseData.impostos.pis,
-        cofins: baseData.impostos.cofins,
-        csll: baseData.impostos.csll,
-        irpj: baseData.impostos.ir,
-        issqn: baseData.impostos.issqn,
-        iof: baseData.custos.iof,
-        advalores: baseData.custos.adValorem,
-        fator: baseData.custos.fator,
-        margem: baseData.receitas.total > 0 ? (baseData.resultadoLiquido / baseData.receitas.total) * 100 : 0,
-      };
-      
-      // Adicionar ponto do mês anterior se disponível
+        ...mapCommonKeys(baseData, 1),
+      } as any;
+
       if (previousData) {
         const previousPeriod = PeriodUtils.getPreviousPeriod(period);
         chartData.push({
           period: PeriodUtils.getPeriodLabel(previousPeriod),
-          receitas: previousData.receitas.total,
-          despesas: previousData.despesas.total,
-          lucro: previousData.resultadoLiquido,
-          operacao: previousData.receitas.operacoes,
-          resultadoBruto: previousData.resultadoBruto,
-          resultadoLiquido: previousData.resultadoLiquido,
-          resultadoOperacional: previousData.resultadoOperacional,
-          pis: previousData.impostos.pis,
-          cofins: previousData.impostos.cofins,
-          csll: previousData.impostos.csll,
-          irpj: previousData.impostos.ir,
-          issqn: previousData.impostos.issqn,
-          iof: previousData.custos.iof,
-          advalores: previousData.custos.adValorem,
-          fator: previousData.custos.fator,
-          margem: previousData.receitas.total > 0 ? (previousData.resultadoLiquido / previousData.receitas.total) * 100 : 0,
-        });
+          ...mapCommonKeys(previousData, 1),
+        } as any);
       }
-      
       chartData.push(currentPoint);
     }
 

@@ -78,6 +78,25 @@ const FINANCIAL_VARIABLES = [
   // Entradas
   { key: 'entradas', label: 'Entradas', color: '#f59e0b', group: 'entradas', icon: '🔄' },
   
+  // Séries básicas que podem aparecer nos dados
+  { key: 'receitas', label: 'Receitas', color: '#16a34a', group: 'receitaBruta', icon: '💚' },
+  { key: 'despesas', label: 'Despesas', color: '#2563eb', group: 'receitaLiquida', icon: '💸' },
+  { key: 'lucro', label: 'Lucro', color: '#dc2626', group: 'resultadoLiquido', icon: '💰' },
+  
+  // Séries de operação adicionais
+  { key: 'operacao', label: 'Operação', color: '#065f46', group: 'operacao', icon: '⚙️' },
+  { key: 'fator', label: 'Fator', color: '#0891b2', group: 'operacao', icon: '📊' },
+  { key: 'advalores', label: 'Advalores', color: '#0e7490', group: 'operacao', icon: '📈' },
+  { key: 'iof', label: 'IOF', color: '#0f766e', group: 'operacao', icon: '🏦' },
+  
+  // Séries de despesas adicionais
+  { key: 'despesasFixas', label: 'Despesas Fixas', color: '#1e40af', group: 'receitaLiquida', icon: '🏗️' },
+  { key: 'despesasVariaveis', label: 'Despesas Variáveis', color: '#1d4ed8', group: 'receitaLiquida', icon: '📈' },
+  
+  // Séries de resultado adicionais
+  { key: 'resultadoOperacional', label: 'Resultado Operacional', color: '#7c2d12', group: 'resultadoBruto', icon: '⚙️' },
+  { key: 'margem', label: 'Margem (%)', color: '#b91c1c', group: 'resultadoLiquido', icon: '📊' },
+  
   // Resultado Líquido
   { key: 'resultadoLiquido', label: 'Resultado Líquido', color: '#ef4444', group: 'resultadoLiquido', icon: '✅' },
 ];
@@ -118,6 +137,12 @@ const VARIABLE_GROUPS = {
     color: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100',
     borderColor: 'border-red-200 dark:border-red-800',
     icon: '✅'
+  },
+  outros: { 
+    label: 'Outras Séries', 
+    color: 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100',
+    borderColor: 'border-gray-200 dark:border-gray-800',
+    icon: '❓'
   },
 };
 
@@ -160,99 +185,59 @@ export function EnhancedFinancialChart({
 
   // Processar dados para o gráfico
   const chartData = useMemo(() => {
+    // CORREÇÃO: Não gerar dados de exemplo quando não há dados reais
+    // Retornar array vazio para permitir renderização de estado "sem dados"
     if (!data || data.length === 0) {
-      // Gerar dados de exemplo mais realistas
-      const exampleData = [];
-      const currentYear = currentPeriod.year;
-      const currentMonth = currentPeriod.month || 1;
-      const currentQuarter = currentPeriod.quarter || 1;
-
-      const generateFinancialData = () => {
-        const baseValue = Math.random() * 400000 + 200000;
-        const baseExpenses = Math.random() * 300000 + 150000;
-        const baseBrutoResult = baseValue - baseExpenses;
-        const baseLiquidoResult = baseBrutoResult * 0.85;
-        
-        return {
-          // Operação
-          valorFator: baseValue * 0.95,
-          valorAdvalorem: baseValue * 0.02,
-          valorTarifas: baseValue * 0.03,
-          deducao: baseValue * 0.05,
-          
-          // Receita Bruta
-          receitaBruta: baseValue,
-          pis: baseValue * 0.0165,
-          cofins: baseValue * 0.076,
-          issqn: baseValue * 0.02,
-          
-          // Receita Líquida
-          receitaLiquida: baseValue * 0.95,
-          despesasTributaveis: baseExpenses * 0.7,
-          despesasNaoTributaveis: baseExpenses * 0.3,
-          
-          // Resultado Bruto
-          resultadoBruto: baseBrutoResult,
-          csll: baseBrutoResult * 0.09,
-          irpj: baseBrutoResult * 0.15,
-          
-          // Entradas
-          entradas: baseValue * 1.1,
-          
-          // Resultado Líquido
-          resultadoLiquido: baseLiquidoResult,
-        };
-      };
-
-      if (periodType === "annual") {
-        const monthNames = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-        for (let month = 1; month <= 12; month++) {
-          exampleData.push({
-            period: monthNames[month - 1],
-            ...generateFinancialData(),
-          });
-        }
-      } else if (periodType === "quarterly") {
-        const quarterMonths = {
-          1: ["Jan", "Fev", "Mar"],
-          2: ["Abr", "Mai", "Jun"], 
-          3: ["Jul", "Ago", "Set"],
-          4: ["Out", "Nov", "Dez"]
-        };
-        const months = quarterMonths[currentQuarter as keyof typeof quarterMonths];
-        for (let i = 0; i < 3; i++) {
-          exampleData.push({
-            period: months[i],
-            ...generateFinancialData(),
-          });
-        }
-      } else {
-        // Mensal: mostrar últimos 6 meses
-        const monthNames = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-        for (let i = 5; i >= 0; i--) {
-          const month = currentMonth - i;
-          const adjustedMonth = month <= 0 ? month + 12 : month;
-          const year = month <= 0 ? currentYear - 1 : currentYear;
-          
-          exampleData.push({
-            period: monthNames[adjustedMonth - 1],
-            ...generateFinancialData(),
-          });
-        }
-      }
-
-      return exampleData;
+      return [] as any[];
     }
 
     return data;
-  }, [data, periodType, currentPeriod]);
+  }, [data]);
+
+  // Detectar dinamicamente todas as variáveis disponíveis nos dados reais
+  const availableVariables = useMemo(() => {
+    const knownVariables = [...FINANCIAL_VARIABLES];
+    
+    if (!chartData || chartData.length === 0) {
+      return knownVariables;
+    }
+    
+    // Extrair todas as chaves únicas dos dados reais
+    const dataKeys = new Set<string>();
+    chartData.forEach(dataPoint => {
+      if (dataPoint && typeof dataPoint === 'object') {
+        Object.keys(dataPoint).forEach(key => {
+          // Excluir campos que não são séries (period, timestamps, etc.)
+          if (key !== 'period' && key !== 'timestamp' && key !== 'date' && key !== 'id') {
+            dataKeys.add(key);
+          }
+        });
+      }
+    });
+    
+    // Adicionar variáveis desconhecidas com configuração padrão
+    const unknownKeys = Array.from(dataKeys).filter(key => 
+      !knownVariables.some(v => v.key === key)
+    );
+    
+    const unknownVariables = unknownKeys.map(key => ({
+      key,
+      label: `${key.charAt(0).toUpperCase()}${key.slice(1)}`, // Capitalizar primeira letra
+      color: '#6b7280', // Cor cinza padrão
+      group: 'outros' as const,
+      icon: '❓'
+    }));
+    
+    // Combinar variáveis conhecidas com desconhecidas
+    return [...knownVariables, ...unknownVariables];
+  }, [chartData]);
 
   // Filtrar variáveis selecionadas
   const filteredVariables = useMemo(() => {
-    return FINANCIAL_VARIABLES.filter(variable => 
+    return availableVariables.filter(variable => 
       selectedVariables.includes(variable.key)
     );
-  }, [selectedVariables]);
+  }, [selectedVariables, availableVariables]);
 
   // Toggle de variáveis
   const toggleVariable = useCallback((variableKey: string) => {
@@ -267,7 +252,7 @@ export function EnhancedFinancialChart({
 
   // Toggle de grupo completo
   const toggleGroup = useCallback((groupKey: string) => {
-    const groupVariables = FINANCIAL_VARIABLES
+    const groupVariables = availableVariables
       .filter(variable => variable.group === groupKey)
       .map(variable => variable.key);
 
@@ -281,7 +266,7 @@ export function EnhancedFinancialChart({
         return Array.from(newSet);
       });
     }
-  }, [selectedVariables]);
+  }, [selectedVariables, availableVariables]);
 
   // Controle de zoom com mouse wheel
   useEffect(() => {
@@ -396,7 +381,7 @@ export function EnhancedFinancialChart({
   }, [chartRef, title, periodType, currentPeriod, filteredVariables, theme, toast]);
 
   // Renderizar gráfico baseado no tipo
-  const renderChart = useCallback(() => {
+  const renderChart = useCallback((isExpandedChart = false) => {
     const commonProps = {
       data: chartData,
       margin: { top: 20, right: 30, left: 20, bottom: 60 }
@@ -526,6 +511,15 @@ export function EnhancedFinancialChart({
     }
   }, [chartData, chartType, filteredVariables, theme, showGrid, smoothLines, fillOpacity, strokeWidth, animationSpeed, customTooltip]);
 
+  // Render helper para estado vazio
+  const renderEmptyState = () => (
+    <div className="w-full h-[400px] flex items-center justify-center">
+      <div className="text-center text-sm text-gray-500 dark:text-gray-400">
+        Nenhum dado para os filtros selecionados
+      </div>
+    </div>
+  );
+
   // Componente de seleção de variáveis (multiselect)
   const VariableMultiSelect = () => (
     <DropdownMenu>
@@ -561,14 +555,14 @@ export function EnhancedFinancialChart({
                   variant="outline" 
                   className={cn("text-xs", group.color)}
                 >
-                  {FINANCIAL_VARIABLES.filter(v => v.group === groupKey && selectedVariables.includes(v.key)).length}/
-                  {FINANCIAL_VARIABLES.filter(v => v.group === groupKey).length}
+                  {availableVariables.filter(v => v.group === groupKey && selectedVariables.includes(v.key)).length}/
+                  {availableVariables.filter(v => v.group === groupKey).length}
                 </Badge>
               </div>
             </DropdownMenuItem>
             
             {/* Variáveis do grupo */}
-            {FINANCIAL_VARIABLES
+            {availableVariables
               .filter(variable => variable.group === groupKey)
               .map((variable) => (
                 <DropdownMenuCheckboxItem
@@ -598,7 +592,7 @@ export function EnhancedFinancialChart({
             variant="ghost" 
             size="sm" 
             className="w-full justify-start h-8"
-            onClick={() => setSelectedVariables(FINANCIAL_VARIABLES.map(v => v.key))}
+            onClick={() => setSelectedVariables(availableVariables.map(v => v.key))}
           >
             Selecionar Todas
           </Button>
@@ -616,109 +610,26 @@ export function EnhancedFinancialChart({
   );
 
   return (
-    <>
-      {/* Gráfico Principal */}
-      <div className={cn("w-full", className)} ref={chartRef}>
-        <GlassCard 
-          variant="light" 
-          elevation="medium"
-          className="min-h-[500px] overflow-hidden"
-        >
-          <div className="p-4 space-y-4">
-            {/* Header com controles */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div>
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5 text-blue-600" />
-                  {title}
-                </h2>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  {filteredVariables.length} variáveis selecionadas • {chartData.length} períodos
-                </p>
-              </div>
-              
-              {/* Controles principais */}
-              <div className="flex flex-wrap items-center gap-2">
-                {/* Tipo de gráfico */}
-                <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
-                  <Button
-                    size="sm"
-                    variant={chartType === "area" ? "default" : "ghost"}
-                    onClick={() => setChartType("area")}
-                    className="h-8 px-3"
-                  >
-                    Área
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant={chartType === "line" ? "default" : "ghost"}
-                    onClick={() => setChartType("line")}
-                    className="h-8 px-3"
-                  >
-                    Linha
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant={chartType === "bar" ? "default" : "ghost"}
-                    onClick={() => setChartType("bar")}
-                    className="h-8 px-3"
-                  >
-                    Barra
-                  </Button>
-                </div>
-                
-                {/* Seletor de variáveis */}
-                <VariableMultiSelect />
-                
-               
-                
-                {/* Expandir */}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setIsExpanded(true)}
-                  className="h-9 gap-2 bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-800 border-blue-200 dark:border-blue-800"
-                >
-                  <Maximize2 className="h-4 w-4" />
-            
-                </Button>
-              </div>
+    <div className={cn("space-y-4", className)}>
+      <GlassCard>
+        <div className="p-4">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-3">
+            <div>
+              <h3 className="text-base font-semibold tracking-tight">{title}</h3>
+              <p className="text-xs text-muted-foreground">
+                {/* Remover contagem de períodos se não houver dados */}
+                {filteredVariables.length} variáveis selecionadas{chartData.length > 0 ? ` • ${chartData.length} períodos` : ''}
+              </p>
             </div>
-            
-            {/* Variáveis selecionadas - badges compactos */}
-            {selectedVariables.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {filteredVariables.slice(0, 6).map((variable) => (
-                  <Badge
-                    key={variable.key}
-                    variant="secondary"
-                    className={cn(
-                      "gap-2 text-xs py-1 px-2",
-                      VARIABLE_GROUPS[variable.group as keyof typeof VARIABLE_GROUPS].color
-                    )}
-                  >
-                    <div 
-                      className="w-2 h-2 rounded-full" 
-                      style={{ backgroundColor: variable.color }}
-                    />
-                    {variable.label}
-                  </Badge>
-                ))}
-                {selectedVariables.length > 6 && (
-                  <Badge variant="outline" className="text-xs">
-                    +{selectedVariables.length - 6} mais
-                  </Badge>
-                )}
-              </div>
-            )}
-            
-            {/* Dica de zoom */}
-            <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-              <MousePointer2 className="h-3 w-3" />
-              <span>Dica: Use Ctrl + Scroll para zoom • Zoom atual: {Math.round(zoomLevel * 100)}%</span>
+            <div className="flex items-center gap-2">
+              <VariableMultiSelect />
             </div>
-            
-            {/* Container do gráfico com zoom */}
+          </div>
+
+          {chartData.length === 0 ? (
+            renderEmptyState()
+          ) : (
             <div 
               ref={chartContainerRef}
               className="w-full h-[400px] relative overflow-hidden rounded-lg"
@@ -732,9 +643,9 @@ export function EnhancedFinancialChart({
                 {renderChart()}
               </ResponsiveContainer>
             </div>
-          </div>
-        </GlassCard>
-      </div>
+          )}
+        </div>
+      </GlassCard>
 
       {/* Modal Expandido com Configurações Avançadas */}
       <Dialog open={isExpanded} onOpenChange={setIsExpanded}>
@@ -745,171 +656,19 @@ export function EnhancedFinancialChart({
               {title} - Visualização Avançada
             </DialogTitle>
           </DialogHeader>
-          
           <div className="flex-1 overflow-auto p-6 pt-4">
-            {/* Controles Avançados */}
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
-              {/* Tipo de Gráfico */}
-              <div className="space-y-3">
-                <Label className="text-sm font-medium">Tipo de Visualização</Label>
-                <div className="flex flex-col gap-2">
-                  <Button
-                    variant={chartType === "area" ? "default" : "outline"}
-                    onClick={() => setChartType("area")}
-                    className="justify-start"
-                  >
-                    <Palette className="h-4 w-4 mr-2" />
-                    Gráfico de Área
-                  </Button>
-                  <Button
-                    variant={chartType === "line" ? "default" : "outline"}
-                    onClick={() => setChartType("line")}
-                    className="justify-start"
-                  >
-                    <TrendingUp className="h-4 w-4 mr-2" />
-                    Gráfico de Linha
-                  </Button>
-                  <Button
-                    variant={chartType === "bar" ? "default" : "outline"}
-                    onClick={() => setChartType("bar")}
-                    className="justify-start"
-                  >
-                    <Grid className="h-4 w-4 mr-2" />
-                    Gráfico de Barra
-                  </Button>
-                </div>
+            {chartData.length === 0 ? (
+              renderEmptyState()
+            ) : (
+              <div className="w-full h-[70vh]">
+                <ResponsiveContainer width="100%" height="100%">
+                  {renderChart(true)}
+                </ResponsiveContainer>
               </div>
-              
-              {/* Configurações Visuais */}
-              <div className="space-y-4">
-                <Label className="text-sm font-medium">Configurações Visuais</Label>
-                
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="show-grid" className="text-sm">Grade de Fundo</Label>
-                  <Switch
-                    id="show-grid"
-                    checked={showGrid}
-                    onCheckedChange={setShowGrid}
-                  />
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="smooth-lines" className="text-sm">Linhas Suaves</Label>
-                  <Switch
-                    id="smooth-lines"
-                    checked={smoothLines}
-                    onCheckedChange={setSmoothLines}
-                  />
-                </div>
-                
-                {chartType === "area" && (
-                  <div className="space-y-2">
-                    <Label className="text-sm">Opacidade do Preenchimento: {fillOpacity[0]}%</Label>
-                    <Slider
-                      value={fillOpacity}
-                      onValueChange={setFillOpacity}
-                      max={100}
-                      min={10}
-                      step={10}
-                      className="w-full"
-                    />
-                  </div>
-                )}
-                
-                <div className="space-y-2">
-                  <Label className="text-sm">Espessura da Linha: {strokeWidth[0]}px</Label>
-                  <Slider
-                    value={strokeWidth}
-                    onValueChange={setStrokeWidth}
-                    max={6}
-                    min={1}
-                    step={1}
-                    className="w-full"
-                  />
-                </div>
-              </div>
-              
-              {/* Controles de Zoom */}
-              <div className="space-y-4">
-                <Label className="text-sm font-medium">Controles de Zoom</Label>
-                
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setZoomLevel(prev => Math.min(3, prev + 0.2))}
-                    className="flex-1"
-                  >
-                    <ZoomIn className="h-4 w-4 mr-2" />
-                    Zoom +
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setZoomLevel(prev => Math.max(0.5, prev - 0.2))}
-                    className="flex-1"
-                  >
-                    <ZoomOut className="h-4 w-4 mr-2" />
-                    Zoom -
-                  </Button>
-                </div>
-                
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setZoomLevel(1)}
-                  className="w-full"
-                >
-                  <RotateCcw className="h-4 w-4 mr-2" />
-                  Resetar Zoom
-                </Button>
-                
-                <div className="text-xs text-center text-gray-500">
-                  Zoom atual: {Math.round(zoomLevel * 100)}%
-                </div>
-              </div>
-              
-              {/* Animação */}
-              <div className="space-y-4">
-                <Label className="text-sm font-medium">Animação</Label>
-                
-                <div className="space-y-2">
-                  <Label className="text-sm">Velocidade: {animationSpeed[0]}ms</Label>
-                  <Slider
-                    value={animationSpeed}
-                    onValueChange={setAnimationSpeed}
-                    max={2000}
-                    min={200}
-                    step={200}
-                    className="w-full"
-                  />
-                </div>
-              </div>
-            </div>
-            
-            {/* Seletor de Variáveis Expandido */}
-            <div className="mb-6">
-              <VariableMultiSelect />
-            </div>
-            
-            {/* Gráfico Expandido */}
-            <div 
-              className="w-full h-[500px] bg-white dark:bg-gray-800 rounded-lg p-4"
-              style={{ 
-                transform: `scale(${zoomLevel})`,
-                transformOrigin: 'center center',
-                transition: 'transform 0.2s ease-out'
-              }}
-            >
-              <ResponsiveContainer width="100%" height="100%">
-                {renderChart()}
-              </ResponsiveContainer>
-            </div>
-            
-        
+            )}
           </div>
         </DialogContent>
       </Dialog>
-    </>
+    </div>
   );
 } 

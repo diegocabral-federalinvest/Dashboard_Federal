@@ -31,9 +31,9 @@ async function globalSetup(config: FullConfig) {
   // Criar arquivo de configuração de ambiente
   const envConfig = {
     timestamp: new Date().toISOString(),
-    baseURL: config.webServer?.url || 'http://localhost:3000',
-    testDir: config.testDir || './__tests__',
-    outputDir: config.outputDir || 'test-results/artifacts'
+    baseURL: (config as any)?.webServer?.url || 'http://localhost:3000',
+    testDir: (config as any)?.testDir || './__tests__',
+    outputDir: (config as any)?.outputDir || 'test-results/artifacts'
   };
   
   fs.writeFileSync(
