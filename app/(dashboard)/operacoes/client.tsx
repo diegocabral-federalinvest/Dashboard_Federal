@@ -60,7 +60,6 @@ import { EnhancedTable } from "@/components/ui/enhanced-table";
 
 export default function OperacoesClient() {
   const [activeTab, setActiveTab] = useState("overview");
-  const [debugMode, setDebugMode] = useState(false);
   const [ConfirmDialog, confirm] = useConfirm(
     "Tem certeza?",
     "Você está prestes a excluir esta transação. Esta ação não pode ser desfeita."
@@ -285,18 +284,14 @@ export default function OperacoesClient() {
   ];
 
   // Compose columns per table context
-  const expensesColumns: ColumnDef<FinancialOperation>[] = debugMode
-    ? [...baseColumns, ...debugColumns]
-    : baseColumns;
+  const expensesColumns: ColumnDef<FinancialOperation>[] = baseColumns;
 
   const entriesColumns: ColumnDef<FinancialOperation>[] = (() => {
     const filtered = baseColumns.filter((c) => !["isTaxable", "isPayroll"].includes(String(c.id)));
-    return debugMode ? [...filtered, ...debugColumns] : filtered;
+    return filtered;
   })();
 
-  const allColumns: ColumnDef<FinancialOperation>[] = debugMode
-    ? [...baseColumns, ...debugColumns]
-    : baseColumns;
+  const allColumns: ColumnDef<FinancialOperation>[] = baseColumns;
 
   if (isLoading) {
     return (
@@ -392,14 +387,6 @@ export default function OperacoesClient() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className={debugMode ? "border-amber-500 text-amber-600" : ""}
-                  onClick={() => setDebugMode((v) => !v)}
-                >
-                  {debugMode ? "Debug: ON" : "Debug"}
-                </Button>
               </div>
             </div>
 
@@ -651,6 +638,8 @@ export default function OperacoesClient() {
                   pageSizeOptions={TABLE_CONFIG.PAGE_SIZE_OPTIONS}
                   title="Lista de Despesas"
                   description="Todas as despesas registradas no sistema"
+                  showFilterText={false}
+                  showFiltersControl={false}
                 />
               </div>
             </GlassCard>
@@ -718,6 +707,8 @@ export default function OperacoesClient() {
                   pageSizeOptions={TABLE_CONFIG.PAGE_SIZE_OPTIONS}
                   title="Lista de Entradas"
                   description="Todas as entradas registradas no sistema"
+                  showFilterText={false}
+                  showFiltersControl={false}
                 />
               </div>
             </GlassCard>
@@ -810,6 +801,8 @@ export default function OperacoesClient() {
                   pageSizeOptions={TABLE_CONFIG.PAGE_SIZE_OPTIONS}
                   title="Lista Completa de Operações"
                   description="Todas as operações financeiras (despesas e entradas) registradas no sistema"
+                  showFilterText={false}
+                  showFiltersControl={false}
                 />
               </div>
             </GlassCard>

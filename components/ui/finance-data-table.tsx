@@ -89,6 +89,8 @@ interface FinanceDataTableProps<TData, TValue> {
   isLoading?: boolean
   title?: string
   description?: string
+  showFilterText?: boolean
+  showFiltersControl?: boolean
 }
 
 export function FinanceDataTable<TData, TValue>({
@@ -102,7 +104,9 @@ export function FinanceDataTable<TData, TValue>({
   valueField = "value",
   isLoading = false,
   title,
-  description
+  description,
+  showFilterText = false,
+  showFiltersControl = true,
 }: FinanceDataTableProps<TData, TValue>) {
   // Estado da tabela
   const [sorting, setSorting] = useState<SortingState>([{ id: dateField, desc: true }]); // Ordenar por data desc padrão
@@ -248,6 +252,7 @@ export function FinanceDataTable<TData, TValue>({
           {/* Ações em grupo */}
           <div className="flex items-center gap-2 flex-wrap">
             {/* Botão de filtros avançados */}
+            {showFiltersControl && (
             <Popover open={showFilters} onOpenChange={setShowFilters}>
               <PopoverTrigger asChild>
                 <Button 
@@ -258,8 +263,8 @@ export function FinanceDataTable<TData, TValue>({
                     (dateRange || valueRange.min || valueRange.max) && "border-primary text-primary dark:border-primary dark:text-primary"
                   )}
                 >
-                  <Sliders className="h-4 w-4" />
-                  <span className="hidden md:inline">Filtros</span>
+                  <Sliders className={`h-4 w-4 ${showFilterText ? 'mr-1.5' : ''}`} />
+                  {showFilterText && (<span className="hidden md:inline">Filtros</span>)}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-80 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg shadow-xl">
@@ -322,6 +327,7 @@ export function FinanceDataTable<TData, TValue>({
                 </div>
               </PopoverContent>
             </Popover>
+            )}
             
             {/* Dropdown de colunas */}
             <DropdownMenu>

@@ -87,9 +87,19 @@ export interface TableData {
   [key: string]: any;
 }
 
-export interface AdvancedDataTableProps {
-  data: TableData[];
-  columns: TableColumn[];
+export interface AdvancedDataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+  searchPlaceholder?: string;
+  enableFiltering?: boolean;
+  enableSorting?: boolean;
+  enableColumnVisibility?: boolean;
+  enablePagination?: boolean;
+  defaultPageSize?: number;
+  pageSizeOptions?: readonly number[];
+  showFilterText?: boolean;
+  showFiltersControl?: boolean;
+  // Props já utilizadas ao longo do arquivo (mantidas como opcionais)
   title?: string;
   isLoading?: boolean;
   error?: Error | null;
@@ -105,31 +115,33 @@ export interface AdvancedDataTableProps {
   className?: string;
   defaultVisibleColumns?: string[];
   searchColumn?: string;
-  searchPlaceholder?: string;
   description?: string;
-  enableFiltering?: boolean;
-  enableSorting?: boolean;
-  enableColumnVisibility?: boolean;
-  enablePagination?: boolean;
-  defaultPageSize?: number;
-  pageSizeOptions?: number[];
   showFilters?: boolean;
-  // Deleção
   enableRowSelection?: boolean;
   onDeleteSelected?: (ids: string[]) => void;
   onDeleteAll?: () => void;
   getRowId?: (row: TableData) => string;
 }
 
-export function AdvancedDataTable({
-  data,
+export function AdvancedDataTable<TData, TValue>({
   columns,
+  data,
+  searchPlaceholder = "Buscar...",
+  enableFiltering = true,
+  enableSorting = true,
+  enableColumnVisibility = true,
+  enablePagination = true,
+  defaultPageSize = 10,
+  pageSizeOptions = [10, 20, 30, 50, 100],
+  showFilterText = false,
+  showFiltersControl = true,
+  // Extras opcionais já usados no arquivo
   title,
   isLoading = false,
   error = null,
   totalRecords = 0,
   currentPage = 1,
-  pageSize = 10,
+  pageSize = defaultPageSize,
   onPageChange,
   onPageSizeChange,
   onSort,
@@ -139,20 +151,13 @@ export function AdvancedDataTable({
   className,
   defaultVisibleColumns,
   searchColumn,
-  searchPlaceholder = "Buscar...",
   description,
-  enableFiltering = true,
-  enableSorting = true,
-  enableColumnVisibility = true,
-  enablePagination = true,
-  defaultPageSize = 10,
-  pageSizeOptions = [5, 10, 20, 30, 50, 100],
   showFilters = true,
   enableRowSelection = true,
   onDeleteSelected,
   onDeleteAll,
   getRowId,
-}: AdvancedDataTableProps) {
+}: AdvancedDataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
@@ -704,12 +709,12 @@ export function AdvancedDataTable({
           </Button>
 
           {/* Filtros por Coluna */}
-          {showFilters && enableFiltering && (
+          {showFilters && enableFiltering && showFiltersControl && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
-                  <Filter className="mr-2 h-4 w-4" />
-                  Filtros ({activeFilters.length})
+                  <Filter className={`h-4 w-4 ${showFilterText ? 'mr-2' : ''}`} />
+                  {showFilterText && (<>Filtros ({activeFilters.length})</>)}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-72">

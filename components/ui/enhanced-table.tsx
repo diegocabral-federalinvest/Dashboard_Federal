@@ -67,6 +67,8 @@ interface EnhancedTableProps<TData, TValue> {
   enablePagination?: boolean;
   defaultPageSize?: number;
   pageSizeOptions?: readonly number[];
+  showFilterText?: boolean; // novo: controla exibição do texto "Filtros"
+  showFiltersControl?: boolean; // novo: controla renderização do botão de filtros
 }
 
 // Mapeamento de nomes de colunas para português
@@ -109,6 +111,8 @@ export function EnhancedTable<TData, TValue>({
   enablePagination = true,
   defaultPageSize = 10,
   pageSizeOptions = [5, 10, 20, 30, 50, 100],
+  showFilterText = true,
+  showFiltersControl = true,
 }: EnhancedTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -203,15 +207,15 @@ export function EnhancedTable<TData, TValue>({
           )}
 
           {/* Column Filters Toggle */}
-          {enableFiltering && filterableColumns.length > 0 && (
+          {enableFiltering && filterableColumns.length > 0 && showFiltersControl && (
             <Button
               variant="outline"
               size="sm"
               onClick={() => setShowFilters(!showFilters)}
               className="relative"
             >
-              <Filter className="h-4 w-4 mr-2" />
-              Filtros
+              <Filter className={`h-4 w-4 ${showFilterText ? "mr-2" : ""}`} />
+              {showFilterText && ("Filtros")}
               {activeFiltersCount > 0 && (
                 <Badge 
                   variant="destructive" 
