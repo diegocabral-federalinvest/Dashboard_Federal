@@ -449,6 +449,22 @@ const versionTypeColors = {
   patch: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20"
 };
 
+// Helper to format ISO date (YYYY-MM-DD) to Brazilian format dd/MM/yyyy consistently
+function formatDateBR(dateStr: string): string {
+  if (!dateStr) return "";
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) {
+    // Fallback manual formatting if input is a plain YYYY-MM-DD string
+    const parts = dateStr.split("-");
+    if (parts.length === 3) {
+      const [y, m, d] = parts;
+      return `${d.padStart(2, "0")}/${m.padStart(2, "0")}/${y}`;
+    }
+    return dateStr;
+  }
+  return date.toLocaleDateString("pt-BR", { timeZone: "UTC" });
+}
+
 export default function ChangelogPage() {
   // Set header content
   useHeaderContent({
@@ -542,7 +558,7 @@ export default function ChangelogPage() {
                        entry.status === 'beta' ? 'Beta' : 'Planejado'}
                     </Badge>
                   </div>
-                  <span className="text-sm text-muted-foreground">{entry.date}</span>
+                  <span className="text-sm text-muted-foreground">{formatDateBR(entry.date)}</span>
                 </div>
               </CardHeader>
               
