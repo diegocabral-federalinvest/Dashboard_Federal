@@ -1,0 +1,400 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Modo Claro - Azul Escuro e Branco */
+    --background: 220 30% 98%; /* Branco levemente azulado */
+    --foreground: 220 45% 15%; /* Azul bem escuro (quase preto) */
+
+    --card: 0 0% 100%; /* Branco puro */
+    --card-foreground: 220 45% 15%; /* Azul bem escuro */
+
+    --popover: 0 0% 100%; /* Branco */
+    --popover-foreground: 220 45% 15%; /* Azul bem escuro */
+
+    --primary: 220 70% 50%; /* Azul primário */
+    --primary-foreground: 0 0% 100%; /* Branco */
+
+    --secondary: 220 15% 96%; /* Azul muito claro (quase branco) */
+    --secondary-foreground: 220 70% 50%; /* Azul primário */
+
+    --muted: 220 15% 96%; /* Azul muito claro */
+    --muted-foreground: 220 10% 45%; /* Azul acinzentado */
+
+    --accent: 220 15% 96%; /* Azul muito claro */
+    --accent-foreground: 220 70% 50%; /* Azul primário */
+
+    --destructive: 0 84.2% 60.2%; /* Vermelho */
+    --destructive-foreground: 0 0% 100%; /* Branco */
+
+    --border: 220 20% 90%; /* Azul claro acinzentado para bordas */
+    --input: 220 20% 90%; /* Azul claro acinzentado para inputs */
+    --ring: 220 70% 50%; /* Azul primário para anel de foco */
+
+    --radius: 0.5rem;
+
+    /* Cores específicas da Sidebar */
+    --sidebar-background: 222 47% 11%; /* Azul escuro */
+    --sidebar-foreground: 210 40% 98%; /* Branco azulado claro */
+    --sidebar-primary: 220 70% 50%; /* Azul primário */
+    --sidebar-primary-foreground: 0 0% 100%; /* Branco */
+    --sidebar-accent: 222 47% 20%; /* Azul mais claro que o background */
+    --sidebar-accent-foreground: 210 40% 98%; /* Branco azulado claro */
+    --sidebar-border: 222 47% 20%; /* Azul claro acinzentado */
+    --sidebar-ring: 217.2 91.2% 59.8%; /* Azul primário */
+
+    /* Cores para scrollbar */
+    --scrollbar-track: 220 30% 96%;
+    --scrollbar-thumb: 220 70% 60%;
+    --scrollbar-thumb-hover: 220 70% 50%;
+  }
+
+  .dark {
+    /* Modo Escuro - Azul Escuro e Preto */
+    --background: 222 47% 5%; /* Azul muito escuro quase preto */
+    --foreground: 210 40% 98%; /* Branco azulado claro */
+
+    --card: 222 47% 8%; /* Azul escuro para cards */
+    --card-foreground: 210 40% 98%; /* Branco azulado claro */
+
+    --popover: 222 47% 5%; /* Azul muito escuro quase preto */
+    --popover-foreground: 210 40% 98%; /* Branco azulado claro */
+
+    --primary: 217 91.2% 59.8%; /* Azul primário vibrante */
+    --primary-foreground: 210 40% 98%; /* Branco azulado claro */
+
+    --secondary: 222 47% 15%; /* Azul escuro para secundário */
+    --secondary-foreground: 210 40% 98%; /* Branco azulado claro */
+
+    --muted: 222 47% 15%; /* Azul escuro */
+    --muted-foreground: 215 20% 75%; /* Cinza azulado claro */
+
+    --accent: 222 47% 15%; /* Azul escuro */
+    --accent-foreground: 210 40% 98%; /* Branco azulado claro */
+
+    --destructive: 0 74% 42%; /* Vermelho escuro */
+    --destructive-foreground: 210 40% 98%; /* Branco azulado claro */
+
+    --border: 222 47% 15%; /* Azul escuro para bordas */
+    --input: 222 47% 15%; /* Azul escuro para inputs */
+    --ring: 217.2 91.2% 59.8%; /* Azul primário */
+
+    /* Cores específicas da Sidebar */
+    --sidebar-background: 222 47% 11%; /* Azul escuro */
+    --sidebar-foreground: 210 40% 98%; /* Branco azulado claro */
+    --sidebar-primary: 217.2 91.2% 59.8%; /* Azul primário vibrante */
+    --sidebar-primary-foreground: 0 0% 100%; /* Branco */
+    --sidebar-accent: 222 47% 20%; /* Azul mais claro que o background */
+    --sidebar-accent-foreground: 210 40% 98%; /* Branco azulado claro */
+    --sidebar-border: 222 47% 20%; /* Azul escuro */
+    --sidebar-ring: 217.2 91.2% 59.8%; /* Azul primário */
+
+    /* Cores para scrollbar */
+    --scrollbar-track: 222 47% 10%;
+    --scrollbar-thumb: 217 91% 60%;
+    --scrollbar-thumb-hover: 217 91% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+
+  
+  /* Improved focus styles */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+}
+
+/* Glassmorphism & Card Effects */
+.glass-card {
+  @apply backdrop-blur-md bg-white/20 dark:bg-white/10 border border-white/20 dark:border-white/10;
+}
+
+.glass-card-hover {
+  @apply hover:bg-white/30 dark:hover:bg-white/15 transition-all duration-300;
+}
+
+.card-hover-effect {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+.gradient-border {
+  @apply relative before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-primary before:to-primary/30 before:rounded-[inherit] before:-z-10 before:pointer-events-none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromBottom {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(var(--primary), 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(var(--primary), 0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--primary), 0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+.animate-slide-in {
+  animation: slideInFromBottom 0.5s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite;
+}
+
+/* High-quality shadows */
+.shadow-subtle {
+  box-shadow: 0 2px 10px -3px rgba(0, 0, 0, 0.1), 0 1px 3px -1px rgba(0, 0, 0, 0.05);
+}
+
+.dark .shadow-subtle {
+  box-shadow: 0 2px 10px -3px rgba(0, 0, 0, 0.3), 0 1px 3px -1px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-strong {
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 5px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.dark .shadow-strong {
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4), 0 5px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+/* Loader animation */
+.loader {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-left-color: currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.dark .loader {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-left-color: currentColor;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Custom scrollbar - Default (hidden) */
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Custom scrollbar - Visible when needed */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--scrollbar-thumb)) hsl(var(--scrollbar-track));
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px; /* Slightly thicker scrollbar */
+  height: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: hsl(var(--scrollbar-track));
+  border-radius: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--scrollbar-thumb));
+  border-radius: 5px;
+  border: 2px solid hsl(var(--scrollbar-track));
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--scrollbar-thumb-hover));
+}
+
+/* Typography enhancements */
+.text-balance {
+  text-wrap: balance;
+}
+
+@layer utilities {
+  /* Glassmorphism utilities */
+  .bg-glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .bg-glass-dark {
+    @apply bg-black/20 backdrop-blur-md border border-white/10;
+  }
+  
+  /* Glow effects */
+  .shadow-glow {
+    box-shadow: 0 0 15px 1px rgba(var(--primary-rgb, 59, 130, 246), 0.3);
+  }
+  
+  .shadow-glow-sm {
+    box-shadow: 0 0 8px 0 rgba(var(--primary-rgb, 59, 130, 246), 0.2);
+  }
+  
+  /* Animation utilities */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  .animate-float-fast {
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+  }
+}
+
+/* Custom variables for JavaScript access */
+:root {
+  --primary-rgb: 59, 130, 246;
+  --header-height: 64px; /* Fixed header height - matches h-16 (4rem = 64px) */
+  --sidebar-width-expanded: 200px; /* Updated to match layout */
+  --sidebar-width-collapsed: 70px; /* Ensure this matches the framer-motion variant */
+  --animation-duration: 300ms;
+}
+
+/* Additional utility classes for better header support */
+@layer utilities {
+  .header-offset {
+    padding-top: var(--header-height);
+  }
+  
+  .sidebar-offset-expanded {
+    margin-left: var(--sidebar-width-expanded);
+  }
+  
+  .sidebar-offset-collapsed {
+    margin-left: var(--sidebar-width-collapsed);
+  }
+  
+  /* Better mobile breakpoint utilities */
+  .mobile-hidden {
+    @apply hidden sm:block;
+  }
+  
+  .mobile-only {
+    @apply block sm:hidden;
+  }
+  
+  /* Enhanced backdrop blur support */
+  .backdrop-blur-fallback {
+    @apply bg-background/90;
+  }
+  
+  @supports (backdrop-filter: blur(12px)) {
+    .backdrop-blur-fallback {
+      @apply bg-background/60 backdrop-blur-md;
+    }
+  }
+  
+  /* Custom scrollbar styles for operations cards - SEMPRE VISÍVEL */
+  .operations-scroll::-webkit-scrollbar {
+    @apply w-3;
+    display: block !important;
+  }
+  
+  .operations-scroll::-webkit-scrollbar-track {
+    @apply bg-gray-200 dark:bg-gray-700 rounded-md;
+    border: 1px solid rgba(0,0,0,0.1);
+    margin: 4px 0;
+  }
+  
+  .operations-scroll-entries::-webkit-scrollbar-thumb {
+    @apply bg-emerald-500 dark:bg-emerald-400 rounded-md;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    transition: all 0.2s ease;
+  }
+  
+  .operations-scroll-entries::-webkit-scrollbar-thumb:hover {
+    @apply bg-emerald-600 dark:bg-emerald-300;
+    transform: scale(1.1);
+  }
+  
+  .operations-scroll-expenses::-webkit-scrollbar-thumb {
+    @apply bg-red-500 dark:bg-red-400 rounded-md;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    transition: all 0.2s ease;
+  }
+  
+  .operations-scroll-expenses::-webkit-scrollbar-thumb:hover {
+    @apply bg-red-600 dark:bg-red-300;
+    transform: scale(1.1);
+  }
+  
+  /* Força o scroll a aparecer sempre */
+  .operations-scroll {
+    overflow-y: scroll !important;
+    scrollbar-width: auto;
+    scroll-behavior: smooth;
+    min-height: 100px; /* Força altura mínima para mostrar scroll */
+  }
+  
+  /* Força scroll sempre visível */
+  .operations-scroll::-webkit-scrollbar-thumb {
+    min-height: 30px;
+  }
+  
+  /* Firefox scrollbar - MAIS VISÍVEL */
+  .operations-scroll-entries {
+    scrollbar-color: rgb(16 185 129) rgb(229 231 235);
+    scrollbar-width: auto;
+  }
+  
+  .operations-scroll-expenses {
+    scrollbar-color: rgb(239 68 68) rgb(229 231 235);
+    scrollbar-width: auto;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .operations-scroll-entries {
+      scrollbar-color: rgb(16 185 129) rgb(55 65 81);
+    }
+    
+    .operations-scroll-expenses {
+      scrollbar-color: rgb(239 68 68) rgb(55 65 81);
+    }
+  }
+}

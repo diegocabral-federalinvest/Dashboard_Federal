@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpar Cookies - Federal Invest</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        button {
+            background: #3a86ff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        .success {
+            color: #059669;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .info {
+            background: #eff6ff;
+            border: 1px solid #3b82f6;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧹 Limpeza de Cookies</h1>
+        <p>Esta página irá limpar todos os cookies e dados de sessão do Federal Invest.</p>
+        
+        <div class="info">
+            <strong>⚠️ Importante:</strong> Você precisará fazer login novamente após a limpeza.
+        </div>
+        
+        <button onclick="clearAllData()" id="clearBtn">
+            🗑️ Limpar Todos os Dados
+        </button>
+        
+        <button onclick="goToLogin()" id="loginBtn" style="display:none;">
+            🔐 Ir para Login
+        </button>
+        
+        <div id="status"></div>
+    </div>
+
+    <script>
+        function clearAllData() {
+            const statusDiv = document.getElementById('status');
+            const clearBtn = document.getElementById('clearBtn');
+            const loginBtn = document.getElementById('loginBtn');
+            
+            try {
+                // Limpar todos os cookies
+                document.cookie.split(";").forEach(function(c) { 
+                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                });
+                
+                // Limpar localStorage
+                if (typeof(Storage) !== "undefined") {
+                    localStorage.clear();
+                    sessionStorage.clear();
+                }
+                
+                // Limpar cache do service worker se existir
+                if ('caches' in window) {
+                    caches.keys().then(function(names) {
+                        for (let name of names) {
+                            caches.delete(name);
+                        }
+                    });
+                }
+                
+                statusDiv.innerHTML = '<div class="success">✅ Todos os dados foram limpos com sucesso!</div>';
+                clearBtn.style.display = 'none';
+                loginBtn.style.display = 'inline-block';
+                
+                // Auto redirect após 3 segundos
+                setTimeout(() => {
+                    window.location.href = '/sign-in';
+                }, 3000);
+                
+            } catch (error) {
+                statusDiv.innerHTML = '<div style="color: red;">❌ Erro ao limpar dados: ' + error.message + '</div>';
+            }
+        }
+        
+        function goToLogin() {
+            window.location.href = '/sign-in';
+        }
+    </script>
+</body>
+</html>

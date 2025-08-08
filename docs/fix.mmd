@@ -1,0 +1,33 @@
+graph TB
+    subgraph "1. Header Dinâmico"
+        A["Layout com Header Context"] --> B["Header Component"]
+        B --> C["Left: Logo"]
+        B --> D["Center: Page Content"]
+        B --> E["Right: User Actions"]
+    end
+    
+    subgraph "2. Design System Neon"
+        F["Base Components"] --> G["Button Neon"]
+        F --> H["Input Neon"]
+        F --> I["Select Neon"]
+        J["Theme Variables"] --> F
+    end
+    
+    subgraph "3. DRE Features"
+        K["DRE Client"] --> L["Header Content"]
+        L --> M["Title + Icon"]
+        L --> N["Subtitle"]
+        L --> O["Actions: Help, Calculator, Report"]
+    end
+    
+    subgraph "4. Report Export System"
+        P["Export Service"] --> Q["HTML to Canvas"]
+        Q --> R["Canvas to PNG"]
+        Q --> S["HTML to PDF"]
+        Q --> T["HTML Export"]
+        U["DOM Manipulation"] --> P
+    end
+    
+    A --> K
+    F --> K
+    K --> P

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste API Investimentos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .result {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Teste da API de Investimentos</h1>
+    
+    <div class="container">
+        <h2>1. Listar Investidores</h2>
+        <button onclick="getInvestors()">GET /api/investors</button>
+        <div id="investorsResult" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="container">
+        <h2>2. Listar Aportes</h2>
+        <button onclick="getInvestments()">GET /api/investments</button>
+        <div id="investmentsResult" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="container">
+        <h2>3. Criar Aporte</h2>
+        <form onsubmit="createInvestment(event)">
+            <div class="form-group">
+                <label for="investorId">ID do Investidor:</label>
+                <input type="text" id="investorId" placeholder="Clique em 'Listar Investidores' primeiro" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="amount">Valor (R$):</label>
+                <input type="number" id="amount" value="100000" step="0.01" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="date">Data:</label>
+                <input type="date" id="date" required>
+            </div>
+            
+            <button type="submit">POST /api/investments</button>
+        </form>
+        <div id="createResult" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="container">
+        <h2>4. Verificar Autenticação</h2>
+        <button onclick="checkAuth()">GET /api/auth/role</button>
+        <div id="authResult" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        // Configurar data de hoje por padrão
+        document.getElementById('date').value = new Date().toISOString().split('T')[0];
+
+        async function makeRequest(url, options = {}) {
+            try {
+                const response = await fetch(url, {
+                    credentials: 'include', // Incluir cookies de autenticação
+                    ...options
+                });
+                
+                const data = await response.json();
+                
+                return {
+                    ok: response.ok,
+                    status: response.status,
+                    data: data
+                };
+            } catch (error) {
+                return {
+                    ok: false,
+                    error: error.message
+                };
+            }
+        }
+
+        function showResult(elementId, result) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            
+            if (result.ok) {
+                element.className = 'result success';
+                element.textContent = `✅ Sucesso (${result.status})\n\n${JSON.stringify(result.data, null, 2)}`;
+            } else {
+                element.className = 'result error';
+                element.textContent = `❌ Erro (${result.status || 'Rede'})\n\n${JSON.stringify(result.data || result.error, null, 2)}`;
+            }
+        }
+
+        async function getInvestors() {
+            const result = await makeRequest('/api/investors');
+            showResult('investorsResult', result);
+            
+            // Se sucesso, popular o campo de ID do investidor
+            if (result.ok && result.data.length > 0) {
+                const select = document.getElementById('investorId');
+                select.value = result.data[0].id;
+                select.placeholder = `${result.data[0].name} - ${result.data[0].id}`;
+            }
+        }
+
+        async function getInvestments() {
+            const result = await makeRequest('/api/investments');
+            showResult('investmentsResult', result);
+        }
+
+        async function checkAuth() {
+            const result = await makeRequest('/api/auth/role');
+            showResult('authResult', result);
+        }
+
+        async function createInvestment(event) {
+            event.preventDefault();
+            
+            const formData = {
+                investorId: document.getElementById('investorId').value,
+                amount: parseFloat(document.getElementById('amount').value),
+                date: document.getElementById('date').value
+            };
+            
+            const result = await makeRequest('/api/investments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            showResult('createResult', result);
+        }
+    </script>
+</body>
+</html> 
