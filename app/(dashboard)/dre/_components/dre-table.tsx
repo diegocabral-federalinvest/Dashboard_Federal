@@ -115,7 +115,8 @@ const buildDetailedDREItems = (data: DREData | null): DREItem[] => {
     { description: "Valor Fator", value: data.custos.fator, level: 1, operation: 'plus' },
     { description: "Valor Advalorem", value: data.custos.adValorem, level: 1, operation: 'plus' },
     { description: "Valor Tarifas", value: data.custos.tarifas, level: 1, operation: 'plus' },
-   
+    
+    { description: "Receita Bruta", value: data.receitas.total, level: 0, isTotal: true, tooltip: getTooltipInfo("Receita Bruta", data) },
     // Impostos detalhados
     { description: "PIS", value: data.impostos.pis, level: 1, operation: 'minus' },
     { description: "COFINS", value: data.impostos.cofins, level: 1, operation: 'minus' },
@@ -131,7 +132,6 @@ const buildDetailedDREItems = (data: DREData | null): DREItem[] => {
     // Entradas e resultado final
     { description: "Entradas", value: data.receitas.outras, level: 0, operation: 'plus', tooltip: getTooltipInfo("Outras Receitas", data) },
     { description: "Dedução", value: data.deducaoFiscal, level: 0, operation: 'plus', tooltip: getTooltipInfo("Dedução Fiscal", data) },
-    { description: "Receita Bruta", value: data.receitas.total, level: 0, isTotal: true, tooltip: getTooltipInfo("Receita Bruta", data) },
     { description: "Resultado Líquido", value: data.resultadoLiquido, level: 0, isHighlighted: true, isTotal: true, tooltip: getTooltipInfo("Resultado Líquido", data) },
   ];
 };
