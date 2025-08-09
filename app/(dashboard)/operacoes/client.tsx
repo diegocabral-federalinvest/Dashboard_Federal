@@ -355,7 +355,7 @@ export default function OperacoesClient() {
               </TabsList>
 
               {/* Contextual Action Buttons - apenas admin e editor podem ver esses botões */}
-              {(userRole === 'admin' || userRole === 'editor') && (
+             
                 <div className="flex gap-2">
                   <AnimatePresence mode="wait">
                     {(activeTab === 'expenses' || activeTab === 'all') && (
@@ -397,7 +397,7 @@ export default function OperacoesClient() {
                     )}
                   </AnimatePresence>
                 </div>
-              )}
+             
             </div>
 
             {/* Enhanced Summary Cards */}
