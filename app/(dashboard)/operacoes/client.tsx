@@ -59,10 +59,11 @@ import { CHART_CONFIG, TABLE_CONFIG, DEFAULT_MESSAGES, EXPENSE_CATEGORIES, ENTRY
 import type { FinancialOperation } from "./_types";
 import { EnhancedTable } from "@/components/ui/enhanced-table";
 import { useSession } from "next-auth/react";
+
 export default function OperacoesClient() {
   const [activeTab, setActiveTab] = useState("overview");
-  const user = useSession();
-  const userRole = (user?.data?.user as any)?.role;
+
+
   const [ConfirmDialog, confirm] = useConfirm(
     "Tem certeza?",
     "Você está prestes a excluir esta transação. Esta ação não pode ser desfeita."
@@ -126,7 +127,7 @@ export default function OperacoesClient() {
     }
   };
 
-  // Columns for operations table (base) - movido para dentro do componente para acessar userRole
+  // Columns for operations table (base)
   const baseColumns: ColumnDef<FinancialOperation>[] = [
     {
       id: "description",
@@ -217,11 +218,6 @@ export default function OperacoesClient() {
       cell: ({ row }) => {
         const operation = row.original;
         
-        // Só mostra o botão de ações para admin e editor
-        if (userRole !== 'admin' && userRole !== 'editor') {
-          return <span className="text-muted-foreground text-sm">-</span>;
-        }
-        
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -238,27 +234,30 @@ export default function OperacoesClient() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
               <DropdownMenuLabel>Ações</DropdownMenuLabel>
-              <DropdownMenuItem 
-                className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleEdit(operation.id, operation.type);
-                }}
-              >
-                <Edit className="mr-2 h-4 w-4" />
-                Editar
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem 
-                className="text-red-600 cursor-pointer hover:bg-red-50 dark:hover:bg-red-950/50"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleDelete(operation.id, operation.type);
-                }}
-              >
-                <Trash2 className="mr-2 h-4 w-4" />
-                Excluir
-              </DropdownMenuItem>
+          
+                <>
+                  <DropdownMenuItem 
+                    className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleEdit(operation.id, operation.type);
+                    }}
+                  >
+                    <Edit className="mr-2 h-4 w-4" />
+                    Editar
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem 
+                    className="text-red-600 cursor-pointer hover:bg-red-50 dark:hover:bg-red-950/50"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDelete(operation.id, operation.type);
+                    }}
+                  >
+                    <Trash2 className="mr-2 h-4 w-4" />
+                    Excluir
+                  </DropdownMenuItem>
+                </>
             </DropdownMenuContent>
           </DropdownMenu>
         );
