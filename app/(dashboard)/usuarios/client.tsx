@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Loader2, Plus, UserCog, Mail, Shield, ShieldAlert, UserPlus, UserCheck, AlertCircle, Trash2, Edit, Filter, X } from "lucide-react";
+import { Loader2, Plus, UserCog, Mail, Shield, ShieldAlert, UserPlus, UserCheck, AlertCircle, Trash2, Edit, Filter, X, Lock } from "lucide-react";
 import { EnhancedTable } from "@/components/ui/enhanced-table";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/components/ui/use-toast";
@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { InviteUserModal } from "./components/invite-user-modal";
+import { ChangePasswordModal } from "./components/change-password-modal";
 import { UserRoleProvider } from "@/features/users/components/user-role-provider";
 import { useOpenUserRole } from "@/features/users/hooks/use-open-user-role";
 import { createId } from "@paralleldrive/cuid2";
@@ -71,6 +72,11 @@ interface UserFilters {
 
 export default function UsersClient() {
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
+  const [isChangePasswordModalOpen, setIsChangePasswordModalOpen] = useState(false);
+  const [selectedUserForPasswordChange, setSelectedUserForPasswordChange] = useState<{
+    id: string;
+    email: string;
+  } | null>(null);
   const [filters, setFilters] = useState<UserFilters>({
     email: "",
     role: "",
@@ -367,6 +373,18 @@ export default function UsersClient() {
     return currentUserData?.role?.toLowerCase() === "admin";
   };
 
+  // Handle opening change password modal
+  const handleChangePassword = (userId: string, userEmail: string) => {
+    setSelectedUserForPasswordChange({ id: userId, email: userEmail });
+    setIsChangePasswordModalOpen(true);
+  };
+
+  // Handle closing change password modal
+  const handleCloseChangePasswordModal = () => {
+    setIsChangePasswordModalOpen(false);
+    setSelectedUserForPasswordChange(null);
+  };
+
   // Columns for users table
   const userColumns: ColumnDef<UserData>[] = [
     {
@@ -456,6 +474,17 @@ export default function UsersClient() {
                 <Edit className="h-4 w-4 mr-2" />
                 Alterar função
               </DropdownMenuItem>
+              
+              {/* Only show change password option if current user is ADMIN */}
+              {isCurrentUserAdmin() && (
+                <DropdownMenuItem
+                  onClick={() => handleChangePassword(row.original.id, row.original.email)}
+                  disabled={!canModify}
+                >
+                  <Lock className="h-4 w-4 mr-2" />
+                  Alterar Senha
+                </DropdownMenuItem>
+              )}
               
               {/* Only show block/unblock access option if current user is NOT ADMIN */}
               {!isCurrentUserAdmin() && (
@@ -601,6 +630,13 @@ export default function UsersClient() {
       <InviteUserModal 
         isOpen={isInviteModalOpen} 
         onClose={() => setIsInviteModalOpen(false)} 
+      />
+      
+      <ChangePasswordModal
+        isOpen={isChangePasswordModalOpen}
+        onClose={handleCloseChangePasswordModal}
+        userId={selectedUserForPasswordChange?.id || ""}
+        userEmail={selectedUserForPasswordChange?.email || ""}
       />
 
       {/* Action Buttons */}

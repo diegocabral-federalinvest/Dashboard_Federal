@@ -37,6 +37,7 @@ import { useHeaderContent } from "@/hooks/use-header-content";
 import useConfirm from "@/hooks/use-confirm";
 import { toast } from "sonner";
 
+
 // Delete mutations são importadas dos hooks modulares
 
 // Import sheet hooks
@@ -57,9 +58,11 @@ import { useProcessedFinancialData, useChartData, useDeleteExpenseOperation, use
 import { CHART_CONFIG, TABLE_CONFIG, DEFAULT_MESSAGES, EXPENSE_CATEGORIES, ENTRY_CATEGORIES } from "./_constants";
 import type { FinancialOperation } from "./_types";
 import { EnhancedTable } from "@/components/ui/enhanced-table";
-
+import { useSession } from "next-auth/react";
 export default function OperacoesClient() {
   const [activeTab, setActiveTab] = useState("overview");
+  const user = useSession();
+  const userRole = (user?.data?.user as any)?.role;
   const [ConfirmDialog, confirm] = useConfirm(
     "Tem certeza?",
     "Você está prestes a excluir esta transação. Esta ação não pode ser desfeita."
@@ -123,7 +126,7 @@ export default function OperacoesClient() {
     }
   };
 
-  // Columns for operations table (base)
+  // Columns for operations table (base) - movido para dentro do componente para acessar userRole
   const baseColumns: ColumnDef<FinancialOperation>[] = [
     {
       id: "description",
@@ -213,6 +216,11 @@ export default function OperacoesClient() {
       header: "Ações",
       cell: ({ row }) => {
         const operation = row.original;
+        
+        // Só mostra o botão de ações para admin e editor
+        if (userRole !== 'admin' && userRole !== 'editor') {
+          return <span className="text-muted-foreground text-sm">-</span>;
+        }
         
         return (
           <DropdownMenu>
@@ -346,48 +354,50 @@ export default function OperacoesClient() {
                 </TabsTrigger>
               </TabsList>
 
-              {/* Contextual Action Buttons */}
-              <div className="flex gap-2">
-                <AnimatePresence mode="wait">
-                  {(activeTab === 'expenses' || activeTab === 'all') && (
-                    <motion.div
-                      key="expense-button"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Button 
-                        size="sm"
-                        className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
-                        onClick={() => newExpense.onOpen()}
+              {/* Contextual Action Buttons - apenas admin e editor podem ver esses botões */}
+              {(userRole === 'admin' || userRole === 'editor') && (
+                <div className="flex gap-2">
+                  <AnimatePresence mode="wait">
+                    {(activeTab === 'expenses' || activeTab === 'all') && (
+                      <motion.div
+                        key="expense-button"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.2 }}
                       >
-                        <TrendingDown className="h-4 w-4 mr-2" />
-                        Nova Despesa
-                      </Button>
-                    </motion.div>
-                  )}
-                  
-                  {(activeTab === 'entries' || activeTab === 'all') && (
-                    <motion.div
-                      key="entry-button"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Button 
-                        size="sm"
-                        className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
-                        onClick={() => newEntry.onOpen()}
+                        <Button 
+                          size="sm"
+                          className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+                          onClick={() => newExpense.onOpen()}
+                        >
+                          <TrendingDown className="h-4 w-4 mr-2" />
+                          Nova Despesa
+                        </Button>
+                      </motion.div>
+                    )}
+                    
+                    {(activeTab === 'entries' || activeTab === 'all') && (
+                      <motion.div
+                        key="entry-button"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.2 }}
                       >
-                        <TrendingUp className="h-4 w-4 mr-2" />
-                        Nova Entrada
-                      </Button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                        <Button 
+                          size="sm"
+                          className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+                          onClick={() => newEntry.onOpen()}
+                        >
+                          <TrendingUp className="h-4 w-4 mr-2" />
+                          Nova Entrada
+                        </Button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
             </div>
 
             {/* Enhanced Summary Cards */}
