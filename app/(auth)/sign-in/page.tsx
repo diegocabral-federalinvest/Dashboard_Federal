@@ -13,7 +13,7 @@ function SignInForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("admin@federalinvest.com");
-  const [password, setPassword] = useState("admin123!@#");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>("");
 
