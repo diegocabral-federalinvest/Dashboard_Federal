@@ -36,7 +36,7 @@ export async function PATCH(
       logger.warn("Non-admin user attempted to update user password", {
         context: 'PATCH /api/users/[id]/password',
         action: 'PATCH /api/users/[id]/password',
-        userId: session.user.id
+        data: { userId: session.user.id }
       });
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
@@ -89,8 +89,10 @@ export async function PATCH(
     
     logger.info(`User password updated successfully: ${targetUser.email}`, {
       context: 'api/users/[id]/password',
-      adminEmail: adminUser.email,
-      targetUserEmail: targetUser.email
+      data: { 
+        adminEmail: adminUser.email,
+        targetUserEmail: targetUser.email
+      }
     });
     
     return NextResponse.json({
