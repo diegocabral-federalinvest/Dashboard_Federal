@@ -169,6 +169,7 @@ export function EnhancedTable({
         formatValue={formatValue}
         className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-xl"
         searchPlaceholder="Buscar por investidor..."
+        enableRowSelection={false}
       />
     </div>
   );

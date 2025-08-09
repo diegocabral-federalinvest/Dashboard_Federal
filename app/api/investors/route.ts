@@ -11,8 +11,8 @@ const createInvestorSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
   email: z.string().email("Email inválido"),
   phone: z.union([z.string(), z.null()]).optional(),
-  city: z.string().min(2, "Cidade deve ter pelo menos 2 caracteres"),
-  address: z.string().min(5, "Endereço deve ter pelo menos 5 caracteres"),
+  city: z.union([z.string(), z.null()]).optional(),
+  address: z.union([z.string(), z.null()]).optional(),
 });
 
 export async function POST(request: Request) {

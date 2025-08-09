@@ -291,17 +291,17 @@ export function FinanceDataTable<TData, TValue>({
                       <div className="flex gap-2">
                         <Input 
                           type="number" 
-                          placeholder="Mínimo" 
+                          placeholder="Valor mínimo" 
                           value={valueRange.min || ""}
                           onChange={(e) => setValueRange({...valueRange, min: e.target.value})}
-                          className="flex-1 rounded-md border-slate-300 dark:border-slate-600 focus:border-primary dark:focus:border-primary transition-colors duration-200 h-9 text-sm"
+                          className="flex-1 rounded-md border-slate-300 dark:border-slate-600 focus:border-primary dark:focus:border-primary transition-colors duration-200 h-9 text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
                         <Input 
                           type="number" 
-                          placeholder="Máximo" 
+                          placeholder="Valor máximo" 
                           value={valueRange.max || ""}
                           onChange={(e) => setValueRange({...valueRange, max: e.target.value})}
-                          className="flex-1 rounded-md border-slate-300 dark:border-slate-600 focus:border-primary dark:focus:border-primary transition-colors duration-200 h-9 text-sm"
+                          className="flex-1 rounded-md border-slate-300 dark:border-slate-600 focus:border-primary dark:focus:border-primary transition-colors duration-200 h-9 text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
                       </div>
                     </div>

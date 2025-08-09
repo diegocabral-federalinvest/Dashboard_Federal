@@ -42,8 +42,8 @@ const investorSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
   email: z.string().email("Email inválido"),
   phone: z.string().optional(),
-  city: z.string().min(2, "Cidade deve ter pelo menos 2 caracteres"),
-  address: z.string().min(5, "Endereço deve ter pelo menos 5 caracteres"),
+  city: z.string().optional(),
+  address: z.string().optional(),
 });
 
 type InvestorFormData = z.infer<typeof investorSchema>;
@@ -84,8 +84,8 @@ export function InvestorRegistrationModal({
         name: data.name,
         email: data.email,
         phone: data.phone || null,
-        city: data.city,
-        address: data.address,
+        city: data.city || null,
+        address: data.address || null,
       };
       
       console.log("📤 [FRONTEND] Payload que será enviado:", JSON.stringify(payload, null, 2));
@@ -301,7 +301,7 @@ export function InvestorRegistrationModal({
                   <FormItem>
                     <FormLabel className="flex items-center gap-2">
                       <MapPin className="h-4 w-4" />
-                      Cidade
+                      Cidade (Opcional)
                     </FormLabel>
                     <FormControl>
                       <Input
@@ -321,7 +321,7 @@ export function InvestorRegistrationModal({
                 name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Endereço</FormLabel>
+                    <FormLabel>Endereço (Opcional)</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Rua das Flores, 123"

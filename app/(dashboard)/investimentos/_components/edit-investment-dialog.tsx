@@ -210,13 +210,13 @@ export function EditInvestmentDialog({
                 type="number"
                 step="0.01"
                 min="0"
-                placeholder="0,00"
+                placeholder="Digite o valor"
                 value={formData.value}
                 onChange={(e) =>
                   setFormData(prev => ({ ...prev, value: e.target.value }))
                 }
                 disabled={isLoading || isSaving}
-                className="text-right"
+                className="text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
             </div>
           </div>

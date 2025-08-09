@@ -69,7 +69,7 @@ export const EntryForm = ({
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues || {
-      value: "0",
+      value: "",
       description: "",
       date: new Date(),
       categoryId: "outros",
@@ -150,8 +150,8 @@ export const EntryForm = ({
                     type="number"
                     step="0.01"
                     disabled={disabled}
-                    placeholder="0,00"
-                    className="transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-800/50 focus:bg-gray-50 dark:focus:bg-gray-800/50 focus:ring-2 focus:ring-green-500/20"
+                    placeholder="Digite o valor"
+                    className="transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-800/50 focus:bg-gray-50 dark:focus:bg-gray-800/50 focus:ring-2 focus:ring-green-500/20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     {...field}
                   />
                 </FormControl>

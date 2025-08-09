@@ -72,7 +72,7 @@ export const ExpenseForm = ({
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues || {
-      value: "0",
+      value: "",
       description: "",
       date: new Date(),
       isTaxable: false,
@@ -127,9 +127,24 @@ export const ExpenseForm = ({
                     type="number"
                     step="0.01"
                     disabled={disabled}
-                    placeholder="0,00"
-                    className="transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-800/50 focus:bg-gray-50 dark:focus:bg-gray-800/50 focus:ring-2 focus:ring-blue-500/20"
-                    {...field}
+                    placeholder="Digite o valor"
+                    name={field.name}
+                    ref={field.ref}
+                    onBlur={field.onBlur}
+                    value={
+                      field.value === undefined || field.value === null
+                        ? ""
+                        : (field.value as any)
+                    }
+                    onChange={(e) => {
+                      const v = e.target.value;
+                      if (v === "") {
+                        field.onChange(undefined);
+                      } else {
+                        field.onChange(v);
+                      }
+                    }}
+                    className="transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-800/50 focus:bg-gray-50 dark:focus:bg-gray-800/50 focus:ring-2 focus:ring-blue-500/20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                 </FormControl>
                 <FormMessage />

@@ -204,9 +204,10 @@ export function InvestmentFilters({
               <Input
                 id="minValue"
                 type="number"
-                placeholder="0"
+                placeholder="Digite o valor mínimo"
                 value={filters.minValue || ""}
                 onChange={(e) => updateFilter("minValue", e.target.value ? Number(e.target.value) : undefined)}
+                className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
             </div>
 
@@ -216,9 +217,10 @@ export function InvestmentFilters({
               <Input
                 id="maxValue"
                 type="number"
-                placeholder="Sem limite"
+                placeholder="Digite o valor máximo"
                 value={filters.maxValue || ""}
                 onChange={(e) => updateFilter("maxValue", e.target.value ? Number(e.target.value) : undefined)}
+                className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
             </div>
           </div>

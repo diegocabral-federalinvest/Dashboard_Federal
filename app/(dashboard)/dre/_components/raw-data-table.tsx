@@ -529,8 +529,9 @@ export function RawDataTable({ limit = 10 }: RawDataTableProps) {
                   <label className="text-sm font-medium mb-1 block">Valor Mínimo</label>
                   <Input
                     type="number"
-                    placeholder="R$ 0,00"
+                    placeholder="Digite o valor mínimo"
                     onChange={(e) => handleFilterChange("minValue", e.target.value ? Number(e.target.value) : undefined)}
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                 </div>
                 
@@ -538,8 +539,9 @@ export function RawDataTable({ limit = 10 }: RawDataTableProps) {
                   <label className="text-sm font-medium mb-1 block">Valor Máximo</label>
                   <Input
                     type="number"
-                    placeholder="R$ 0,00"
+                    placeholder="Digite o valor máximo"
                     onChange={(e) => handleFilterChange("maxValue", e.target.value ? Number(e.target.value) : undefined)}
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                 </div>
                 

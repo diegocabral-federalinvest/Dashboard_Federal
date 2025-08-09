@@ -80,7 +80,7 @@ export function InvestmentForm({
     resolver: zodResolver(formSchema),
     mode: "onChange",
     defaultValues: {
-      value: 0,
+      value: undefined,
       type: "aporte",
       investorId: "",
       date: new Date(),
@@ -285,10 +285,28 @@ export function InvestmentForm({
                   <Input
                     type="number"
                     step="0.01"
-                    placeholder="0,00"
+                    placeholder="Digite o valor"
                     disabled={isLoading}
-                    {...field}
+                    name={field.name}
+                    ref={field.ref}
+                    onBlur={field.onBlur}
+                    value={
+                      field.value === undefined || field.value === null
+                        ? ""
+                        : (field.value as any)
+                    }
+                    onChange={(e) => {
+                      const v = e.target.value;
+                      // Mantém o input visualmente vazio quando não há valor
+                      // e evita que "" seja convertido para 0 pelo z.coerce
+                      if (v === "") {
+                        field.onChange(undefined);
+                      } else {
+                        field.onChange(v);
+                      }
+                    }}
                     aria-invalid={!!form.formState.errors.value}
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                 </FormControl>
                 <FormMessage data-testid="withdrawal-error" aria-live="polite" />
