@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import {
   ColumnDef,
   flexRender,
@@ -10,6 +10,8 @@ import {
   SortingState,
   ColumnFiltersState,
   VisibilityState,
+  getFacetedRowModel,
+  getFacetedUniqueValues,
 } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -53,6 +55,8 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface EnhancedTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -118,7 +122,8 @@ export function EnhancedTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [globalFilter, setGlobalFilter] = useState("");
-  const [showFilters, setShowFilters] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [filterStates, setFilterStates] = useState<Record<string, string | undefined>>({});
   
   // Estado da paginação gerenciado separadamente
   const [pagination, setPagination] = useState({
@@ -127,18 +132,29 @@ export function EnhancedTable<TData, TValue>({
   });
 
   // Verificação robusta para garantir que todas as colunas tenham IDs
+  const enhancedFilterFn = useCallback((row: any, id: string, filterValue: any) => {
+    const v = row.getValue(id);
+    if (filterValue === undefined || filterValue === null || (Array.isArray(filterValue) && filterValue.length === 0)) {
+      return true;
+    }
+    if (Array.isArray(filterValue)) {
+      return filterValue.map(String).includes(String(v ?? ""));
+    }
+    return String(v ?? "").toLowerCase().includes(String(filterValue).toLowerCase());
+  }, []);
+
   const safeColumns = useMemo(() => {
-    return columns.map((col, index) => {
+    return (columns as any[]).map((col, index) => {
       if (!col.id) {
         console.warn(`Coluna sem ID detectada no EnhancedTable no índice ${index}:`, col);
-        return {
-          ...col,
-          id: `column_${index}`, // Fallback para ID baseado no índice
-        };
+        col = { ...col, id: `column_${index}` };
+      }
+      if (!col.filterFn) {
+        col = { ...col, filterFn: enhancedFilterFn };
       }
       return col;
     });
-  }, [columns]);
+  }, [columns, enhancedFilterFn]);
 
   const table = useReactTable({
     data,
@@ -146,6 +162,8 @@ export function EnhancedTable<TData, TValue>({
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
+    getFacetedRowModel: getFacetedRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
     getPaginationRowModel: enablePagination ? getPaginationRowModel() : undefined,
     getSortedRowModel: enableSorting ? getSortedRowModel() : undefined,
     getFilteredRowModel: enableFiltering ? getFilteredRowModel() : undefined,
@@ -206,27 +224,6 @@ export function EnhancedTable<TData, TValue>({
             </div>
           )}
 
-          {/* Column Filters Toggle */}
-          {enableFiltering && filterableColumns.length > 0 && showFiltersControl && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowFilters(!showFilters)}
-              className="relative"
-            >
-              <Filter className={`h-4 w-4 ${showFilterText ? "mr-2" : ""}`} />
-              {showFilterText && ("Filtros")}
-              {activeFiltersCount > 0 && (
-                <Badge 
-                  variant="destructive" 
-                  className="ml-2 h-5 w-5 p-0 flex items-center justify-center text-xs"
-                >
-                  {activeFiltersCount}
-                </Badge>
-              )}
-            </Button>
-          )}
-
           {/* Clear Filters */}
           {enableFiltering && activeFiltersCount > 0 && (
             <Button
@@ -277,6 +274,112 @@ export function EnhancedTable<TData, TValue>({
             </DropdownMenu>
           )}
 
+          {/* Filters Modal Trigger (next to Columns) */}
+          {enableFiltering && filterableColumns.length > 0 && (
+            <>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setFiltersOpen(true)}
+                className="relative"
+              >
+                <Filter className={`h-4 w-4 ${showFilterText ? "mr-2" : ""}`} />
+                {showFilterText && ("Filtros")}
+                {activeFiltersCount > 0 && (
+                  <Badge 
+                    variant="destructive" 
+                    className="ml-2 h-5 w-5 p-0 flex items-center justify-center text-xs"
+                  >
+                    {activeFiltersCount}
+                  </Badge>
+                )}
+              </Button>
+
+              <Dialog open={filtersOpen} onOpenChange={setFiltersOpen}>
+                <DialogContent className="w-[720px] max-w-[800px] max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle>Filtros por Coluna</DialogTitle>
+                  </DialogHeader>
+                  <div className="max-h-[70vh] overflow-y-auto">
+                    {table
+                      .getAllColumns()
+                      .filter((column) => column.getCanFilter() && column.id !== 'type' && column.id !== 'actions')
+                      .map((column) => {
+                        const columnId = column.id;
+                        const uniqueValues = Array.from(table.getColumn(columnId)?.getFacetedUniqueValues()?.keys() ?? []);
+                        const currentSearch = filterStates[columnId] || "";
+                        const isLikelyDate = /date|createdat|updatedat/i.test(columnId);
+                        const isBooleanLike = columnId === 'isTaxable' || columnId === 'isPayroll';
+                        const displayValue = (val: any) => {
+                          try {
+                            if (isLikelyDate) {
+                              const d = new Date(val);
+                              if (!isNaN(d.getTime())) return d.toLocaleDateString('pt-BR');
+                            }
+                            if (isBooleanLike) {
+                              if (String(val) === 'true') return 'Sim';
+                              if (String(val) === 'false') return 'Não';
+                            }
+                          } catch {}
+                          return String(val ?? '');
+                        };
+                        const filteredValues = uniqueValues.filter((value: any) => 
+                          value && displayValue(value).toLowerCase().includes(currentSearch.toLowerCase())
+                        );
+                        const selectedValues: string[] = Array.isArray(column.getFilterValue()) ? column.getFilterValue() as string[] : [];
+                        return (
+                          <div key={column.id} className="p-3 border-b last:border-b-0 w-[500px] max-w-[600px] mx-auto">
+                            <div className="font-medium text-sm mb-2 text-gray-700 dark:text-gray-300">
+                              {getColumnDisplayName(column.id)}
+                            </div>
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2">
+                                <Search className="h-4 w-4 text-gray-400" />
+                                <Input
+                                  placeholder={`Filtrar ${getColumnDisplayName(column.id)}...`}
+                                  value={currentSearch}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    setFilterStates(prev => ({ ...prev, [columnId]: value }));
+                                  }}
+                                  className="h-8 text-xs"
+                                />
+                              </div>
+                              <div className="max-h-60 overflow-y-auto rounded-md border p-2 space-y-1">
+                                <div className="flex items-center justify-between mb-2">
+                                  <Button variant="ghost" size="sm" className="h-7 px-2" onClick={() => column.setFilterValue(undefined)}>Limpar</Button>
+                                  <span className="text-xs text-gray-500">{selectedValues.length} selecionado(s)</span>
+                                </div>
+                                {filteredValues.map((value: any) => {
+                                  const valStr = String(value);
+                                  const checked = selectedValues.includes(valStr);
+                                  return (
+                                    <label key={valStr} className="flex items-center gap-2 py-1 px-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+                                      <Checkbox
+                                        checked={checked}
+                                        onCheckedChange={(isChecked) => {
+                                          const next = new Set(selectedValues);
+                                          if (isChecked) next.add(valStr); else next.delete(valStr as any);
+                                          column.setFilterValue(Array.from(next));
+                                        }}
+                                      />
+                                      <span className="text-sm flex-1">
+                                        {displayValue(valStr)} ({table.getColumn(columnId)?.getFacetedUniqueValues()?.get(value) || 0})
+                                      </span>
+                                    </label>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </>
+          )}
+
           {/* Page Size Selector */}
           {enablePagination && (
             <div className="flex items-center gap-2">
@@ -307,110 +410,7 @@ export function EnhancedTable<TData, TValue>({
         </div>
       </div>
 
-      {/* Column Filters */}
-      <AnimatePresence>
-        {enableFiltering && showFilters && filterableColumns.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 border rounded-lg bg-muted/50"
-          >
-            {filterableColumns.map((column) => {
-              const columnId = ("accessorKey" in column ? column.accessorKey : column.id) as string;
-              
-              // Get unique values for this column
-              const uniqueValues = Array.from(
-                new Set(
-                  data.map((item: any) => {
-                    const value = item[columnId];
-                    if (value === null || value === undefined) return "N/A";
-                    return String(value);
-                  })
-                )
-              ).filter(Boolean).sort();
-
-              // Special handling for specific columns
-              const isSelectField = ['type', 'category', 'isTaxable', 'isPayroll'].includes(columnId);
-              
-              return (
-                <div key={columnId} className="space-y-1">
-                  <label className="text-sm font-medium capitalize">
-                    {getColumnDisplayName(columnId)}
-                  </label>
-                  
-                  {isSelectField && uniqueValues.length > 0 ? (
-                    <Select
-                      value={(table.getColumn(columnId)?.getFilterValue() as string) ?? ""}
-                      onValueChange={(value) => {
-                        table.getColumn(columnId)?.setFilterValue(value === "all" ? "" : value);
-                      }}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder={`Todos ${getColumnDisplayName(columnId).toLowerCase()}`} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">Todos</SelectItem>
-                        {uniqueValues.map((value) => (
-                          <SelectItem key={value} value={value}>
-                            {value}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  ) : (
-                    <div className="relative">
-                      <Input
-                        placeholder={`Filtrar ${getColumnDisplayName(columnId).toLowerCase()}...`}
-                        value={(table.getColumn(columnId)?.getFilterValue() as string) ?? ""}
-                        onChange={(event) =>
-                          table.getColumn(columnId)?.setFilterValue(event.target.value)
-                        }
-                        className="pr-8"
-                      />
-                      {uniqueValues.length > 0 && (
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-2">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="h-6 w-6 p-0 hover:bg-gray-200 dark:hover:bg-gray-700"
-                              >
-                                <ChevronDown className="h-3 w-3" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="max-h-64 overflow-y-auto">
-                              <DropdownMenuLabel>Valores disponíveis</DropdownMenuLabel>
-                              <DropdownMenuSeparator />
-                              {uniqueValues.slice(0, 20).map((value) => (
-                                <DropdownMenuCheckboxItem
-                                  key={value}
-                                  onSelect={() => {
-                                    table.getColumn(columnId)?.setFilterValue(value);
-                                  }}
-                                >
-                                  {value}
-                                </DropdownMenuCheckboxItem>
-                              ))}
-                              {uniqueValues.length > 20 && (
-                                <div className="px-2 py-1 text-xs text-muted-foreground">
-                                  +{uniqueValues.length - 20} mais...
-                                </div>
-                              )}
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Inline Column Filters removed in favor of modal */}
 
       {/* Pagination - Only show at top */}
       {enablePagination && table.getFilteredRowModel().rows.length > 0 && (

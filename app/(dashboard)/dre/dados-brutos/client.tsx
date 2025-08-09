@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Upload, Calculator, FileDown } from "lucide-react";
+import { ArrowLeft, Upload, Calculator } from "lucide-react";
 import Link from "next/link";
 import { useHeaderContent } from "@/hooks/use-header-content";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -114,12 +114,7 @@ export default function RawDataClient() {
     }
   }, [uploadCSV, toast, refetch]);
 
-  const handleExport = useCallback(() => {
-    toast({
-      title: "Exportando dados...",
-      description: "O arquivo será baixado em instantes.",
-    });
-  }, [toast]);
+  // Exportação CSV é feita pelo botão da própria tabela usando as linhas filtradas
 
   const handleDeleteSelected = useCallback(async (ids: string[]) => {
     if (!ids.length) return;
@@ -215,17 +210,6 @@ export default function RawDataClient() {
               onValueChange={handleDateRangeChange}
               placeholder="Filtrar por período"
             />
-
-
-            <Button 
-              variant="neonGhost" 
-              size="sm" 
-              onClick={handleExport}
-              className="shadow-sm"
-            >
-              <Calculator className="mr-2 h-4 w-4" />
-              Calculadora
-            </Button>
             
             <Button 
               variant="neon" 
@@ -236,15 +220,7 @@ export default function RawDataClient() {
               <Upload className="mr-2 h-4 w-4" />
               Novo Upload
             </Button>
-            <Button 
-              variant="neonGhost" 
-              size="sm" 
-              onClick={handleExport}
-              className="shadow-sm"
-            >
-              <FileDown className="mr-2 h-4 w-4" />
-            Exportar
-          </Button>
+            {/* Export agora fica apenas no toolbar da tabela (onExport) */}
         </div>
       </motion.div>
 
@@ -301,7 +277,7 @@ export default function RawDataClient() {
                       onPageChange={setPage}
                       onPageSizeChange={setPageSize}
                       onFilter={setFilters}
-                      onExport={handleExport}
+                      onExport={undefined}
                       defaultVisibleColumns={["IdOperacao", "Data", "CPFCNPJCedente", "ValorLiquido", "Etapa"]}
                       className="border-0 shadow-lg"
                       enableRowSelection

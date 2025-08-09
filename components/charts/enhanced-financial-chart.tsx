@@ -17,7 +17,8 @@ import {
 import { 
   Maximize2, Download, Filter, Eye, EyeOff, ChevronDown, 
   ZoomIn, ZoomOut, RotateCcw, Grid, Palette, FileImage, 
-  FileText, Settings, TrendingUp, MousePointer2, Move3D
+  FileText, Settings, TrendingUp, MousePointer2, Move3D,
+  BarChart3, LineChart as LineChartIcon, AreaChart as AreaChartIcon
 } from "lucide-react";
 import { 
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, 
@@ -37,13 +38,14 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 interface EnhancedFinancialChartProps {
-  data: any[];
-  periodType: "monthly" | "quarterly" | "annual";
-  currentPeriod: {
-    year: number;
+  year?: number;
+  data?: any[];
+  periodType?: string;
+  currentPeriod?: {
+    year?: number;
     month?: number;
     quarter?: number;
-    periodType: "monthly" | "quarterly" | "annual";
+    periodType?: string;
   };
   showMetricsSummary?: boolean;
   enableAllVariables?: boolean;
@@ -58,6 +60,7 @@ const FINANCIAL_VARIABLES = [
   { key: 'valorAdvalorem', label: 'Valor Advalorem', color: '#059669', group: 'operacao', icon: '📈' },
   { key: 'valorTarifas', label: 'Valor Tarifas', color: '#047857', group: 'operacao', icon: '📦' },
   { key: 'deducao', label: 'Dedução', color: '#0d9488', group: 'operacao', icon: '⚡' },
+  { key: 'deducaoFiscal', label: 'Dedução Fiscal', color: '#0ea5a3', group: 'operacao', icon: '⚡' },
   
   // Receita Bruta
   { key: 'receitaBruta', label: 'Receita Bruta', color: '#22c55e', group: 'receitaBruta', icon: '💵' },
@@ -72,6 +75,7 @@ const FINANCIAL_VARIABLES = [
   
   // Resultado Bruto
   { key: 'resultadoBruto', label: 'Resultado Bruto', color: '#8b5cf6', group: 'resultadoBruto', icon: '📋' },
+  { key: 'resultadoOperacional', label: 'Resultado Bruto', color: '#7c3aed', group: 'resultadoBruto', icon: '📋' },
   { key: 'csll', label: 'CSLL', color: '#7c3aed', group: 'resultadoBruto', icon: '🧾' },
   { key: 'irpj', label: 'IRPJ', color: '#6d28d9', group: 'resultadoBruto', icon: '💼' },
   
@@ -147,22 +151,19 @@ const VARIABLE_GROUPS = {
 };
 
 export function EnhancedFinancialChart({ 
+  year, 
   data, 
   periodType, 
   currentPeriod,
-  showMetricsSummary = true,
-  enableAllVariables = false,
-  title = "Evolução Financeira",
+  showMetricsSummary, 
+  enableAllVariables, 
+  title, 
   className
 }: EnhancedFinancialChartProps) {
   // Estados principais
   const [isExpanded, setIsExpanded] = useState(false);
   const [chartType, setChartType] = useState<"line" | "bar" | "area">("area");
-  const [selectedVariables, setSelectedVariables] = useState<string[]>(
-    enableAllVariables 
-      ? ['valorFator', 'receitaBruta', 'receitaLiquida', 'resultadoBruto', 'entradas', 'resultadoLiquido'] 
-      : ['valorFator', 'receitaBruta', 'resultadoLiquido']
-  );
+  const [selectedVariables, setSelectedVariables] = useState<string[]>(['operacao', 'totalValorFator', 'totalValorAdValorem', 'totalValorTarifas', 'totalPIS', 'totalCOFINS', 'totalISSQN', 'totalEntries', 'totalExpenses', 'receitaBruta', 'receitaLiquida', 'resultadoBruto', 'resultadoLiquido', 'deduction', 'csll', 'irpj']);
   
   // Estados de configuração avançada
   const [showGrid, setShowGrid] = useState(false);
@@ -182,62 +183,256 @@ export function EnhancedFinancialChart({
   const chartContainerRef = useRef<HTMLDivElement>(null);
   
   const { theme } = useTheme();
+  const [isExpandedModalOpen, setIsExpandedModalOpen] = useState(false);
 
-  // Processar dados para o gráfico
-  const chartData = useMemo(() => {
-    // CORREÇÃO: Não gerar dados de exemplo quando não há dados reais
-    // Retornar array vazio para permitir renderização de estado "sem dados"
-    if (!data || data.length === 0) {
-      return [] as any[];
-    }
-
-    return data;
-  }, [data]);
-
-  // Detectar dinamicamente todas as variáveis disponíveis nos dados reais
-  const availableVariables = useMemo(() => {
-    const knownVariables = [...FINANCIAL_VARIABLES];
+  // Ano resolvido - usar currentPeriod.year se disponível, senão year, senão 2024
+  const resolvedYear = useMemo(() => {
+    const yearFromCurrentPeriod = currentPeriod?.year;
+    const yearFromProp = year;
     
-    if (!chartData || chartData.length === 0) {
-      return knownVariables;
+    if (typeof yearFromCurrentPeriod === 'number' && !Number.isNaN(yearFromCurrentPeriod)) {
+      return yearFromCurrentPeriod;
     }
+    if (typeof yearFromProp === 'number' && !Number.isNaN(yearFromProp)) {
+      return yearFromProp;
+    }
+    return 2024;
+  }, [year, currentPeriod?.year]);
+
+  // Título dinâmico baseado no modo
+  const dynamicTitle = useMemo(() => {
+    if (title) return title; // Se título foi passado como prop, usar ele
     
-    // Extrair todas as chaves únicas dos dados reais
-    const dataKeys = new Set<string>();
-    chartData.forEach(dataPoint => {
-      if (dataPoint && typeof dataPoint === 'object') {
-        Object.keys(dataPoint).forEach(key => {
-          // Excluir campos que não são séries (period, timestamps, etc.)
-          if (key !== 'period' && key !== 'timestamp' && key !== 'date' && key !== 'id') {
-            dataKeys.add(key);
-          }
-        });
+    const isMonthly = periodType === 'monthly';
+    const isQuarterly = periodType === 'quarterly';
+    const month = currentPeriod?.month;
+    const quarter = currentPeriod?.quarter;
+    
+    if (isMonthly && month) {
+      const monthNames = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+      return `Operação por Dia - ${monthNames[month - 1]}/${resolvedYear}`;
+    } else if (isQuarterly) {
+      if (quarter && quarter !== 0) {
+        return `Operação Q${quarter}/${resolvedYear}`;
+      } else {
+        return `Operação por Trimestre - ${resolvedYear}`;
       }
+    } else {
+      return `Operação por Mês - ${resolvedYear}`;
+    }
+  }, [title, periodType, currentPeriod?.month, currentPeriod?.quarter, resolvedYear]);
+
+  // Carregar dados da API de operação mensal
+  const [chartData, setChartData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    setLoading(true);
+    setErr(null);
+    
+    // Detectar modo de visualização
+    const isMonthly = periodType === 'monthly';
+    const isQuarterly = periodType === 'quarterly';
+    const month = currentPeriod?.month;
+    const quarter = currentPeriod?.quarter;
+    
+    console.log(`🔍 [CHART-DEBUG] Props recebidos:`, { 
+      year, 
+      currentPeriod, 
+      periodType,
+      yearFromCurrentPeriod: currentPeriod?.year,
+      resolvedYear,
+      isMonthly,
+      isQuarterly,
+      month,
+      quarter
     });
     
-    // Adicionar variáveis desconhecidas com configuração padrão
-    const unknownKeys = Array.from(dataKeys).filter(key => 
-      !knownVariables.some(v => v.key === key)
-    );
+    // Construir URL da API baseado no modo
+    let apiUrl = `/api/reports/operation?year=${resolvedYear}`;
+    if (isMonthly && month) {
+      // Modo mensal: visualização diária
+      apiUrl += `&monthly=true&month=${month}`;
+    } else if (isQuarterly) {
+      // Modo trimestral
+      apiUrl += `&quarterly=true`;
+      if (quarter && quarter !== 0) { // 0 significa "todos"
+        apiUrl += `&quarter=${quarter}`;
+      }
+    }
+    // Modo anual usa apenas year (padrão)
     
-    const unknownVariables = unknownKeys.map(key => ({
-      key,
-      label: `${key.charAt(0).toUpperCase()}${key.slice(1)}`, // Capitalizar primeira letra
-      color: '#6b7280', // Cor cinza padrão
-      group: 'outros' as const,
-      icon: '❓'
-    }));
+    console.log(`🔍 [CHART-DEBUG] URL da API: ${apiUrl}`);
     
-    // Combinar variáveis conhecidas com desconhecidas
-    return [...knownVariables, ...unknownVariables];
-  }, [chartData]);
+    fetch(apiUrl, { cache: 'no-store' })
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`Erro ${res.status}`);
+        const json = await res.json();
+        console.log(`🔍 [CHART-DEBUG] Resposta da API:`, json);
+        
+        if (active) {
+          const data = Array.isArray(json.data) ? json.data : [];
+          console.log(`🔍 [CHART-DEBUG] Dados processados:`, data);
+          setChartData(data);
+        }
+      })
+      .catch((e) => {
+        console.error(`🔍 [CHART-DEBUG] Erro ao carregar dados:`, e);
+        active && setErr(e?.message || 'Erro ao carregar');
+      })
+      .finally(() => active && setLoading(false));
+    return () => { active = false };
+  }, [resolvedYear, year, currentPeriod, periodType]);
+
+  // Variáveis disponíveis - 4 verdes + 3 roxas
+  const availableVariables = useMemo(() => {
+    return [
+      // Grupo Verde - Operação e Valores
+      { 
+        key: 'operacao', 
+        label: 'Operação', 
+        color: '#065f46', // Verde mais escuro (base)
+        group: 'operacao', 
+        icon: '⚙️' 
+      },
+      { 
+        key: 'totalValorFator', 
+        label: 'Valor Fator', 
+        color: '#047857', // Verde escuro
+        group: 'valores', 
+        icon: '📊' 
+      },
+      { 
+        key: 'totalValorAdValorem', 
+        label: 'Ad Valorem', 
+        color: '#059669', // Verde médio
+        group: 'valores', 
+        icon: '📈' 
+      },
+      { 
+        key: 'totalValorTarifas', 
+        label: 'Tarifas', 
+        color: '#10b981', // Verde claro
+        group: 'valores', 
+        icon: '💰' 
+      },
+      // Grupo Roxo - Impostos
+      { 
+        key: 'totalPIS', 
+        label: 'PIS', 
+        color: '#581c87', // Roxo mais escuro
+        group: 'impostos', 
+        icon: '🏛️' 
+      },
+      { 
+        key: 'totalCOFINS', 
+        label: 'COFINS', 
+        color: '#7c3aed', // Roxo médio
+        group: 'impostos', 
+        icon: '📋' 
+      },
+      { 
+        key: 'totalISSQN', 
+        label: 'ISSQN', 
+        color: '#a855f7', // Roxo claro
+        group: 'impostos', 
+        icon: '🏢' 
+      },
+      // Grupo Financeiro - Entradas/Despesas
+      { 
+        key: 'totalEntries', 
+        label: 'Entradas', 
+        color: '#16a34a', // Verde
+        group: 'financeiro', 
+        icon: '💰' 
+      },
+      { 
+        key: 'totalExpenses', 
+        label: 'Despesas', 
+        color: '#dc2626', // Vermelho
+        group: 'financeiro', 
+        icon: '💸' 
+      },
+      // Grupo Azul - Resultados DRE
+      { 
+        key: 'receitaBruta', 
+        label: 'Receita Bruta', 
+        color: '#1e3a8a', // Azul mais escuro
+        group: 'resultados', 
+        icon: '📊' 
+      },
+      { 
+        key: 'receitaLiquida', 
+        label: 'Receita Líquida', 
+        color: '#3b82f6', // Azul médio escuro
+        group: 'resultados', 
+        icon: '💧' 
+      },
+      { 
+        key: 'resultadoBruto', 
+        label: 'Resultado Bruto', 
+        color: '#60a5fa', // Azul médio claro
+        group: 'resultados', 
+        icon: '📈' 
+      },
+      { 
+        key: 'resultadoLiquido', 
+        label: 'Resultado Líquido', 
+        color: '#93c5fd', // Azul mais claro
+        group: 'resultados', 
+        icon: '✨' 
+      },
+      // Grupo Laranja - Impostos e Deduções Manuais
+      { 
+        key: 'deduction', 
+        label: 'Dedução Fiscal', 
+        color: '#ea580c', // Laranja escuro
+        group: 'manuais', 
+        icon: '📉' 
+      },
+      { 
+        key: 'csll', 
+        label: 'CSLL', 
+        color: '#fb923c', // Laranja médio
+        group: 'manuais', 
+        icon: '🏛️' 
+      },
+      { 
+        key: 'irpj', 
+        label: 'IRPJ', 
+        color: '#fdba74', // Laranja claro
+        group: 'manuais', 
+        icon: '📊' 
+      }
+    ];
+  }, []);
 
   // Filtrar variáveis selecionadas
   const filteredVariables = useMemo(() => {
-    return availableVariables.filter(variable => 
+    const filtered = availableVariables.filter(variable => 
       selectedVariables.includes(variable.key)
     );
-  }, [selectedVariables, availableVariables]);
+    
+    // Debug detalhado das variáveis
+    console.log(`🔍 [CHART-DEBUG] Variáveis filtradas:`, filtered.map(v => v.key));
+    console.log(`🔍 [CHART-DEBUG] Total variáveis selecionadas:`, selectedVariables.length);
+    console.log(`🔍 [CHART-DEBUG] Dados do primeiro ponto:`, chartData[0]);
+    
+    // Verificar se todas as variáveis estão nos dados
+    if (chartData.length > 0) {
+      const dataKeys = Object.keys(chartData[0]);
+      const missingVariables = selectedVariables.filter(key => !dataKeys.includes(key));
+      const availableInData = selectedVariables.filter(key => dataKeys.includes(key));
+      
+      console.log(`🔍 [DATA-DEBUG] Variáveis disponíveis nos dados:`, availableInData.length);
+      console.log(`🔍 [DATA-DEBUG] Variáveis faltando nos dados:`, missingVariables);
+      console.log(`🔍 [DATA-DEBUG] Todas as chaves nos dados:`, dataKeys);
+    }
+    
+    return filtered;
+  }, [selectedVariables, availableVariables, chartData]);
 
   // Toggle de variáveis
   const toggleVariable = useCallback((variableKey: string) => {
@@ -288,31 +483,45 @@ export function EnhancedFinancialChart({
   // Tooltip customizado avançado
   const customTooltip = useCallback(({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
+      // Debug do payload
+      console.log(`🔍 [TOOLTIP-DEBUG] Payload completo:`, payload);
+      console.log(`🔍 [TOOLTIP-DEBUG] Total de variáveis no tooltip:`, payload.length);
+      
+      // Filtrar apenas variáveis com valores numéricos válidos
+      const validPayload = payload.filter((entry: any) => 
+        entry.value !== undefined && 
+        entry.value !== null && 
+        !isNaN(Number(entry.value))
+      );
+      
       return (
-        <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm p-4 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 min-w-[200px]">
-          <p className="text-sm font-semibold mb-3 text-gray-900 dark:text-gray-100">{label}</p>
-          <div className="space-y-2">
-            {payload
-              .sort((a: any, b: any) => b.value - a.value)
+        <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm p-4 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 min-w-[280px] max-h-[400px] overflow-y-auto">
+          <p className="text-sm font-semibold mb-3 text-gray-900 dark:text-gray-100 border-b pb-2">{label}</p>
+          <div className="space-y-1.5">
+            {validPayload
+              .sort((a: any, b: any) => Math.abs(b.value) - Math.abs(a.value))
               .map((entry: any, index: number) => (
-                <div key={index} className="flex items-center justify-between gap-3 text-sm">
-                  <div className="flex items-center gap-2">
+                <div key={index} className="flex items-center justify-between gap-3 text-xs">
+                  <div className="flex items-center gap-2 min-w-0 flex-1">
                     <div 
-                      className="w-3 h-3 rounded-full shadow-sm" 
+                      className="w-3 h-3 rounded-full shadow-sm flex-shrink-0" 
                       style={{ backgroundColor: entry.color }}
                     />
-                    <span className="font-medium text-gray-700 dark:text-gray-300">
+                    <span className="font-medium text-gray-700 dark:text-gray-300 truncate">
                       {entry.name}:
                     </span>
                   </div>
-                  <span className="font-bold text-gray-900 dark:text-gray-100">
+                  <span className="font-bold text-gray-900 dark:text-gray-100 flex-shrink-0">
                     {entry.name === 'Margem (%)' 
-                      ? `${entry.value.toFixed(1)}%` 
-                      : formatCurrency(entry.value)
+                      ? `${Number(entry.value).toFixed(1)}%` 
+                      : formatCurrency(Number(entry.value))
                     }
                   </span>
                 </div>
               ))}
+          </div>
+          <div className="mt-3 pt-2 border-t text-xs text-gray-500">
+            Total: {validPayload.length} variáveis
           </div>
         </div>
       );
@@ -338,19 +547,15 @@ export function EnhancedFinancialChart({
     setExportType(type);
 
     try {
-      const periodDescription = (() => {
-        switch (periodType) {
-          case "annual": return `Dados Anuais - ${currentPeriod.year}`;
-          case "quarterly": return `${currentPeriod.quarter}º Trimestre ${currentPeriod.year}`;
-          case "monthly": return `${currentPeriod.month}/${currentPeriod.year}`;
-          default: return `Período: ${currentPeriod.year}`;
-        }
-      })();
+      const periodDescription = `Dados Anuais - ${resolvedYear}`;
 
       const exportOptions = {
-        filename: `federal-invest-${periodType}-${currentPeriod.year}${currentPeriod.quarter ? `-q${currentPeriod.quarter}` : ''}${currentPeriod.month ? `-m${currentPeriod.month}` : ''}`,
-        title: title,
-        subtitle: `${periodDescription} • ${filteredVariables.length} variáveis`,
+        filename: `federal-invest-${
+          periodType === 'monthly' ? 'daily' : 
+          periodType === 'quarterly' ? 'quarterly' : 'annual'
+        }-${resolvedYear}`,
+        title: dynamicTitle,
+        subtitle: `${periodDescription}`,
         backgroundColor: theme === 'dark' ? '#1f2937' : '#ffffff',
       };
 
@@ -378,7 +583,7 @@ export function EnhancedFinancialChart({
       setIsExporting(false);
       setExportType(null);
     }
-  }, [chartRef, title, periodType, currentPeriod, filteredVariables, theme, toast]);
+  }, [chartRef, dynamicTitle, resolvedYear, theme, toast, periodType]);
 
   // Renderizar gráfico baseado no tipo
   const renderChart = useCallback((isExpandedChart = false) => {
@@ -520,7 +725,7 @@ export function EnhancedFinancialChart({
     </div>
   );
 
-  // Componente de seleção de variáveis (multiselect)
+    // Componente de seleção de variáveis - todas as 4 variáveis
   const VariableMultiSelect = () => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -533,78 +738,33 @@ export function EnhancedFinancialChart({
           <ChevronDown className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
-        <DropdownMenuLabel className="flex items-center justify-between">
-          <span>Selecionar Variáveis</span>
-          <Badge variant="secondary">{selectedVariables.length} selecionadas</Badge>
-        </DropdownMenuLabel>
+      <DropdownMenuContent align="end" className="w-60">
+        <DropdownMenuLabel>Selecionar Variáveis</DropdownMenuLabel>
         <DropdownMenuSeparator />
         
-        {/* Grupos de variáveis */}
-        {Object.entries(VARIABLE_GROUPS).map(([groupKey, group]) => (
-          <div key={groupKey}>
-            <DropdownMenuItem
-              onSelect={(e) => e.preventDefault()}
-              className="cursor-pointer"
-              onClick={() => toggleGroup(groupKey)}
-            >
-              <div className="flex items-center gap-3 w-full">
-                <span className="text-lg">{group.icon}</span>
-                <span className="font-medium flex-1">{group.label}</span>
-                <Badge 
-                  variant="outline" 
-                  className={cn("text-xs", group.color)}
-                >
-                  {availableVariables.filter(v => v.group === groupKey && selectedVariables.includes(v.key)).length}/
-                  {availableVariables.filter(v => v.group === groupKey).length}
-                </Badge>
-              </div>
-            </DropdownMenuItem>
-            
-            {/* Variáveis do grupo */}
-            {availableVariables
-              .filter(variable => variable.group === groupKey)
-              .map((variable) => (
+        {/* Todas as variáveis disponíveis */}
+        {availableVariables.map((variable) => (
                 <DropdownMenuCheckboxItem
                   key={variable.key}
                   checked={selectedVariables.includes(variable.key)}
-                  onCheckedChange={() => toggleVariable(variable.key)}
+            onCheckedChange={(checked) => {
+              if (checked) {
+                setSelectedVariables(prev => [...prev, variable.key]);
+              } else {
+                setSelectedVariables(prev => prev.filter(v => v !== variable.key));
+              }
+            }}
                   onSelect={(e) => e.preventDefault()}
-                  className="pl-8"
                 >
                   <div className="flex items-center gap-2 w-full">
                     <div 
                       className="w-3 h-3 rounded-full border-2 border-white shadow-sm" 
                       style={{ backgroundColor: variable.color }}
                     />
-                    <span className="text-sm">{variable.label}</span>
+              <span className="text-sm">{variable.icon} {variable.label}</span>
                   </div>
                 </DropdownMenuCheckboxItem>
               ))}
-            
-            <DropdownMenuSeparator />
-          </div>
-        ))}
-        
-        {/* Ações rápidas */}
-        <div className="p-2 space-y-2">
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="w-full justify-start h-8"
-            onClick={() => setSelectedVariables(availableVariables.map(v => v.key))}
-          >
-            Selecionar Todas
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="w-full justify-start h-8"
-            onClick={() => setSelectedVariables([])}
-          >
-            Limpar Seleção
-          </Button>
-        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -616,19 +776,69 @@ export function EnhancedFinancialChart({
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-3">
             <div>
-              <h3 className="text-base font-semibold tracking-tight">{title}</h3>
+              <h3 className="text-base font-semibold tracking-tight">{dynamicTitle}</h3>
               <p className="text-xs text-muted-foreground">
-                {/* Remover contagem de períodos se não houver dados */}
-                {filteredVariables.length} variáveis selecionadas{chartData.length > 0 ? ` • ${chartData.length} períodos` : ''}
+                {periodType === 'monthly' && currentPeriod?.month
+                  ? `Dias do mês ${currentPeriod.month}/${resolvedYear}`
+                  : periodType === 'quarterly' 
+                    ? (currentPeriod?.quarter && currentPeriod.quarter !== 0 
+                        ? `Trimestre ${currentPeriod.quarter}` 
+                        : 'Todos os Trimestres')
+                    : `Ano ${resolvedYear}`
+                }
               </p>
             </div>
             <div className="flex items-center gap-2">
               <VariableMultiSelect />
+              <div className="flex items-center gap-2">
+                <Button 
+                  variant={chartType === 'bar' ? 'default' : 'outline'} 
+                  className="h-9"
+                  onClick={() => setChartType('bar')}
+                >
+                  <BarChart3 className="h-4 w-4 mr-2" /> Barras
+                </Button>
+                <Button 
+                  variant={chartType === 'area' ? 'default' : 'outline'} 
+                  className="h-9"
+                  onClick={() => setChartType('area')}
+                >
+                  <AreaChartIcon className="h-4 w-4 mr-2" /> Área
+                </Button>
+              </div>
+              <Button variant="outline" className="h-9" onClick={() => setIsExpandedModalOpen(true)}>
+                <Maximize2 className="h-4 w-4 mr-2" /> Expandir
+              </Button>
             </div>
           </div>
 
-          {chartData.length === 0 ? (
+          {/* Debug: Mostrar dados brutos 
+          {chartData.length > 0 && (
+            <div className="mb-4 p-3 bg-gray-100 dark:bg-gray-800 rounded text-xs">
+              <strong>🔍 DEBUG - Dados recebidos:</strong>
+              <pre className="mt-2 overflow-auto max-h-32">
+                {JSON.stringify(chartData.slice(0, 3), null, 2)}
+              </pre>
+              <div className="mt-2">
+                <strong>Total de pontos:</strong> {chartData.length}
+                <br />
+                <strong>Variáveis selecionadas:</strong> {selectedVariables.join(', ')}
+                <br />
+                <strong>Variáveis filtradas:</strong> {filteredVariables.map(v => v.key).join(', ')}
+              </div>
+            </div>
+          )}*/}
+
+          {loading ? (
+            <div className="w-full h-[400px] flex items-center justify-center text-sm text-gray-500 dark:text-gray-400">Carregando...</div>
+          ) : err ? (
+            <div className="w-full h-[400px] flex items-center justify-center text-sm text-red-500">{err}</div>
+          ) : chartData.length === 0 ? (
             renderEmptyState()
+          ) : filteredVariables.length === 0 ? (
+            <div className="w-full h-[400px] flex items-center justify-center text-sm text-orange-500">
+              Nenhuma variável selecionada. Selecione &quot;Operação&quot; no dropdown.
+            </div>
           ) : (
             <div 
               ref={chartContainerRef}
@@ -648,12 +858,12 @@ export function EnhancedFinancialChart({
       </GlassCard>
 
       {/* Modal Expandido com Configurações Avançadas */}
-      <Dialog open={isExpanded} onOpenChange={setIsExpanded}>
+      <Dialog open={isExpandedModalOpen} onOpenChange={setIsExpandedModalOpen}>
         <DialogContent className="max-w-7xl h-[95vh] p-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl">
           <DialogHeader className="p-6 pb-0">
             <DialogTitle className="text-xl font-semibold flex items-center gap-2">
               <TrendingUp className="h-6 w-6 text-blue-600" />
-              {title} - Visualização Avançada
+              {dynamicTitle} - Visualização Avançada
             </DialogTitle>
           </DialogHeader>
           <div className="flex-1 overflow-auto p-6 pt-4">

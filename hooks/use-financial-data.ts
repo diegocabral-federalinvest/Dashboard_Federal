@@ -155,8 +155,8 @@ export function useFinancialData(options: UseFinancialDataOptions = {}): UseFina
       if (finalPeriod.periodType === "monthly" && !finalPeriod.month) {
         finalPeriod.month = currentMonth;
       }
-      if (finalPeriod.periodType === "quarterly" && !finalPeriod.quarter) {
-        finalPeriod.quarter = currentQuarter;
+      if (finalPeriod.periodType === "quarterly" && finalPeriod.quarter === undefined) {
+        finalPeriod.quarter = 0; // Padrão para "Todos" os trimestres
       }
       
       return finalPeriod;
@@ -172,16 +172,17 @@ export function useFinancialData(options: UseFinancialDataOptions = {}): UseFina
     let monthParam: number | undefined = undefined;
     if (period.periodType === "monthly") {
       monthParam = period.month;
-    } else if (period.periodType === "quarterly" && period.quarter) {
-      // Calcular o primeiro mês do trimestre especificado
+    } else if (period.periodType === "quarterly" && period.quarter && period.quarter > 0) {
+      // Calcular o primeiro mês do trimestre especificado (apenas para trimestres específicos)
       monthParam = (period.quarter - 1) * 3 + 1; // Q1=1, Q2=4, Q3=7, Q4=10
     }
+    // Se quarter === 0, monthParam fica undefined (indicando "todos os trimestres")
     
     // Validação: Se é mensal ou trimestral mas não tem mês, ou se é trimestral mas não tem quarter
     const isValidPeriod = 
       period.periodType === "annual" || 
       (period.periodType === "monthly" && period.month) ||
-      (period.periodType === "quarterly" && period.quarter);
+      (period.periodType === "quarterly" && (period.quarter !== undefined && period.quarter >= 0));
     
     if (!isValidPeriod) {
       logger.warn("Invalid period configuration", {

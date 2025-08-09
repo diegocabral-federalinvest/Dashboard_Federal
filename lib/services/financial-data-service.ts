@@ -137,7 +137,7 @@ export interface FinancialDataParams {
 const periodSchema = z.object({
   year: z.union([z.number().min(2020).max(2030), z.null()]), // Permite null para "todos os anos"
   month: z.number().min(1).max(12).optional(),
-  quarter: z.number().min(1).max(4).optional(),
+  quarter: z.number().min(0).max(4).optional(), // 0 = "Todos", 1-4 = trimestres específicos
   periodType: z.enum(["monthly", "quarterly", "annual"]),
   deducaoFiscal: z.number().min(0).optional().default(0),
 });

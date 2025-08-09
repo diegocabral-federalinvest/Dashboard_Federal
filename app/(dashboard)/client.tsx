@@ -72,7 +72,9 @@ export default function DashboardClient() {
   }, [setMonth]);
 
   const handleQuarterChange = useCallback((value: string) => {
-    setQuarter(Number(value));
+    const quarterValue = Number(value);
+    // 0 significa "Todos" os trimestres
+    setQuarter(quarterValue === 0 ? 0 : quarterValue);
   }, [setQuarter]);
 
   // Função para valores seguros
@@ -178,13 +180,14 @@ export default function DashboardClient() {
 
             {period.periodType === "quarterly" && (
               <Select 
-                value={period.quarter?.toString()} 
+                value={period.quarter?.toString() || "0"} 
                 onValueChange={handleQuarterChange}
               >
                 <SelectTrigger className="w-40 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="0">Todos</SelectItem>
                   {["1º Trimestre", "2º Trimestre", "3º Trimestre", "4º Trimestre"].map((quarter, index) => (
                     <SelectItem key={index} value={(index + 1).toString()}>
                       {quarter}

@@ -71,6 +71,7 @@ import {
   getFacetedRowModel,
   getFacetedUniqueValues,
 } from "@tanstack/react-table"
+  import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 export interface TableColumn {
   key: string;
@@ -164,6 +165,7 @@ export function AdvancedDataTable<TData extends TableData = TableData>({
   const [rowSelection, setRowSelection] = useState({})
   const [filterStates, setFilterStates] = useState<Record<string, string | undefined>>({})
   const [globalFilter, setGlobalFilter] = useState("")
+  const [filtersOpen, setFiltersOpen] = useState(false)
 
   // Formatação de valores - mover para antes dos useMemos
   const defaultFormatValue = useCallback((value: any, type: string) => {
@@ -239,7 +241,16 @@ export function AdvancedDataTable<TData extends TableData = TableData>({
       },
       enableSorting: col.sortable !== false,
       enableColumnFilter: col.filterable !== false,
-      filterFn: "includesString",
+      filterFn: (row, id, filterValue) => {
+        const v = row.getValue(id);
+        if (filterValue === undefined || filterValue === null || (Array.isArray(filterValue) && filterValue.length === 0)) {
+          return true;
+        }
+        if (Array.isArray(filterValue)) {
+          return filterValue.map(String).includes(String(v ?? ""));
+        }
+        return String(v ?? "").toLowerCase().includes(String(filterValue).toLowerCase());
+      },
     }));
   }, [columns, valueFormatter]);
 
@@ -449,35 +460,51 @@ export function AdvancedDataTable<TData extends TableData = TableData>({
   const handleExport = useCallback(() => {
     if (onExport) {
       onExport();
-    } else {
-      // Exportação padrão para CSV
-      const csvContent = [
-        columns.map(col => col.title).join(','),
-        ...table.getFilteredRowModel().rows.map(row => 
-          columns.map(col => row.getValue(col.key) || '').join(',')
-        )
-      ].join('\n');
-      
-      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-      const link = document.createElement('a');
-      const url = URL.createObjectURL(blob);
-      link.setAttribute('href', url);
-      link.setAttribute('download', `${exportFilename}.csv`);
-      link.style.visibility = 'hidden';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      return;
     }
-  }, [onExport, columns, table, exportFilename]);
+    // Exportação padrão para CSV usando colunas visíveis e linhas filtradas
+    const cols = visibleColumnsArray;
+    const escape = (value: any) => {
+      if (value === null || value === undefined) return "";
+      let text = String(value);
+      text = text.replace(/"/g, '""');
+      return /[",\n;]/.test(text) ? `"${text}"` : text;
+    };
+    const header = cols.map(c => c.title).join(',');
+    const lines = table.getFilteredRowModel().rows.map(row =>
+      cols.map(c => escape(row.getValue(c.key) ?? "")).join(',')
+    );
+    const csv = "\ufeff" + [header, ...lines].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.setAttribute('download', `${exportFilename}.csv`);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, [onExport, visibleColumnsArray, table, exportFilename]);
 
   // Filtros avançados por coluna
   const renderColumnFilter = (column: any) => {
     const columnId = column.id
     const uniqueValues = Array.from(table.getColumn(columnId)?.getFacetedUniqueValues()?.keys() ?? [])
-    const currentFilter = filterStates[columnId] || ""
+    const currentSearch = filterStates[columnId] || ""
+    const colMeta = columns.find(c => c.key === columnId)
+    const displayValue = (val: any) => {
+      try {
+        if (colMeta?.type === 'date') {
+          const d = new Date(val)
+          if (!isNaN(d.getTime())) return d.toLocaleDateString('pt-BR')
+        }
+      } catch {}
+      return String(val ?? '')
+    }
     const filteredValues = uniqueValues.filter((value: any) => 
-      value && value.toString().toLowerCase().includes(currentFilter.toLowerCase())
+      value && displayValue(value).toLowerCase().includes(currentSearch.toLowerCase())
     )
+    const selectedValues: string[] = Array.isArray(column.getFilterValue()) ? column.getFilterValue() as string[] : []
 
     return (
       <div className="space-y-2">
@@ -485,7 +512,7 @@ export function AdvancedDataTable<TData extends TableData = TableData>({
           <Search className="h-4 w-4 text-gray-400" />
           <Input
             placeholder={`Filtrar ${column.columnDef.header}...`}
-            value={currentFilter}
+            value={currentSearch}
             onChange={(e) => {
               const value = e.target.value
               setFilterStates(prev => ({
@@ -496,25 +523,31 @@ export function AdvancedDataTable<TData extends TableData = TableData>({
             className="h-8 text-xs"
           />
         </div>
-        
-        <Select
-          value={(column.getFilterValue() as string) || "all"}
-          onValueChange={(value) => {
-            column.setFilterValue(value === "all" ? undefined : value)
-          }}
-        >
-          <SelectTrigger className="h-8 text-xs">
-            <SelectValue placeholder="Selecione..." />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">Todos</SelectItem>
-            {filteredValues.map((value: any) => (
-              <SelectItem key={value} value={value}>
-                {value} ({table.getColumn(columnId)?.getFacetedUniqueValues()?.get(value) || 0})
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <div className="max-h-60 overflow-y-auto rounded-md border p-2 space-y-1">
+          <div className="flex items-center justify-between mb-2">
+            <Button variant="ghost" size="sm" className="h-7 px-2" onClick={() => column.setFilterValue(undefined)}>Limpar</Button>
+            <span className="text-xs text-gray-500">{selectedValues.length} selecionado(s)</span>
+          </div>
+          {filteredValues.map((value: any) => {
+            const valStr = String(value)
+            const checked = selectedValues.includes(valStr)
+            return (
+              <label key={valStr} className="flex items-center gap-2 py-1 px-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+                <Checkbox
+                  checked={checked}
+                  onCheckedChange={(isChecked) => {
+                    const next = new Set(selectedValues)
+                    if (isChecked) next.add(valStr); else next.delete(valStr as any)
+                    column.setFilterValue(Array.from(next))
+                  }}
+                />
+                <span className="text-sm flex-1">
+                  {displayValue(valStr)} ({table.getColumn(columnId)?.getFacetedUniqueValues()?.get(value) || 0})
+                </span>
+              </label>
+            )
+          })}
+        </div>
       </div>
     )
   }
@@ -710,31 +743,32 @@ export function AdvancedDataTable<TData extends TableData = TableData>({
 
           {/* Filtros por Coluna */}
           {showFilters && enableFiltering && showFiltersControl && (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm">
-                  <Filter className={`h-4 w-4 ${showFilterText ? 'mr-2' : ''}`} />
-                  {showFilterText && (<>Filtros ({activeFilters.length})</>)}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-72">
-                <DropdownMenuLabel>Filtros por Coluna</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <div className="max-h-96 overflow-y-auto">
-                  {table
-                    .getAllColumns()
-                    .filter((column) => column.getCanFilter())
-                    .map((column) => (
-                      <div key={column.id} className="p-3 border-b last:border-b-0">
-                        <div className="font-medium text-sm mb-2 text-gray-700 dark:text-gray-300">
-                          {column.columnDef.header as string}
+            <>
+              <Button variant="outline" size="sm" onClick={() => setFiltersOpen(true)}>
+                <Filter className={`h-4 w-4 ${showFilterText ? 'mr-2' : ''}`} />
+                {showFilterText && (<>Filtros ({activeFilters.length})</>)}
+              </Button>
+              <Dialog open={filtersOpen} onOpenChange={setFiltersOpen}>
+                <DialogContent className="w-[720px] max-w-[800px] max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle>Filtros por Coluna</DialogTitle>
+                  </DialogHeader>
+                  <div className="max-h-[70vh] overflow-y-auto">
+                    {table
+                      .getAllColumns()
+                      .filter((column) => column.getCanFilter())
+                      .map((column) => (
+                        <div key={column.id} className="p-3 border-b last:border-b-0 w-[500px] max-w-[600px] mx-auto">
+                          <div className="font-medium text-sm mb-2 text-gray-700 dark:text-gray-300">
+                            {column.columnDef.header as string}
+                          </div>
+                          {renderColumnFilter(column)}
                         </div>
-                        {renderColumnFilter(column)}
-                      </div>
-                    ))}
-                </div>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                      ))}
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </>
           )}
 
           {/* Visibilidade das Colunas */}

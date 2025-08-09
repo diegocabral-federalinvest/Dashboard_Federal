@@ -281,7 +281,7 @@ export function ModernDashboardLayout({
                 border border-blue-200/50 dark:border-blue-600/30 shadow-blue-500/20 shadow-sm backdrop-blur-sm">
                   Resultado Líquido
                 </Badge>
-                <NeonIcon icon={TrendingUp} />
+                <NeonIcon icon={DollarSign} />
               </div>
               
               <div className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
@@ -366,26 +366,6 @@ export function ModernDashboardLayout({
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600 dark:text-gray-400">Retornos:</span>
-                  <span className="font-medium">
-                    {isLoading ? (
-                      <InlineValueSkeleton width="w-16" />
-                    ) : (
-                      formatCurrency(stats.totalReturns)
-                    )}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600 dark:text-gray-400">Aportes:</span>
-                  <span className="font-medium">
-                    {isLoading ? (
-                      <InlineValueSkeleton width="w-12" />
-                    ) : (
-                      stats.totalContributions
-                    )}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
                   <span className="text-gray-600 dark:text-gray-400">Crescimento:</span>
                   <span className="font-medium">
                     {isLoading ? (
@@ -399,6 +379,18 @@ export function ModernDashboardLayout({
                     )}
                   </span>
                 </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600 dark:text-gray-400">Retornos:</span>
+                  <span className="font-medium">
+                    {isLoading ? (
+                      <InlineValueSkeleton width="w-16" />
+                    ) : (
+                      formatCurrency(stats.totalReturns)
+                    )}
+                  </span>
+                </div>
+               
+               
               </div>
             </div>
           </GlassCard>
