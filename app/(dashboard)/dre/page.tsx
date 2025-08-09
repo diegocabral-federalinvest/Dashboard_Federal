@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function DREPage() {
   return (
-    <RoleGuard allowedRoles={["ADMIN", "EDITOR"]}>
+    <RoleGuard allowedRoles={["ADMIN", "EDITOR", "VIEWER"]}>
       <DREClient />
     </RoleGuard>
   );

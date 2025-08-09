@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function OperacoesPage() {
   return (
-    <RoleGuard allowedRoles={["ADMIN", "EDITOR"]}>
+    <RoleGuard allowedRoles={["ADMIN", "EDITOR", "VIEWER"]}>
       <OperacoesClient />
     </RoleGuard>
   );

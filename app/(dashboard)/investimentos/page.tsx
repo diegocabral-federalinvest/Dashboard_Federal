@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function InvestmentsPage() {
   return (
-    <RoleGuard allowedRoles={["ADMIN", "EDITOR"]}>
+    <RoleGuard allowedRoles={["ADMIN", "EDITOR", "VIEWER"]}>
       <InvestmentsClient />
     </RoleGuard>
   );
